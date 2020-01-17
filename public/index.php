@@ -22,6 +22,5 @@ $app->addErrorMiddleware(true, false, false);
 require __DIR__ . '/../app/container.php';
 
 $app->get('/', \App\Controllers\PagesController::class . ':home');
-$app->post('/', \App\Controllers\PagesController::class . ':home');
 
 $app->run();
