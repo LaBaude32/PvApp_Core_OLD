@@ -5,7 +5,10 @@ namespace App\Domain\User\Data;
 final class UserCreateData
 {
     /** @var string */
-    public $username;
+    public $email;
+
+    /** @var string */
+    public $pwd;
 
     /** @var string */
     public $firstName;
@@ -14,5 +17,14 @@ final class UserCreateData
     public $lastName;
 
     /** @var string */
-    public $email;
+    public $telephone;
+
+    /** @var string */
+    public $groupe;
+
+    /** @var string */
+    public $fonction;
+
+    /** @var string */
+    public $organisme;
 }

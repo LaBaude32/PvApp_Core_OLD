@@ -36,8 +36,8 @@ final class UserCreator
     public function createUser(UserCreateData $user): int
     {
         // Validation
-        if (empty($user->username)) {
-            throw new UnexpectedValueException('Username required');
+        if (empty($user->email)) {
+            throw new UnexpectedValueException('Email required');
         }
 
         // Insert user

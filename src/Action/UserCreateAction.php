@@ -19,14 +19,18 @@ final class UserCreateAction
     public function __invoke(ServerRequest $request, Response $response): Response
     {
         // Collect input from the HTTP request
-        $data = (array)$request->getParsedBody();
+        $data = (array) $request->getParsedBody();
 
         // Mapping (should be done in a mapper class)
         $user = new UserCreateData();
-        $user->username = $data['username'];
+        $user->email = $data['email'];
+        $user->pwd = $data['password'];
         $user->firstName = $data['first_name'];
         $user->lastName = $data['last_name'];
-        $user->email = $data['email'];
+        $user->telephone = $data['telephone'];
+        $user->groupe = $data['groupe'];
+        $user->fonction = $data['fonction'];
+        $user->organisme = $data['organisme'];
 
         // Invoke the Domain with inputs and retain the result
         $userId = $this->userCreator->createUser($user);

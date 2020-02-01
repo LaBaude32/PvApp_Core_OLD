@@ -35,20 +35,29 @@ class UserCreatorRepository
     public function insertUser(UserCreateData $user): int
     {
         $row = [
-            'username' => $user->username,
+            'email' => $user->email,
+            'pwd' => $user->pwd,
             'first_name' => $user->firstName,
             'last_name' => $user->lastName,
             'email' => $user->email,
+            'telephone' => $user->telephone,
+            'groupe' => $user->groupe,
+            'fonction' => $user->fonction,
+            'organisme' => $user->organisme
         ];
 
-        $sql = "INSERT INTO users SET 
-                username=:username, 
+        $sql = "INSERT INTO personne SET 
+                email=:email,
+                password=:pwd,
                 first_name=:first_name, 
-                last_name=:last_name, 
-                email=:email;";
+                last_name=:last_name,
+                telephone=:telephone,
+                groupe=:groupe,
+                fonction=:fonction, 
+                organisme=:organisme";
 
         $this->connection->prepare($sql)->execute($row);
 
-        return (int)$this->connection->lastInsertId();
+        return (int) $this->connection->lastInsertId();
     }
 }
