@@ -8,5 +8,6 @@ return function (App $app) {
     $app->get('/getAllUsers', \App\Action\UsersGetAllAction::class);
     $app->post('/addAffaire', \App\Action\AffaireCreateAction::class);
     $app->get('/getAllAffaires', \App\Action\AffairesGetAllAction::class);
+    $app->post('/addLot', \App\Action\LotCreateAction::class);
 };
 
