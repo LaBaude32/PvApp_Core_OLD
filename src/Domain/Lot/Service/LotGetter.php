@@ -3,7 +3,7 @@
 namespace App\Domain\Lot\Service;
 
 use UnexpectedValueException;
-use App\Domain\Affaire\Repository\AffairesGetterAllRepository;
+use App\Domain\Lot\Repository\LotGetterRepository;
 
 /**
  * Service.
@@ -11,16 +11,16 @@ use App\Domain\Affaire\Repository\AffairesGetterAllRepository;
 final class LotGetter
 {
     /**
-     * @var AffairesGetterAllRepository
+     * @var LotGetterRepository
      */
     private $repository;
 
     /**
      * The constructor.
      *
-     * @param AffairesGetterAllRepository $repository The repository
+     * @param LotGetterRepository $repository The repository
      */
-    public function __construct(AffairesGetterAllRepository $repository)
+    public function __construct(LotGetterRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -30,16 +30,7 @@ final class LotGetter
      *
      * @return array All the affaires
      */
-    public function getAffaires(): array
-    {
-
-        // Get All Affaires
-        $affaires = $this->repository->getAllAffaires();
-
-        return (array) $affaires;
-    }
-
-    public function getAffaireById(int $id)
+    public function getLotByAffaireId(int $id): array
     {
         // Validation
         if (empty($id)) {
@@ -50,7 +41,9 @@ final class LotGetter
             throw new UnexpectedValueException('id doit être positif');
         }
 
-        $affaire = $this->repository->getAffaireById($id);
-        return $affaire;
+        // Get All Affaires
+        $affaires = $this->repository->getLotByAffaireId($id);
+
+        return (array) $affaires;
     }
 }

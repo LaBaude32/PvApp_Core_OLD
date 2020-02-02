@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Domain\Affaire\Repository;
+namespace App\Domain\Lot\Repository;
 
 use PDO;
-use App\Domain\Affaire\Data\AffaireGetData;
+use App\Domain\Lot\Data\LotGetData;
 
 /**
  * Repository.
  */
-class AffairesGetterAllRepository
+class LotGetterRepository
 {
     /**
      * @var PDO The database connection
@@ -25,49 +25,21 @@ class AffairesGetterAllRepository
         $this->connection = $connection;
     }
 
-    /**
-     * Get All Affaires.
-     *
-     * @return array All the affaires
-     */
-    public function getAllAffaires(): array
+    public function getLotByAffaireId(int $id_affaire): array
     {
-        $sql = "SELECT * FROM affaire";
+        $sql = "SELECT * FROM lot WHERE affaire_id_affaire=:id";
 
         $statement = $this->connection->prepare($sql);
+        $statement->bindValue('id', $id_affaire, PDO::PARAM_INT);
         $statement->execute();
 
         while ($row = $statement->fetch()) {
-            $affaire = new AffaireGetData();
-            $affaire->id_affaire = (int) $row['id_affaire'];
-            $affaire->nom = (string) $row['nom'];
-            $affaire->adresse = (string) $row['adresse'];
-            $affaire->avancement = (int) $row['avancement'];
-            $affaire->type_reu = (string) $row['type_reu'];
+            $lot = new LotGetData();
+            $lot->id_lot = (int) $row['id_lot'];
+            $lot->name = (string) $row['name'];
 
-            $affaires[] = $affaire;
+            $lots[] = $lot;
         }
-        return (array) $affaires;
-    }
-
-    //TODO: peut-on ajouter la methode getUserById ici ? Ou ce n'est pas très propre.
-
-    public function getAffaireById(int $id): AffaireGetData
-    {
-        $sql = "SELECT * FROM affaire WHERE id_affaire=:id";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->bindValue('id', $id, PDO::PARAM_INT);
-        $statement->execute();
-
-        $row = $statement->fetch();
-        $affaire = new AffaireGetData();
-        $affaire->id_affaire = (int) $row['id_affaire'];
-        $affaire->nom = (string) $row['nom'];
-        $affaire->adresse = (string) $row['adresse'];
-        $affaire->avancement = (int) $row['avancement'];
-        $affaire->type_reu = (string) $row['type_reu'];
-
-        return $affaire;
+        return (array) $lots;
     }
 }

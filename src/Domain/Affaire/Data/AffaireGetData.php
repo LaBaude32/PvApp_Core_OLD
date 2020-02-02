@@ -4,7 +4,7 @@ namespace App\Domain\Affaire\Data;
 
 final class AffaireGetData
 {
-    /** @var string */
+    /** @var int */
     public $id_affaire;
     
     /** @var string */
