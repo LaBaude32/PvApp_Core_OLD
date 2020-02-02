@@ -9,5 +9,6 @@ return function (App $app) {
     $app->post('/addAffaire', \App\Action\AffaireCreateAction::class);
     $app->get('/getAllAffaires', \App\Action\AffairesGetAllAction::class);
     $app->post('/addLot', \App\Action\LotCreateAction::class);
+    $app->get('/getAffaireById', \App\Action\AffaireGetByIdAction::class);
 };
 

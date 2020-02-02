@@ -51,4 +51,23 @@ class AffairesGetterAllRepository
     }
 
     //TODO: peut-on ajouter la methode getUserById ici ? Ou ce n'est pas très propre.
+
+    public function getAffaireById(int $id): AffaireGetData
+    {
+        $sql = "SELECT * FROM affaire WHERE id_affaire=:id";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindValue('id', $id, PDO::PARAM_INT);
+        $statement->execute();
+
+        $row = $statement->fetch();
+        $affaire = new AffaireGetData();
+        $affaire->id_affaire = (int) $row['id_affaire'];
+        $affaire->nom = (string) $row['nom'];
+        $affaire->adresse = (string) $row['adresse'];
+        $affaire->avancement = (int) $row['avancement'];
+        $affaire->type_reu = (string) $row['type_reu'];
+
+        return $affaire;
+    }
 }

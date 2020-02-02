@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Domain\Affaire\Service;
+namespace App\Domain\Lot\Service;
 
+use UnexpectedValueException;
 use App\Domain\Affaire\Repository\AffairesGetterAllRepository;
 
 /**
  * Service.
  */
-final class AffairesGetterAll
+final class LotGetter
 {
     /**
      * @var AffairesGetterAllRepository
@@ -36,5 +37,20 @@ final class AffairesGetterAll
         $affaires = $this->repository->getAllAffaires();
 
         return (array) $affaires;
+    }
+
+    public function getAffaireById(int $id)
+    {
+        // Validation
+        if (empty($id)) {
+            throw new UnexpectedValueException('id required');
+        }
+
+        if ($id == 0) {
+            throw new UnexpectedValueException('id doit être positif');
+        }
+
+        $affaire = $this->repository->getAffaireById($id);
+        return $affaire;
     }
 }

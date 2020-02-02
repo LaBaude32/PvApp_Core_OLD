@@ -6,7 +6,7 @@ use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use App\Domain\Affaire\Service\AffaireGetter;
 
-final class AffairesGetAllAction
+final class AffaireGetByIdAction
 {
     private $affaireGetter;
 
@@ -17,10 +17,15 @@ final class AffairesGetAllAction
 
     public function __invoke(ServerRequest $request, Response $response): Response
     {
+      // Collect input from the HTTP request
+      $data = (array) $request->getParsedBody();
+
+      $id = (int) $data['id_affaire'];
+      
       // Invoke the Domain with inputs and retain the result
-      $affaires = $this->affaireGetter->getAllAffaires();
+      $affaire = $this->affaireGetter->getAffaireById($id);
 
       // Build the HTTP response
-      return $response->withJson($affaires)->withStatus(201);
+      return $response->withJson($affaire)->withStatus(201);
     }
 }
