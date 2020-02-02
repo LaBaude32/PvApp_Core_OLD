@@ -2,8 +2,6 @@
 
 namespace App\Domain\User\Service;
 
-use UnexpectedValueException;
-use App\Domain\User\Data\UserGetData;
 use App\Domain\User\Repository\UsersGetterAllRepository;
 
 /**
