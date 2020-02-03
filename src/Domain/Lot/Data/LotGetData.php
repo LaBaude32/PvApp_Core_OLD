@@ -10,6 +10,6 @@ final class LotGetData
     /** @var string */
     public $name;
 
-    /** @var string */
-    public $affaire_id;
+    // /** @var string */
+    // public $affaire_id;
 }
