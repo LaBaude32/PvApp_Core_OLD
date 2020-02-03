@@ -50,8 +50,6 @@ class AffaireGetterRepository
         return (array) $affaires;
     }
 
-    //TODO: peut-on ajouter la methode getUserById ici ? Ou ce n'est pas très propre.
-
     public function getAffaireById(int $id): AffaireGetData
     {
         $sql = "SELECT * FROM affaire WHERE id_affaire=:id";

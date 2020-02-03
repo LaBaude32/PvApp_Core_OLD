@@ -52,6 +52,4 @@ class UsersGetterAllRepository
         }
         return (array) $users;
     }
-
-    //TODO: peut-on ajouter la methode getUserById ici ? Ou ce n'est pas très propre.
 }
