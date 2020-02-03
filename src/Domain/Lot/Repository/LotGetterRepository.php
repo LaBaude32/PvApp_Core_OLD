@@ -27,7 +27,7 @@ class LotGetterRepository
 
     public function getLotByAffaireId(int $id_affaire): array
     {
-        $sql = "SELECT * FROM lot WHERE affaire_id_affaire=:id";
+        $sql = "SELECT * FROM lot WHERE affaire_id=:id";
 
         $statement = $this->connection->prepare($sql);
         $statement->bindValue('id', $id_affaire, PDO::PARAM_INT);
