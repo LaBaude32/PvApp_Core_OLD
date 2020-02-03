@@ -26,9 +26,9 @@ final class LotGetter
     }
 
     /**
-     * Get all the affaires.
+     * Get all the lots.
      *
-     * @return array All the affaires
+     * @return array All the lots
      */
     public function getLotByAffaireId(int $id): array
     {
@@ -41,9 +41,9 @@ final class LotGetter
             throw new UnexpectedValueException('id doit être positif');
         }
 
-        // Get All Affaires
-        $affaires = $this->repository->getLotByAffaireId($id);
+        // Get All lots
+        $lots = $this->repository->getLotByAffaireId($id);
 
-        return (array) $affaires;
+        return (array) $lots;
     }
 }
