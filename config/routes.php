@@ -12,6 +12,5 @@ return function (App $app) {
     $app->get('/getAffaireById', \App\Action\AffaireGetByIdAction::class);
     $app->post('/addPv', \App\Action\PvCreateAction::class);
     $app->get('/getPvByAffaireId', \App\Action\PvGetByAffaireIdAction::class);
-    $app->post('/addPvUpdater', \App\Action\PvUpdateAction::class);
+    $app->post('/PvUpdater', \App\Action\PvUpdateAction::class);
 };
-

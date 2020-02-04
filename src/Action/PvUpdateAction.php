@@ -23,7 +23,7 @@ final class PvUpdateAction
 
         // Mapping (should be done in a mapper class)
         $pv = new PvCreateData();
-        $pv->id_pv = $data['id'];
+        $pv->id_pv = $data['id_pv'];
         $pv->etat = $data['etat'];
         $pv->date_reunion = $data['date_reunion'];
         $pv->lieu_reunion = $data['lieu_reunion'];
@@ -31,6 +31,7 @@ final class PvUpdateAction
         $pv->lieu_prochaine_reunion = $data['lieu_prochaine_reunion'];
         $pv->affaire_id = $data['affaire_id'];
 
+        // var_dump($pv);
         // Invoke the Domain with inputs and retain the result
         $pvId = $this->pvUpdater->updatePv($pv);
 

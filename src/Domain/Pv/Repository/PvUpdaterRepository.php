@@ -35,6 +35,7 @@ class PvUpdaterRepository
     public function UpdatePv(PvCreateData $pv): int
     {
         $row = [
+            'id_pv' => $pv->id_pv,
             'etat' => $pv->etat,
             'date_reunion' => $pv->date_reunion,
             'lieu_reunion' => $pv->lieu_reunion,
@@ -43,19 +44,20 @@ class PvUpdaterRepository
             'affaire_id' => $pv->affaire_id,
         ];
 
-        $query = "UPDATE pv SET 
+        $query = "UPDATE pv SET
                 etat=:etat,
                 date_reunion=:date_reunion,
                 lieu_reunion=:lieu_reunion,
                 date_pro_reunion=:date_prochaine_reunion,
                 lieu_pro_reunion=:lieu_prochaine_reunion,
-                affaire_id=:affaire_id 
+                affaire_id=:affaire_id
                 WHERE id_pv=:id_pv";
 
         $statement = $this->connection->prepare($query);
         $statement->bindValue('id_pv', $pv->id_pv, PDO::PARAM_INT);
         $statement->execute($row);
 
-        return (int) $this->connection->lastInsertId();
+        // return (int) $this->connection->lastInsertId(); //TODO: ne renvoie rien
+        return (int) $pv->id_pv;
     }
 }

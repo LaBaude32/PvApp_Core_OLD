@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 03 fév. 2020 à 14:55
+-- Généré le :  mar. 04 fév. 2020 à 15:16
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -63,9 +63,19 @@ CREATE TABLE IF NOT EXISTS `item` (
   `date_echeance` timestamp NULL DEFAULT NULL,
   `visible` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `pv_id` int(11) NOT NULL,
-  PRIMARY KEY (`id_item`),
-  KEY `fk_item_pv1_idx` (`pv_id`)
+  PRIMARY KEY (`id_item`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `item_has_pv`
+--
+
+DROP TABLE IF EXISTS `item_has_pv`;
+CREATE TABLE IF NOT EXISTS `item_has_pv` (
+  `item_id` int(11) NOT NULL,
+  `pv_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -169,12 +179,6 @@ INSERT INTO `pv` (`id_pv`, `etat`, `date_reunion`, `lieu_reunion`, `date_pro_reu
 --
 -- Contraintes pour les tables déchargées
 --
-
---
--- Contraintes pour la table `item`
---
-ALTER TABLE `item`
-  ADD CONSTRAINT `fk_item_pv1` FOREIGN KEY (`pv_id`) REFERENCES `pv` (`id_pv`);
 
 --
 -- Contraintes pour la table `lot`
