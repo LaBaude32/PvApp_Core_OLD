@@ -41,7 +41,7 @@ class PvGetterRepository
             $pv->date_reunion = (string) $row['date_reunion'];
             $pv->lieu_reunion = (string) $row['lieu_reunion'];
             $pv->date_prochaine_reunion = (string) $row['date_pro_reunion'];
-            $pv->lieu_prochaine_reunion = (string) $row['lieu_proc_reunion'];
+            $pv->lieu_prochaine_reunion = (string) $row['lieu_pro_reunion'];
             // $pv->affaire_id = (int) $row['affaire_id'];
 
             $pvs[] = $pv;
