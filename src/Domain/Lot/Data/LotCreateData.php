@@ -7,6 +7,6 @@ final class LotCreateData
     /** @var string */
     public $name;
 
-    /** @var string */
+    /** @var int */
     public $affair_id;
 }

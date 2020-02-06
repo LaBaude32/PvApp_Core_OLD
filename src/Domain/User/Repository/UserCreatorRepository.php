@@ -39,22 +39,21 @@ class UserCreatorRepository
             'pwd' => $user->pwd,
             'first_name' => $user->firstName,
             'last_name' => $user->lastName,
-            'email' => $user->email,
-            'telephone' => $user->telephone,
-            'groupe' => $user->groupe,
-            'fonction' => $user->fonction,
-            'organisme' => $user->organisme
+            'phone' => $user->phone,
+            'group' => $user->group,
+            'function' => $user->function,
+            'organism' => $user->organism
         ];
 
-        $sql = "INSERT INTO personne SET 
+        $sql = "INSERT INTO user SET
                 email=:email,
                 password=:pwd,
-                first_name=:first_name, 
+                first_name=:first_name,
                 last_name=:last_name,
-                telephone=:telephone,
-                groupe=:groupe,
-                fonction=:fonction, 
-                organisme=:organisme";
+                phone=:phone,
+                group=:group,
+                function=:function,
+                organism=:organism";
 
         $this->connection->prepare($sql)->execute($row);
 

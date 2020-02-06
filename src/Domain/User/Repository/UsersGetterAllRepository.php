@@ -32,21 +32,21 @@ class UsersGetterAllRepository
      */
     public function getAllUsers(): array
     {
-        $sql = "SELECT * FROM personne";
+        $sql = "SELECT * FROM user";
 
         $statement = $this->connection->prepare($sql);
         $statement->execute();
 
         while ($row = $statement->fetch()) {
             $user = new UserGetData();
-            $user->personne_id = (int) $row['id_personne'];
+            $user->id_user = (int) $row['id_user'];
             $user->email = (string) $row['email'];
             $user->firstName = (string) $row['first_name'];
             $user->lastName = (string) $row['last_name'];
-            $user->telephone = (string) $row['telephone'];
-            $user->groupe= (string) $row['groupe'];
-            $user->fonction = (string) $row['fonction'];
-            $user->organisme = (string) $row['organisme'];
+            $user->phone = (string) $row['phone'];
+            $user->group = (string) $row['group'];
+            $user->function = (string) $row['function'];
+            $user->organism = (string) $row['organism'];
 
             $users[] = $user;
         }

@@ -17,14 +17,14 @@ final class UserCreateData
     public $lastName;
 
     /** @var string */
-    public $telephone;
+    public $phone;
 
     /** @var string */
-    public $groupe;
+    public $group;
 
     /** @var string */
-    public $fonction;
+    public $function;
 
     /** @var string */
-    public $organisme;
+    public $organism;
 }

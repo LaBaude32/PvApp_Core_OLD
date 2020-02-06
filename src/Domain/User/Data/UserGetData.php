@@ -5,7 +5,7 @@ namespace App\Domain\User\Data;
 final class UserGetData
 {
     /** @var int */
-    public $personne_id;
+    public $id_user;
 
     /** @var string */
     public $email;
@@ -20,14 +20,14 @@ final class UserGetData
     public $lastName;
 
     /** @var string */
-    public $telephone;
+    public $phone;
 
     /** @var string */
-    public $groupe;
+    public $group;
 
     /** @var string */
-    public $fonction;
+    public $function;
 
     /** @var string */
-    public $organisme;
+    public $organism;
 }

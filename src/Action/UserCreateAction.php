@@ -27,17 +27,17 @@ final class UserCreateAction
         $user->pwd = $data['password'];
         $user->firstName = $data['first_name'];
         $user->lastName = $data['last_name'];
-        $user->telephone = $data['telephone'];
-        $user->groupe = $data['groupe'];
-        $user->fonction = $data['fonction'];
-        $user->organisme = $data['organisme'];
+        $user->phone = $data['phone'];
+        $user->group = $data['group'];
+        $user->function = $data['function'];
+        $user->organism = $data['organism'];
 
         // Invoke the Domain with inputs and retain the result
         $userId = $this->userCreator->createUser($user);
 
         // Transform the result into the JSON representation
         $result = [
-            'user_id' => $userId
+            'id_user' => $userId
         ];
 
         // Build the HTTP response
