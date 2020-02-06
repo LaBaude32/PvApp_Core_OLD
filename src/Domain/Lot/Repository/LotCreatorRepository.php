@@ -36,12 +36,12 @@ class LotCreatorRepository
     {
         $row = [
             'name' => $lot->name,
-            'affaire_id' => $lot->affaire_id,
+            'affair_id' => $lot->affair_id,
         ];
 
-        $sql = "INSERT INTO lot SET 
+        $sql = "INSERT INTO lot SET
                 name=:name,
-                affaire_id=:affaire_id";
+                affair_id=:affair_id";
 
         $this->connection->prepare($sql)->execute($row);
 

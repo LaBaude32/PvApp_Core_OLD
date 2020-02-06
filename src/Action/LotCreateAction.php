@@ -24,7 +24,7 @@ final class LotCreateAction
         // Mapping (should be done in a mapper class)
         $lot = new LotCreateData();
         $lot->name = $data['name'];
-        $lot->affaire_id = $data['affaire_id'];
+        $lot->affair_id = $data['affair_id'];
 
         // Invoke the Domain with inputs and retain the result
         $lotId = $this->lotCreator->createLot($lot);
