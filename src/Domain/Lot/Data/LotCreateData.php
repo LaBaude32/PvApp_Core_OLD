@@ -8,5 +8,5 @@ final class LotCreateData
     public $name;
 
     /** @var string */
-    public $affaire_id;
+    public $affair_id;
 }

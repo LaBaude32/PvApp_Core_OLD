@@ -30,7 +30,7 @@ final class LotGetter
      *
      * @return array All the lots
      */
-    public function getLotByAffaireId(int $id): array
+    public function getLotByAffairId(int $id): array
     {
         // Validation
         if (empty($id)) {
@@ -42,7 +42,7 @@ final class LotGetter
         }
 
         // Get All lots
-        $lots = $this->repository->getLotByAffaireId($id);
+        $lots = $this->repository->getLotByAffairId($id);
 
         return (array) $lots;
     }

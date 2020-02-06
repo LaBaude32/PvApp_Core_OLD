@@ -30,7 +30,7 @@ final class PvGetter
      *
      * @return array All the pvs
      */
-    public function getPvByAffaireId(int $id): array
+    public function getPvByAffairId(int $id): array
     {
         // Validation
         if (empty($id)) {
@@ -42,7 +42,7 @@ final class PvGetter
         }
 
         // Get All pvs
-        $pvs = $this->repository->getPvByAffaireId($id);
+        $pvs = $this->repository->getPvByAffairId($id);
 
         return (array) $pvs;
     }

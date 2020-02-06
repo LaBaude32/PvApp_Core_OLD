@@ -26,12 +26,12 @@ class PvGetterRepository
         $this->connection = $connection;
     }
 
-    public function getPvByAffaireId(int $id_affaire): array
+    public function getPvByAffairId(int $id_affair): array
     {
-        $sql = "SELECT * FROM pv WHERE affaire_id=:id";
+        $sql = "SELECT * FROM pv WHERE affair_id=:id";
 
         $statement = $this->connection->prepare($sql);
-        $statement->bindValue('id', $id_affaire, PDO::PARAM_INT);
+        $statement->bindValue('id', $id_affair, PDO::PARAM_INT);
         $statement->execute();
 
         while ($row = $statement->fetch()) {
@@ -42,7 +42,7 @@ class PvGetterRepository
             $pv->lieu_reunion = (string) $row['lieu_reunion'];
             $pv->date_prochaine_reunion = (string) $row['date_pro_reunion'];
             $pv->lieu_prochaine_reunion = (string) $row['lieu_pro_reunion'];
-            $pv->affaire_id = (int) $row['affaire_id'];
+            $pv->affair_id = (int) $row['affair_id'];
 
             $pvs[] = $pv;
         }
@@ -65,7 +65,7 @@ class PvGetterRepository
             $pv->lieu_reunion = (string) $row['lieu_reunion'];
             $pv->date_prochaine_reunion = (string) $row['date_pro_reunion'];
             $pv->lieu_prochaine_reunion = (string) $row['lieu_pro_reunion'];
-            $pv->affaire_id = (int) $row['affaire_id'];
+            $pv->affair_id = (int) $row['affair_id'];
 
             $pvs[] = $pv;
         }

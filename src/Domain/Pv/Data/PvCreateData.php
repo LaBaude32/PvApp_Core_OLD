@@ -20,5 +20,5 @@ final class PvCreateData
     public $lieu_prochaine_reunion;
 
     /** @var int */
-    public $affaire_id;
+    public $affair_id;
 }

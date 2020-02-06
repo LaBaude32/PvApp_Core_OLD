@@ -6,7 +6,7 @@ final class PvGetData
 {
     /** @var int */
     public $id_pv;
-    
+
     /** @var string */
     public $etat;
 
@@ -23,5 +23,5 @@ final class PvGetData
     public $lieu_prochaine_reunion;
 
     /** @var int */
-    public $affaire_id;
+    public $affair_id;
 }

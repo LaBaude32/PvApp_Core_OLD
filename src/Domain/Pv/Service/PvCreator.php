@@ -27,11 +27,11 @@ final class PvCreator
     }
 
     /**
-     * Create a new Affaire.
+     * Create a new Affair.
      *
-     * @param PvCreateData $Affaire The Affaire data
+     * @param PvCreateData $Affair The Affair data
      *
-     * @return int The new Affaire ID
+     * @return int The new Affair ID
      */
     public function createPv(PvCreateData $pv): int
     {
@@ -44,8 +44,8 @@ final class PvCreator
             throw new UnexpectedValueException('lieu de réunion required');
         }
 
-        if (empty($pv->affaire_id)) {
-            throw new UnexpectedValueException('Affaire required');
+        if (empty($pv->affair_id)) {
+            throw new UnexpectedValueException('Affair required');
         }
 
         // Insert pv

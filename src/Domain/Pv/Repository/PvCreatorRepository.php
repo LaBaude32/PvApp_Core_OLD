@@ -40,16 +40,16 @@ class PvCreatorRepository
             'lieu_reunion' => $pv->lieu_reunion,
             'date_prochaine_reunion' => $pv->date_prochaine_reunion,
             'lieu_prochaine_reunion' => $pv->lieu_prochaine_reunion,
-            'affaire_id' => $pv->affaire_id,
+            'affair_id' => $pv->affair_id,
         ];
 
-        $sql = "INSERT INTO pv SET 
+        $sql = "INSERT INTO pv SET
                 etat=:etat,
                 date_reunion=:date_reunion,
                 lieu_reunion=:lieu_reunion,
                 date_pro_reunion=:date_prochaine_reunion,
                 lieu_pro_reunion=:lieu_prochaine_reunion,
-                affaire_id=:affaire_id";
+                affair_id=:affair_id";
 
         $this->connection->prepare($sql)->execute($row);
 

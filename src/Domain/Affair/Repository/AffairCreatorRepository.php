@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Domain\Affaire\Repository;
+namespace App\Domain\Affair\Repository;
 
-use App\Domain\Affaire\Data\AffaireCreateData;
+use App\Domain\Affair\Data\AffairCreateData;
 use PDO;
 
 /**
  * Repository.
  */
-class AffaireCreatorRepository
+class AffairCreatorRepository
 {
     /**
      * @var PDO The database connection
@@ -26,25 +26,25 @@ class AffaireCreatorRepository
     }
 
     /**
-     * Insert affaire row.
+     * Insert affair row.
      *
-     * @param AffaireCreateData $affaire The affaire
+     * @param AffairCreateData $affair The affair
      *
      * @return int The new ID
      */
-    public function insertAffaire(AffaireCreateData $affaire): int
+    public function insertAffair(AffairCreateData $affair): int
     {
         $row = [
-            'nom' => $affaire->nom,
-            'adresse' => $affaire->adresse,
-            'avancement' => $affaire->avancement,
-            'type_reu' => $affaire->type_reu
+            'nom' => $affair->name,
+            'adresse' => $affair->address,
+            'avancement' => $affair->progress,
+            'type_reu' => $affair->meeting_type
         ];
 
-        $sql = "INSERT INTO affaire SET 
+        $sql = "INSERT INTO affair SET
                 nom=:nom,
                 adresse=:adresse,
-                avancement=:avancement, 
+                avancement=:avancement,
                 type_reu=:type_reu";
 
         $this->connection->prepare($sql)->execute($row);

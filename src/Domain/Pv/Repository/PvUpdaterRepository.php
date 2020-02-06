@@ -28,7 +28,7 @@ class PvUpdaterRepository
     /**
      * Insert lot row.
      *
-     * @param PvCreateData $lot The affaire
+     * @param PvCreateData $lot The affair
      *
      * @return int The new ID
      */
@@ -41,7 +41,7 @@ class PvUpdaterRepository
             'lieu_reunion' => $pv->lieu_reunion,
             'date_prochaine_reunion' => $pv->date_prochaine_reunion,
             'lieu_prochaine_reunion' => $pv->lieu_prochaine_reunion,
-            'affaire_id' => $pv->affaire_id,
+            'affair_id' => $pv->affair_id,
         ];
 
         $query = "UPDATE pv SET
@@ -50,7 +50,7 @@ class PvUpdaterRepository
                 lieu_reunion=:lieu_reunion,
                 date_pro_reunion=:date_prochaine_reunion,
                 lieu_pro_reunion=:lieu_prochaine_reunion,
-                affaire_id=:affaire_id
+                affair_id=:affair_id
                 WHERE id_pv=:id_pv";
 
         $statement = $this->connection->prepare($query);

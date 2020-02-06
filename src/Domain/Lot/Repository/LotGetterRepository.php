@@ -25,12 +25,12 @@ class LotGetterRepository
         $this->connection = $connection;
     }
 
-    public function getLotByAffaireId(int $id_affaire): array
+    public function getLotByAffairId(int $id_affair): array
     {
-        $sql = "SELECT * FROM lot WHERE affaire_id=:id";
+        $sql = "SELECT * FROM lot WHERE affair_id=:id";
 
         $statement = $this->connection->prepare($sql);
-        $statement->bindValue('id', $id_affaire, PDO::PARAM_INT);
+        $statement->bindValue('id', $id_affair, PDO::PARAM_INT);
         $statement->execute();
 
         while ($row = $statement->fetch()) {
