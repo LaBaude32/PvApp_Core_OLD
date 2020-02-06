@@ -27,7 +27,7 @@ final class AffairGetByIdAction
 
     // Invoke the Domain with inputs and retain the result
     $affair = $this->affairGetter->getAffairById($id);
-    $lots = $this->lotGetter->getLotByAffairId($affair->id_affair);
+    $lots = $this->lotGetter->getLotByAffairId($affair->id_affair); //TODO: faire une joiture de table plutôt
 
     $affairWithLots = ["Infos Affair" => $affair, "lots" => $lots];
 
