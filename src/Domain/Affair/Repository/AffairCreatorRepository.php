@@ -35,17 +35,17 @@ class AffairCreatorRepository
     public function insertAffair(AffairCreateData $affair): int
     {
         $row = [
-            'nom' => $affair->name,
-            'adresse' => $affair->address,
-            'avancement' => $affair->progress,
-            'type_reu' => $affair->meeting_type
+            'name' => $affair->name,
+            'address' => $affair->address,
+            'progress' => $affair->progress,
+            'meeting_type' => $affair->meeting_type
         ];
 
         $sql = "INSERT INTO affair SET
-                nom=:nom,
-                adresse=:adresse,
-                avancement=:avancement,
-                type_reu=:type_reu";
+                name=:name,
+                address=:address,
+                progress=:progress,
+                meeting_type=:meeting_type";
 
         $this->connection->prepare($sql)->execute($row);
 

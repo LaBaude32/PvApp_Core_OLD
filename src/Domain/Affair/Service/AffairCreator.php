@@ -36,7 +36,7 @@ final class AffairCreator
     public function createAffair(AffairCreateData $affair): int
     {
         // Validation
-        if (empty($affair->nom)) {
+        if (empty($affair->name)) {
             throw new UnexpectedValueException('Nom required');
         }
 

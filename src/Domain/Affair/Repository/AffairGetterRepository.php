@@ -40,10 +40,10 @@ class AffairGetterRepository
         while ($row = $statement->fetch()) {
             $affair = new AffairGetData();
             $affair->id_affair = (int) $row['id_affair'];
-            $affair->nom = (string) $row['nom'];
-            $affair->adresse = (string) $row['adresse'];
-            $affair->avancement = (int) $row['avancement'];
-            $affair->type_reu = (string) $row['type_reu'];
+            $affair->name = (string) $row['name'];
+            $affair->address = (string) $row['address'];
+            $affair->progress = (int) $row['progress'];
+            $affair->meeting_type = (string) $row['meeting_type'];
 
             $affairs[] = $affair;
         }
@@ -61,10 +61,10 @@ class AffairGetterRepository
         $row = $statement->fetch();
         $affair = new AffairGetData();
         $affair->id_affair = (int) $row['id_affair'];
-        $affair->nom = (string) $row['nom'];
-        $affair->adresse = (string) $row['adresse'];
-        $affair->avancement = (int) $row['avancement'];
-        $affair->type_reu = (string) $row['type_reu'];
+        $affair->name = (string) $row['name'];
+        $affair->address = (string) $row['address'];
+        $affair->progress = (int) $row['progress'];
+        $affair->meeting_type = (string) $row['meeting_type'];
 
         return $affair;
     }
