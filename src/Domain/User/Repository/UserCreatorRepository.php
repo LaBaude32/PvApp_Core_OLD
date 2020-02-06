@@ -2,8 +2,8 @@
 
 namespace App\Domain\User\Repository;
 
-use App\Domain\User\Data\UserCreateData;
 use PDO;
+use App\Domain\User\Data\UserCreateData;
 
 /**
  * Repository.
@@ -41,22 +41,21 @@ class UserCreatorRepository
             'last_name' => $user->lastName,
             'phone' => $user->phone,
             'group' => $user->group,
-            'function' => $user->function,
+            'user_function' => $user->user_function,
             'organism' => $user->organism
         ];
 
-        $sql = "INSERT INTO user SET
-                email=:email,
-                password=:pwd,
-                first_name=:first_name,
-                last_name=:last_name,
-                phone=:phone,
-                group=:group,
-                function=:function,
-                organism=:organism";
+        $query = "INSERT INTO user SET
+        email=:email,
+        password=:pwd,
+        first_name=:first_name,
+        last_name=:last_name,
+        phone=:phone,
+        group=:group,
+        user_function=:user_function,
+        organism=:organism";
 
-        $this->connection->prepare($sql)->execute($row);
-
+        $this->connection->prepare($query)->execute($row);
         return (int) $this->connection->lastInsertId();
     }
 }

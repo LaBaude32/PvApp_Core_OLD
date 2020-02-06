@@ -23,7 +23,7 @@ final class UserCreateData
     public $group;
 
     /** @var string */
-    public $function;
+    public $user_function;
 
     /** @var string */
     public $organism;
