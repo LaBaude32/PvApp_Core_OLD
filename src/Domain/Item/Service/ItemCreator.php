@@ -33,7 +33,7 @@ final class ItemCreator
      *
      * @return int The new Affaire ID
      */
-    public function createItem(ItemCreateData $item): int
+    public function createItem(ItemCreateData $item, $pvId): int
     {
         // Validation
         if (empty($item->position)) {
@@ -51,8 +51,10 @@ final class ItemCreator
         // Insert item
         $itemId = $this->repository->insertItem($item);
 
+        //TODO: inserer un item_has_pv en passant en paramettre le $pvId et le $itemId
+
         // Logging here: item created successfully
 
-        return $itemId;
+        return $itemId; //TODO: array ?
     }
 }

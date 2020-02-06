@@ -25,29 +25,32 @@ class ItemGetterRepository
         $this->connection = $connection;
     }
 
-    // public function getItemByPvId(int $id_pv): array //TODO: Ne fonctionne pas encore !
-    // {
-    //     $query = "SELECT * FROM item WHERE pv_id=:id";
+    public function getItemByPvId(int $id_pv): array //TODO: Ne fonctionne pas encore !
+    {
+        $query = "SELECT * FROM item WHERE pv_id=:id";
 
-    //     $statement = $this->connection->prepare($query);
-    //     $statement->bindValue('id', $id_pv, PDO::PARAM_INT);
-    //     $statement->execute();
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('id', $id_pv, PDO::PARAM_INT);
+        $statement->execute();
 
-    //     while ($row = $statement->fetch()) {
-    //         $item = new ItemGetData();
-    //         $item->id_item = (int) $row['id_item'];
-    //         $item->position = (string) $row['position'];
-    //         $item->note = (string) $row['note'];
-    //         $item->suite_a_donner = (string) $row['suite_a_donner'];
-    //         $item->ressource = (string) $row['ressource'];
-    //         $item->echeance = (string) $row['echeance'];
-    //         $item->visible = (int) $row['visible'];
-    //         $item->created_at = (int) $row['created_at'];
+        while ($row = $statement->fetch()) {
+            $item = new ItemGetData();
+            $item->id_item = (int) $row['id_item'];
+            $item->position = (string) $row['position'];
+            $item->note = (string) $row['note'];
+            $item->suite_a_donner = (string) $row['suite_a_donner'];
+            $item->ressource = (string) $row['ressource'];
+            $item->echeance = (string) $row['echeance'];
+            $item->visible = (int) $row['visible'];
+            $item->created_at = (int) $row['created_at'];
 
-    //         $items[] = $item;
-    //     }
-    //     return (array) $items;
-    // }
+            $items[] = $item;
+        }
+        return (array) $items;
+    }
+
+
+    //TODO: Ajouter une variable à l'objet, faire une jointure de table, recuperer les item là où y'a le bon id_pv
 
     public function getAllItems(): array
     //TODO: Comment on trie les items ? dans une requette SQL ou on recupère tout et c'est le serveur qui trie ?
