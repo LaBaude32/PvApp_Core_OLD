@@ -28,6 +28,6 @@ final class ItemGetData
     /** @var bool */
     public $visible;
 
-    /** @var string */ //TODO: vraiment ça ?
+    /** @var int */
     public $created_at;
 }

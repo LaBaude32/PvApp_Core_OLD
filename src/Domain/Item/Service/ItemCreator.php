@@ -55,6 +55,6 @@ final class ItemCreator
 
         // Logging here: item created successfully
 
-        return $itemId; //TODO: array ?
+        return $itemId;
     }
 }

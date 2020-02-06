@@ -30,7 +30,7 @@ final class ItemGetter
     //  *
     //  * @return array All the pvs
     //  */
-    // public function getPvByPvId(int $id): array //TODO: ne fonctionne pas
+    // public function getPvByPvId(int $id): array
     // {
     //     // Validation
     //     if (empty($id)) {
@@ -38,7 +38,7 @@ final class ItemGetter
     //     }
 
     //     if ($id == 0) {
-    //         throw new UnexpectedValueException('id doit être positif');
+    //         throw new UnexpectedValueException('id doit Ãªtre positif');
     //     }
 
     //     // Get All pvs
@@ -52,7 +52,7 @@ final class ItemGetter
      *
      * @return array All the items
      */
-    public function getAllItems(): array //TODO: ne fonctionne pas
+    public function getAllItems(): array
     {
         // Get All items
         $items = $this->repository->getAllItems();

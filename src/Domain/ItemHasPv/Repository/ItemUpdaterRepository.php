@@ -57,7 +57,7 @@ class PvUpdaterRepository
         $statement->bindValue('id_pv', $pv->id_pv, PDO::PARAM_INT);
         $statement->execute($row);
 
-        // return (int) $this->connection->lastInsertId(); //TODO: ne renvoie rien
+        // return (int) $this->connection->lastInsertId(); //TODO: faire une requette et comparer avec le pv envoyé si probleme renvoyer.
         return (int) $pv->id_pv;
     }
 }

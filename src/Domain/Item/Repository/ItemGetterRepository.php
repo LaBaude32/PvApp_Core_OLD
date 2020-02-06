@@ -50,10 +50,9 @@ class ItemGetterRepository
     }
 
 
-    //TODO: Ajouter une variable à l'objet, faire une jointure de table, recuperer les item là où y'a le bon id_pv
+    //TODO: Ajouter une propriété à l'objet, faire une jointure de table, recuperer les item là où y'a le bon id_pv
 
     public function getAllItems(): array
-    //TODO: Comment on trie les items ? dans une requette SQL ou on recupère tout et c'est le serveur qui trie ?
     {
         $query = "SELECT * FROM item";
 
