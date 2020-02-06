@@ -2,8 +2,6 @@
 
 namespace App\Domain\Item\Data;
 
-use DateTime;
-
 final class ItemCreateData
 {
     /** @var int */
@@ -13,16 +11,16 @@ final class ItemCreateData
     public $note;
 
     /** @var string */
-    public $suite_a_donner;
+    public $follow_up;
 
     /** @var string */
     public $ressources;
 
     /** @var string */
-    public $echeance;
+    public $completion;
 
     /** @var string */
-    public $date_echeance;
+    public $completion_date;
 
     /** @var bool */
     public $visible;

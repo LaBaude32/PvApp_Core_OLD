@@ -38,9 +38,9 @@ class ItemGetterRepository
             $item->id_item = (int) $row['id_item'];
             $item->position = (string) $row['position'];
             $item->note = (string) $row['note'];
-            $item->suite_a_donner = (string) $row['suite_a_donner'];
-            $item->ressource = (string) $row['ressource'];
-            $item->echeance = (string) $row['echeance'];
+            $item->follow_up = (string) $row['follow_up'];
+            $item->completion = (string) $row['completion'];
+            $item->completion_date = (string) $row['completion_date'];
             $item->visible = (int) $row['visible'];
             $item->created_at = (int) $row['created_at'];
 
@@ -64,9 +64,9 @@ class ItemGetterRepository
             $item->id_item = (int) $row['id_item'];
             $item->position = (string) $row['position'];
             $item->note = (string) $row['note'];
-            $item->suite_a_donner = (string) $row['suite_a_donner'];
-            $item->ressource = (string) $row['ressource'];
-            $item->echeance = (string) $row['echeance'];
+            $item->follow_up = (string) $row['follow_up'];
+            $item->completion = (string) $row['completion'];
+            $item->completion_date = (string) $row['completion_date'];
             $item->visible = (int) $row['visible'];
             $item->created_at = (int) $row['created_at'];
 

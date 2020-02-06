@@ -37,10 +37,10 @@ class ItemCreatorRepository
         $row = [
             'position' => $item->position,
             'note' => $item->note,
-            'suite_a_donner' => $item->suite_a_donner,
+            'follow_up' => $item->follow_up,
             'ressources' => $item->ressources,
-            'echeance' => $item->echeance,
-            'date_echeance' => $item->date_echeance,
+            'echeance' => $item->completion,
+            'completion_date' => $item->completion_date,
             'visible' => $item->visible,
             'created_at' => $item->created_at
         ];
@@ -48,10 +48,10 @@ class ItemCreatorRepository
         $query = "INSERT INTO item SET
                 position=:position,
                 note=:note,
-                suite_a_donner=:suite_a_donner,
+                follow_up=:follow_up,
                 ressources=:ressources,
-                echeance=:echeance,
-                date_echeance=:date_echeance,
+                completion=:completion,
+                completion_date=:completion_date,
                 visible=:visible,
                 created_at=:created_at";
 
