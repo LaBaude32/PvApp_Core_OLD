@@ -37,11 +37,11 @@ class PvGetterRepository
         while ($row = $statement->fetch()) {
             $pv = new PvGetData();
             $pv->id_pv = (int) $row['id_pv'];
-            $pv->etat = (string) $row['etat'];
-            $pv->date_reunion = (string) $row['date_reunion'];
-            $pv->lieu_reunion = (string) $row['lieu_reunion'];
-            $pv->date_prochaine_reunion = (string) $row['date_pro_reunion'];
-            $pv->lieu_prochaine_reunion = (string) $row['lieu_pro_reunion'];
+            $pv->state = (string) $row['sate'];
+            $pv->meeting_date = (string) $row['meeting_date'];
+            $pv->meeting_place = (string) $row['meeting_place'];
+            $pv->meeting_next_date = (string) $row['meeting_next_date'];
+            $pv->meeting_next_place = (string) $row['meeting_next_place'];
             $pv->affair_id = (int) $row['affair_id'];
 
             $pvs[] = $pv;
@@ -60,11 +60,11 @@ class PvGetterRepository
         while ($row = $statement->fetch()) {
             $pv = new PvGetData();
             $pv->id_pv = (int) $row['id_pv'];
-            $pv->etat = (string) $row['etat'];
-            $pv->date_reunion = (string) $row['date_reunion'];
-            $pv->lieu_reunion = (string) $row['lieu_reunion'];
-            $pv->date_prochaine_reunion = (string) $row['date_pro_reunion'];
-            $pv->lieu_prochaine_reunion = (string) $row['lieu_pro_reunion'];
+            $pv->sate = (string) $row['state'];
+            $pv->meeting_date = (string) $row['meeting_date'];
+            $pv->meeting_place = (string) $row['meeting_place'];
+            $pv->meeting_next_date = (string) $row['meeting_next_date'];
+            $pv->meeting_next_place = (string) $row['meeting_next_place'];
             $pv->affair_id = (int) $row['affair_id'];
 
             $pvs[] = $pv;

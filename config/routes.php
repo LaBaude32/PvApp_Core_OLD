@@ -11,6 +11,6 @@ return function (App $app) {
     $app->post('/addLot', \App\Action\LotCreateAction::class);
     $app->get('/getAffairById', \App\Action\AffairGetByIdAction::class);
     $app->post('/addPv', \App\Action\PvCreateAction::class);
-    $app->get('/getPvByAffairId', \App\Action\PvGetByAffaireIdAction::class);
+    $app->get('/getPvByAffairId', \App\Action\PvGetByAffairIdAction::class);
     $app->post('/PvUpdater', \App\Action\PvUpdateAction::class);
 };

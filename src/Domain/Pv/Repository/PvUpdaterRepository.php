@@ -36,20 +36,20 @@ class PvUpdaterRepository
     {
         $row = [
             'id_pv' => $pv->id_pv,
-            'etat' => $pv->etat,
-            'date_reunion' => $pv->date_reunion,
-            'lieu_reunion' => $pv->lieu_reunion,
-            'date_prochaine_reunion' => $pv->date_prochaine_reunion,
-            'lieu_prochaine_reunion' => $pv->lieu_prochaine_reunion,
+            'state' => $pv->state,
+            'meeting_date' => $pv->meeting_date,
+            'meeting_place' => $pv->meeting_place,
+            'meeting_next_date' => $pv->meeting_next_date,
+            'meeting_next_place' => $pv->meeting_next_place,
             'affair_id' => $pv->affair_id,
         ];
 
         $query = "UPDATE pv SET
-                etat=:etat,
-                date_reunion=:date_reunion,
-                lieu_reunion=:lieu_reunion,
-                date_pro_reunion=:date_prochaine_reunion,
-                lieu_pro_reunion=:lieu_prochaine_reunion,
+                state=:state,
+                meeting_date=:meeting_date,
+                meeting_place=:meeting_place,
+                meeting_next_date=:meeting_next_date,
+                meeting_next_place=:meeting_next_place,
                 affair_id=:affair_id
                 WHERE id_pv=:id_pv";
 

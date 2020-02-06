@@ -8,19 +8,19 @@ final class PvGetData
     public $id_pv;
 
     /** @var string */
-    public $etat;
+    public $state;
 
     /** @var string */
-    public $date_reunion;
+    public $meeting_date;
 
     /** @var string */
-    public $lieu_reunion;
+    public $meeting_place;
 
     /** @var string */
-    public $date_prochaine_reunion;
+    public $meeting_next_date;
 
     /** @var string */
-    public $lieu_prochaine_reunion;
+    public $meeting_next_place;
 
     /** @var int */
     public $affair_id;

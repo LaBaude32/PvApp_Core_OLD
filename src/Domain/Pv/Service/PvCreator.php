@@ -36,11 +36,11 @@ final class PvCreator
     public function createPv(PvCreateData $pv): int
     {
         // Validation
-        if (empty($pv->date_reunion)) {
+        if (empty($pv->meeting_date)) {
             throw new UnexpectedValueException('date de réunion required');
         }
 
-        if (empty($pv->lieu_reunion)) {
+        if (empty($pv->meeting_place)) {
             throw new UnexpectedValueException('lieu de réunion required');
         }
 

@@ -23,11 +23,11 @@ final class PvCreateAction
 
         // Mapping (should be done in a mapper class)
         $pv = new PvCreateData();
-        $pv->etat = $data['etat'];
-        $pv->date_reunion = $data['date_reunion'];
-        $pv->lieu_reunion = $data['lieu_reunion'];
-        $pv->date_prochaine_reunion = $data['date_prochaine_reunion'];
-        $pv->lieu_prochaine_reunion = $data['lieu_prochaine_reunion'];
+        $pv->state = $data['state'];
+        $pv->meeting_date = $data['meeting_date'];
+        $pv->meeting_place = $data['meeting_place'];
+        $pv->meeting_next_date = $data['meeting_next_date'];
+        $pv->meeting_next_place = $data['meeting_next_place'];
         $pv->affaire_id = $data['affaire_id'];
 
         // Invoke the Domain with inputs and retain the result
@@ -35,7 +35,7 @@ final class PvCreateAction
 
         // Transform the result into the JSON representation
         $result = [
-            'pv_id' => $pvId
+            'id_pv' => $pvId
         ];
 
         // Build the HTTP response
