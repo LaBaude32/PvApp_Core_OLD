@@ -46,4 +46,27 @@ final class PvGetter
 
         return (array) $pvs;
     }
+
+
+    /**
+     * Get one pvs.
+     *
+     * @return array All one pv with his items
+     */
+    public function getPvById(int $id): array
+    {
+        // Validation
+        if (empty($id)) {
+            throw new UnexpectedValueException('id required');
+        }
+
+        if ($id == 0) {
+            throw new UnexpectedValueException('id doit être positif');
+        }
+
+        // Get one pv
+        $pv = $this->repository->getPvById($id);
+
+        return (array) $pv;
+    }
 }
