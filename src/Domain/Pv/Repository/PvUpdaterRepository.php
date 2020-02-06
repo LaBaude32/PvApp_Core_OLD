@@ -3,7 +3,7 @@
 namespace App\Domain\Pv\Repository;
 
 use PDO;
-use App\Domain\Pv\Data\PvCreateData;
+use App\Domain\Pv\Data\PvGetData;
 
 /**
  * Repository.
@@ -28,11 +28,11 @@ class PvUpdaterRepository
     /**
      * Insert lot row.
      *
-     * @param PvCreateData $lot The affair
+     * @param PvGetData $lot The affair
      *
      * @return int The new ID
      */
-    public function UpdatePv(PvCreateData $pv): int
+    public function UpdatePv(PvGetData $pv): int
     {
         $row = [
             'id_pv' => $pv->id_pv,

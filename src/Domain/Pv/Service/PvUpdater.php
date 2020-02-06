@@ -3,7 +3,7 @@
 namespace App\Domain\Pv\Service;
 
 use UnexpectedValueException;
-use App\Domain\Pv\Data\PvCreateData;
+use App\Domain\Pv\Data\PvGetData;
 use App\Domain\Pv\Repository\PvUpdaterRepository;
 
 /**
@@ -29,11 +29,11 @@ final class PvUpdater
     /**
      * Create a new Affaire.
      *
-     * @param PvCreateData $Affaire The Affaire data
+     * @param PvGetData $Affaire The Affaire data
      *
      * @return int The new Affaire ID
      */
-    public function updatePv(PvCreateData $pv): int
+    public function updatePv(PvGetData $pv): int
     {
         // Validation
         if (empty($pv->id_pv)) {

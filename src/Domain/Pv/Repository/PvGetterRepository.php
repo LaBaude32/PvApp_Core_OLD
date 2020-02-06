@@ -37,7 +37,7 @@ class PvGetterRepository
         while ($row = $statement->fetch()) {
             $pv = new PvGetData();
             $pv->id_pv = (int) $row['id_pv'];
-            $pv->state = (string) $row['sate'];
+            $pv->state = (string) $row['state'];
             $pv->meeting_date = (string) $row['meeting_date'];
             $pv->meeting_place = (string) $row['meeting_place'];
             $pv->meeting_next_date = (string) $row['meeting_next_date'];
@@ -59,7 +59,7 @@ class PvGetterRepository
 
         while ($row = $statement->fetch()) {
             $pv = new PvGetData();
-            $pv->id_pv = (int) $row['id_pv'];
+            $pv->pv_id = (int) $row['id_pv'];
             $pv->sate = (string) $row['state'];
             $pv->meeting_date = (string) $row['meeting_date'];
             $pv->meeting_place = (string) $row['meeting_place'];

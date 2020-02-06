@@ -28,8 +28,7 @@ final class PvCreateAction
         $pv->meeting_place = $data['meeting_place'];
         $pv->meeting_next_date = $data['meeting_next_date'];
         $pv->meeting_next_place = $data['meeting_next_place'];
-        $pv->affaire_id = $data['affaire_id'];
-
+        $pv->affair_id = $data['affair_id'];
         // Invoke the Domain with inputs and retain the result
         $pvId = $this->pvCreator->createPv($pv);
 
