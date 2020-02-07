@@ -20,10 +20,10 @@ final class UserCreateData
     public $phone;
 
     /** @var string */
-    public $group;
+    public $user_group;
 
     /** @var string */
-    public $user_function;
+    public $function;
 
     /** @var string */
     public $organism;

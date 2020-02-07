@@ -40,8 +40,8 @@ class UserCreatorRepository
             'first_name' => $user->firstName,
             'last_name' => $user->lastName,
             'phone' => $user->phone,
-            'group' => $user->group,
-            'user_function' => $user->user_function,
+            'user_group' => $user->user_group,
+            'function' => $user->function,
             'organism' => $user->organism
         ];
 
@@ -51,8 +51,8 @@ class UserCreatorRepository
         first_name=:first_name,
         last_name=:last_name,
         phone=:phone,
-        group=:group,
-        user_function=:user_function,
+        user_group=:user_group,
+        function=:function,
         organism=:organism";
 
         $this->connection->prepare($query)->execute($row);

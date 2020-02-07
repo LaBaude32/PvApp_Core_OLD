@@ -23,7 +23,7 @@ final class UserGetData
     public $phone;
 
     /** @var string */
-    public $group;
+    public $user_group;
 
     /** @var string */
     public $function;

@@ -44,7 +44,7 @@ class UsersGetterAllRepository
             $user->firstName = (string) $row['first_name'];
             $user->lastName = (string) $row['last_name'];
             $user->phone = (string) $row['phone'];
-            $user->group = (string) $row['group'];
+            $user->user_group = (string) $row['user_group'];
             $user->function = (string) $row['function'];
             $user->organism = (string) $row['organism'];
 
