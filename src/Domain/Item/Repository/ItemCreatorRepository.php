@@ -39,7 +39,7 @@ class ItemCreatorRepository
             'note' => $item->note,
             'follow_up' => $item->follow_up,
             'ressources' => $item->ressources,
-            'echeance' => $item->completion,
+            'completion' => $item->completion,
             'completion_date' => $item->completion_date,
             'visible' => $item->visible,
             'created_at' => $item->created_at
@@ -54,6 +54,33 @@ class ItemCreatorRepository
                 completion_date=:completion_date,
                 visible=:visible,
                 created_at=:created_at";
+
+        $this->connection->prepare($query)->execute($row);
+
+        return (int) $this->connection->lastInsertId();
+    }
+
+    /**
+     * Insert lot row.
+     *
+     * @param ItemCreateData $lot The affaire
+     *
+     * @return int The new ID
+     */
+    public function insertPvHasItem($ids): int
+    {
+        $itemId = $ids['itemId'];
+        $pvId = $ids['pvId'];
+
+        
+        $row = [
+            'pv_id' => $pvId,
+            'item_id' => $itemId
+        ];
+
+        $query = "INSERT INTO pv_has_item SET
+                pv_id=:pv_id,
+                item_id=:item_id";
 
         $this->connection->prepare($query)->execute($row);
 

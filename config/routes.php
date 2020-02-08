@@ -13,4 +13,5 @@ return function (App $app) {
     $app->post('/addPv', \App\Action\PvCreateAction::class);
     $app->get('/getPvByAffairId', \App\Action\PvGetByAffairIdAction::class);
     $app->post('/updatePv', \App\Action\PvUpdateAction::class);
+    $app->post('/addItem', \App\Action\ItemCreateAction::class);
 };
