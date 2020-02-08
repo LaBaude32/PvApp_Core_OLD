@@ -57,18 +57,16 @@ class PvGetterRepository
         $statement->bindValue('id', $id_pv, PDO::PARAM_INT);
         $statement->execute();
 
-        while ($row = $statement->fetch()) {
-            $pv = new PvGetData();
-            $pv->pv_id = (int) $row['id_pv'];
-            $pv->sate = (string) $row['state'];
-            $pv->meeting_date = (string) $row['meeting_date'];
-            $pv->meeting_place = (string) $row['meeting_place'];
-            $pv->meeting_next_date = (string) $row['meeting_next_date'];
-            $pv->meeting_next_place = (string) $row['meeting_next_place'];
-            $pv->affair_id = (int) $row['affair_id'];
+        $row = $statement->fetch();
+        $pv = new PvGetData();
+        $pv->pv_id = (int) $row['id_pv'];
+        $pv->sate = (string) $row['state'];
+        $pv->meeting_date = (string) $row['meeting_date'];
+        $pv->meeting_place = (string) $row['meeting_place'];
+        $pv->meeting_next_date = (string) $row['meeting_next_date'];
+        $pv->meeting_next_place = (string) $row['meeting_next_place'];
+        $pv->affair_id = (int) $row['affair_id'];
 
-            $pvs[] = $pv;
-        }
-        return (array) $pvs;
+        return (array) $pv;
     }
 }
