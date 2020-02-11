@@ -28,8 +28,8 @@ final class UserCreateAction
         $user->firstName = $data['first_name'];
         $user->lastName = $data['last_name'];
         $user->phone = $data['phone'];
-        $user->group = $data['group'];
-        $user->user_function = $data['user_function'];
+        $user->user_group = $data['user_group'];
+        $user->function = $data['function'];
         $user->organism = $data['organism'];
 
         // Invoke the Domain with inputs and retain the result

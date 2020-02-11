@@ -33,7 +33,7 @@ final class ItemCreator
      *
      * @return int The new Affaire ID
      */
-    public function createItem(ItemCreateData $item, $pvId): int
+    public function createItem(ItemCreateData $item): int
     {
         // Validation
         if (empty($item->position)) {
@@ -44,17 +44,25 @@ final class ItemCreator
             throw new UnexpectedValueException('note required');
         }
 
-        if (empty($item->visible)) {
-            throw new UnexpectedValueException('visible required');
+        // if (empty($item->visible)) {
+        //     throw new UnexpectedValueException('visible required');
+        // } //FIXME:verifier la valeur de visible
+
+        if (empty($item->pv_id)) {
+            throw new UnexpectedValueException('pv_id required');
         }
 
         // Insert item
         $itemId = $this->repository->insertItem($item);
 
-        //TODO: inserer un item_has_pv en passant en paramettre le $pvId et le $itemId
+        $ids = ["pvId" => $item->pv_id, "itemId" => $itemId];
+
+        $this->repository->insertPvHasItem($ids);
+        
+        //TODO: récupérer la position
 
         // Logging here: item created successfully
 
-        return $itemId;
+        return (int) $itemId;
     }
 }

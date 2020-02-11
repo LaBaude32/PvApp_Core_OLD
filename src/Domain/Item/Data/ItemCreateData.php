@@ -27,4 +27,7 @@ final class ItemCreateData
 
     /** @var int */
     public $created_at;
+
+    /** @var int */
+    public $pv_id;
 }
