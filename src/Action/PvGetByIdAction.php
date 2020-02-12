@@ -6,16 +6,19 @@ use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use App\Domain\Pv\Service\PvGetter;
 use App\Domain\Item\Service\ItemGetter;
+use App\Domain\User\Service\UserGetter;
 
 final class PvGetByIdAction
 {
   private $pvGetter;
-  protected $itemGetter;
+  private $itemGetter;
+  private $userGetter;
 
-  public function __construct(PvGetter $pvGetter, ItemGetter $itemGetter)
+  public function __construct(PvGetter $pvGetter, ItemGetter $itemGetter, UserGetter $userGetter)
   {
     $this->pvGetter = $pvGetter;
     $this->itemGetter = $itemGetter;
+    $this->userGetter = $userGetter;
   }
 
   public function __invoke(ServerRequest $request, Response $response): Response
@@ -30,13 +33,18 @@ final class PvGetByIdAction
 
     $items = $this->itemGetter->getItemsByPvId($id);
 
+    $users = $this->userGetter->getUsersByPvId($id);
+
+    //TODO: Ajout de la récupération des status
+
     if (empty($items)) {
       $items = "Ce pv n'a pas encore d'items";
     }
 
     $result = [
       'pv_details' => $pv,
-      'items' => $items
+      'items' => $items,
+      'users' => $users
     ];
 
     // Build the HTTP response

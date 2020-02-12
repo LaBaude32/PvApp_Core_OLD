@@ -37,4 +37,11 @@ final class UserGetter
 
         return (array) $users;
     }
+
+    public function getUsersByPvId(int $pv_id): array
+    {
+        $users = $this->repository->getUsersByPvId($pv_id);
+
+        return (array) $users;
+    }
 }
