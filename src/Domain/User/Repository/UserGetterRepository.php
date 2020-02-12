@@ -8,7 +8,7 @@ use PDO;
 /**
  * Repository.
  */
-class UsersGetterAllRepository
+class UserGetterRepository
 {
     /**
      * @var PDO The database connection

@@ -3,23 +3,23 @@
 namespace App\Action;
 
 use App\Domain\User\Data\UserCreateData;
-use App\Domain\User\Service\UsersGetterAll;
+use App\Domain\User\Service\UserGetter;
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 
 final class UsersGetAllAction
 {
-    private $UsersGetterAll;
+    private $UserGetter;
 
-    public function __construct(UsersGetterAll $UsersGetterAll)
+    public function __construct(UserGetter $UserGetter)
     {
-        $this->UsersGetterAll = $UsersGetterAll;
+        $this->UserGetter = $UserGetter;
     }
 
     public function __invoke(ServerRequest $request, Response $response): Response
     {
         // Invoke the Domain with inputs and retain the result
-        $users = $this->UsersGetterAll->getUsers();
+        $users = $this->UserGetter->getUsers();
 
         // Build the HTTP response
         return $response->withJson($users)->withStatus(201);

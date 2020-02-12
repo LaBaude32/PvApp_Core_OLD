@@ -2,24 +2,24 @@
 
 namespace App\Domain\User\Service;
 
-use App\Domain\User\Repository\UsersGetterAllRepository;
+use App\Domain\User\Repository\UserGetterRepository;
 
 /**
  * Service.
  */
-final class UsersGetterAll
+final class UserGetter
 {
     /**
-     * @var UsersGetterAllRepository
+     * @var UserGetterRepository
      */
     private $repository;
 
     /**
      * The constructor.
      *
-     * @param UsersGetterAllRepository $repository The repository
+     * @param UserGetterRepository $repository The repository
      */
-    public function __construct(UsersGetterAllRepository $repository)
+    public function __construct(UserGetterRepository $repository)
     {
         $this->repository = $repository;
     }
