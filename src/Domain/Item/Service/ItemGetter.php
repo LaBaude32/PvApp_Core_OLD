@@ -59,4 +59,17 @@ final class ItemGetter
 
         return (array) $items;
     }
+
+    /**
+     * Get all the items.
+     *
+     * @return array All the items
+     */
+    public function getItemsByPvId($id): array
+    {
+        // Get All items
+        $items = $this->repository->getItemsByPvId($id);
+
+        return (array) $items;
+    }
 }

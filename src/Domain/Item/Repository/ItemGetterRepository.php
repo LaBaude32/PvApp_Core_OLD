@@ -25,12 +25,16 @@ class ItemGetterRepository
         $this->connection = $connection;
     }
 
-    public function getItemByPvId(int $id_pv): array //TODO: Ne fonctionne pas encore !
+    public function getItemsByPvId(int $id_pv): array
     {
-        $query = "SELECT * FROM item WHERE pv_id=:id";
+        $query = "SELECT i.*
+        FROM item i
+        INNER JOIN pv_has_item phi
+        ON phi.item_id = i.id_item
+        WHERE phi.pv_id =:pv_id";
 
         $statement = $this->connection->prepare($query);
-        $statement->bindValue('id', $id_pv, PDO::PARAM_INT);
+        $statement->bindValue('pv_id', $id_pv, PDO::PARAM_INT);
         $statement->execute();
 
         while ($row = $statement->fetch()) {
@@ -48,9 +52,6 @@ class ItemGetterRepository
         }
         return (array) $items;
     }
-
-
-    //TODO: Ajouter une propriété à l'objet, faire une jointure de table, recuperer les item là où y'a le bon id_pv
 
     public function getAllItems(): array
     {

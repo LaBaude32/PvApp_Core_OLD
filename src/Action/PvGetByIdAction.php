@@ -10,17 +10,7 @@ use App\Domain\Item\Service\ItemGetter;
 final class PvGetByIdAction
 {
   private $pvGetter;
-
   protected $itemGetter;
-
-  /**
-   * __construct
-   *
-   * @param  mixed $pvGetter
-   * @param  mixed $itemGetter
-   *
-   * @return void
-   */
 
   public function __construct(PvGetter $pvGetter, ItemGetter $itemGetter)
   {
@@ -39,6 +29,10 @@ final class PvGetByIdAction
     $pv = $this->pvGetter->getPvById($id);
 
     $items = $this->itemGetter->getItemsByPvId($id);
+
+    if (empty($items)) {
+      $items = "Ce pv n'a pas encore d'items";
+    }
 
     $result = [
       'pv_details' => $pv,
