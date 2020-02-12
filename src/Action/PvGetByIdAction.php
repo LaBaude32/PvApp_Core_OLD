@@ -5,14 +5,27 @@ namespace App\Action;
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use App\Domain\Pv\Service\PvGetter;
+use App\Domain\Item\Service\ItemGetter;
 
 final class PvGetByIdAction
 {
   private $pvGetter;
 
-  public function __construct(PvGetter $pvGetter)
+  protected $itemGetter;
+
+  /**
+   * __construct
+   *
+   * @param  mixed $pvGetter
+   * @param  mixed $itemGetter
+   *
+   * @return void
+   */
+
+  public function __construct(PvGetter $pvGetter, ItemGetter $itemGetter)
   {
     $this->pvGetter = $pvGetter;
+    $this->itemGetter = $itemGetter;
   }
 
   public function __invoke(ServerRequest $request, Response $response): Response
@@ -23,9 +36,16 @@ final class PvGetByIdAction
     $id = (int) $data['id_pv'];
 
     // Invoke the Domain with inputs and retain the result
-    $pvs = $this->pvGetter->getPvById($id);
+    $pv = $this->pvGetter->getPvById($id);
+
+    $items = $this->itemGetter->getItemsByPvId($id);
+
+    $result = [
+      'pv_details' => $pv,
+      'items' => $items
+    ];
 
     // Build the HTTP response
-    return $response->withJson($pvs)->withStatus(201);
+    return $response->withJson($result)->withStatus(201);
   }
 }

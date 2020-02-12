@@ -59,8 +59,8 @@ class PvGetterRepository
 
         $row = $statement->fetch();
         $pv = new PvGetData();
-        $pv->pv_id = (int) $row['id_pv'];
-        $pv->sate = (string) $row['state'];
+        $pv->id_pv = (int) $row['id_pv'];
+        $pv->state = (string) $row['state'];
         $pv->meeting_date = (string) $row['meeting_date'];
         $pv->meeting_place = (string) $row['meeting_place'];
         $pv->meeting_next_date = (string) $row['meeting_next_date'];
