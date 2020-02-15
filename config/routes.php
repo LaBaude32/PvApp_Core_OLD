@@ -23,4 +23,5 @@ return function (App $app) {
     $app->post('/addPvHasUser', \App\Action\PvHasUserAction::class);
     //Item
     $app->post('/addItem', \App\Action\ItemCreateAction::class);
+    $app->post('/updateItem', \App\Action\ItemUpdateAction::class);
 };

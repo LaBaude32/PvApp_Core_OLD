@@ -1,50 +1,52 @@
 <?php
 
-namespace App\Domain\Pv\Service;
+namespace App\Domain\Item\Service;
 
 use UnexpectedValueException;
-use App\Domain\Pv\Data\PvCreateData;
-use App\Domain\Pv\Repository\PvUpdaterRepository;
+use App\Domain\Item\Data\ItemGetData;
+use App\Domain\Item\Repository\ItemUpdaterRepository;
 
 /**
  * Service.
  */
-final class PvUpdater
+final class ItemUpdater
 {
     /**
-     * @var PvUpdaterRepository
+     * @var ItemUpdaterRepository
      */
     private $repository;
 
     /**
      * The constructor.
      *
-     * @param PvUpdaterRepository $repository The repository
+     * @param ItemUpdaterRepository $repository The repository
      */
-    public function __construct(PvUpdaterRepository $repository)
+    public function __construct(ItemUpdaterRepository $repository)
     {
         $this->repository = $repository;
     }
 
     /**
-     * Create a new Affaire.
+     * Get a new Affaire.
      *
-     * @param PvCreateData $Affaire The Affaire data
+     * @param ItemGetData $Affaire The Affaire data
      *
      * @return int The new Affaire ID
      */
-    public function updatePv(PvCreateData $pv): int
+    public function updateItem(ItemGetData $item): int
     {
         // Validation
-        if (empty($pv->id_pv)) {
+        if (empty($item->id_item)) {
             throw new UnexpectedValueException('id required');
         }
 
-        // Insert pv
-        $pvId = $this->repository->updatePv($pv);
+        // Insert Item
+        $itemId = $this->repository->updateItem($item);
 
-        // Logging here: pv created successfully
+        //TODO: SESSION trouver une technique pour recuperer l'erreur quand rien n'est update
 
-        return $pvId;
+        // Logging here: Item Get successfully
+
+        return $itemId;
     }
 }

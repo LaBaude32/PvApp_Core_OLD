@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Domain\Pv\Repository;
+namespace App\Domain\Item\Repository;
 
 use PDO;
-use App\Domain\Pv\Data\PvCreateData;
+use App\Domain\Item\Data\ItemGetData;
 
 /**
  * Repository.
  */
-class PvUpdaterRepository
+class ItemUpdaterRepository
 {
     /**
      * @var PDO The database connection
@@ -28,36 +28,40 @@ class PvUpdaterRepository
     /**
      * Insert lot row.
      *
-     * @param PvCreateData $lot The affaire
+     * @param ItemGetData $lot The affaire
      *
      * @return int The new ID
      */
-    public function UpdatePv(PvCreateData $pv): int
+    public function updateItem(ItemGetData $item): int
     {
         $row = [
-            'id_pv' => $pv->id_pv,
-            'etat' => $pv->etat,
-            'date_reunion' => $pv->date_reunion,
-            'lieu_reunion' => $pv->lieu_reunion,
-            'date_prochaine_reunion' => $pv->date_prochaine_reunion,
-            'lieu_prochaine_reunion' => $pv->lieu_prochaine_reunion,
-            'affaire_id' => $pv->affaire_id,
+            'id_item' => $item->id_item,
+            'position' => $item->position,
+            'note' => $item->note,
+            'follow_up' => $item->follow_up,
+            'ressources' => $item->ressources,
+            'completion' => $item->completion,
+            'completion_date' => $item->completion_date,
+            'visible' => $item->visible,
+            'created_at' => $item->created_at
         ];
 
-        $query = "UPDATE pv SET
-                etat=:etat,
-                date_reunion=:date_reunion,
-                lieu_reunion=:lieu_reunion,
-                date_pro_reunion=:date_prochaine_reunion,
-                lieu_pro_reunion=:lieu_prochaine_reunion,
-                affaire_id=:affaire_id
-                WHERE id_pv=:id_pv";
+        $query = "UPDATE item SET
+               position=:position,
+                note=:note,
+                follow_up=:follow_up,
+                ressources=:ressources,
+                completion=:completion,
+                completion_date=:completion_date,
+                visible=:visible,
+                created_at=:created_at
+                WHERE id_item=:id_item";
 
         $statement = $this->connection->prepare($query);
-        $statement->bindValue('id_pv', $pv->id_pv, PDO::PARAM_INT);
+        $statement->bindValue('id_item', $item->id_item, PDO::PARAM_INT);
         $statement->execute($row);
 
         // return (int) $this->connection->lastInsertId(); //TODO: ne renvoie rien
-        return (int) $pv->id_pv;
+        return (int) $item->id_item;
     }
 }
