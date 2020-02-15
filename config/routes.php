@@ -7,6 +7,7 @@ return function (App $app) {
     //User
     $app->post('/addUser', \App\Action\UserCreateAction::class);
     $app->get('/getAllUsers', \App\Action\UsersGetAllAction::class);
+    $app->post('/updateUser', \App\Action\UserUpdateAction::class);
     //Affair
     $app->post('/addAffair', \App\Action\AffairCreateAction::class);
     $app->get('/getAllAffairs', \App\Action\AffairsGetAllAction::class);

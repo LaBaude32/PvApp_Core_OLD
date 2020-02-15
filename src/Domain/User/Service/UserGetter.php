@@ -2,6 +2,7 @@
 
 namespace App\Domain\User\Service;
 
+use App\Domain\User\Data\UserGetData;
 use App\Domain\User\Repository\UserGetterRepository;
 
 /**
@@ -36,6 +37,20 @@ final class UserGetter
         $users = $this->repository->getAllUsers();
 
         return (array) $users;
+    }
+
+    /**
+     * Get one user with his Id
+     *
+     * @param  mixed $id_user
+     *
+     * @return UserGetData
+     */
+    public function getUserById(int $id_user): UserGetData
+    {
+        $user = $this->repository->getUserById($id_user);
+
+        return $user;
     }
 
     public function getUsersByPvId(int $pv_id): array
