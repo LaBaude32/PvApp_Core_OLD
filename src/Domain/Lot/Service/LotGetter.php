@@ -30,6 +30,28 @@ final class LotGetter
      *
      * @return array All the lots
      */
+    public function getLotById(int $id): array
+    {
+        // Validation
+        if (empty($id)) {
+            throw new UnexpectedValueException('id required');
+        }
+
+        if ($id == 0) {
+            throw new UnexpectedValueException('id doit être positif');
+        }
+
+        // Get All lots
+        $lot = $this->repository->getLotById($id);
+
+        return (array) $lot;
+    }
+
+    /**
+     * Get all the lots.
+     *
+     * @return array All the lots
+     */
     public function getLotByAffairId(int $id): array
     {
         // Validation

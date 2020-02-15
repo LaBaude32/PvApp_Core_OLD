@@ -42,4 +42,21 @@ class LotGetterRepository
         }
         return (array) $lots;
     }
+
+    public function getLotById(int $id_lot): array
+    {
+        $sql = "SELECT * FROM lot WHERE id_lot=:id";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->bindValue('id', $id_lot, PDO::PARAM_INT);
+        $statement->execute();
+
+        $row = $statement->fetch();
+        $lot = new LotGetData();
+        $lot->id_lot = (int) $row['id_lot'];
+        $lot->name = (string) $row['name'];
+        $lot->affair_id = (int) $row['affair_id'];
+
+        return (array) $lot;
+    }
 }
