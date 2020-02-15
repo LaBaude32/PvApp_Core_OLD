@@ -45,7 +45,7 @@ final class LotUpdateAction
 
         // Transform the result into the JSON representation
         $result = [
-            'lot_id' => $newLot['id_lot']
+            'lot_id' => $newLot->id_lot
         ];
 
         // Build the HTTP response

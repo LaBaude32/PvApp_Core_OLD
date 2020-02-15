@@ -2,6 +2,7 @@
 
 namespace App\Domain\Lot\Service;
 
+use App\Domain\Lot\Data\LotGetData;
 use UnexpectedValueException;
 use App\Domain\Lot\Repository\LotGetterRepository;
 
@@ -30,7 +31,7 @@ final class LotGetter
      *
      * @return array All the lots
      */
-    public function getLotById(int $id): array
+    public function getLotById(int $id): LotGetData
     {
         // Validation
         if (empty($id)) {
@@ -44,7 +45,7 @@ final class LotGetter
         // Get All lots
         $lot = $this->repository->getLotById($id);
 
-        return (array) $lot;
+        return $lot;
     }
 
     /**

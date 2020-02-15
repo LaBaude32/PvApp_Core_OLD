@@ -43,7 +43,7 @@ class LotGetterRepository
         return (array) $lots;
     }
 
-    public function getLotById(int $id_lot): array
+    public function getLotById(int $id_lot): LotGetData
     {
         $sql = "SELECT * FROM lot WHERE id_lot=:id";
 
@@ -57,6 +57,6 @@ class LotGetterRepository
         $lot->name = (string) $row['name'];
         $lot->affair_id = (int) $row['affair_id'];
 
-        return (array) $lot;
+        return $lot;
     }
 }
