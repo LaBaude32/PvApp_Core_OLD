@@ -31,7 +31,7 @@ final class LotUpdater
      *
      * @param LotGetData
      */
-    public function UpdateLot(LotGetData $lot)
+    public function updateLot(LotGetData $lot)
     {
         // Validation
         if (empty($lot->id_lot)) {
