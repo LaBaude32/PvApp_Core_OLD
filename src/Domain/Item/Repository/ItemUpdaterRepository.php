@@ -32,7 +32,7 @@ class ItemUpdaterRepository
      *
      * @return int The new ID
      */
-    public function updateItem(ItemGetData $item): int
+    public function updateItem(ItemGetData $item)
     {
         $row = [
             'id_item' => $item->id_item,
@@ -60,8 +60,5 @@ class ItemUpdaterRepository
         $statement = $this->connection->prepare($query);
         $statement->bindValue('id_item', $item->id_item, PDO::PARAM_INT);
         $statement->execute($row);
-
-        // return (int) $this->connection->lastInsertId(); //TODO: ne renvoie rien
-        return (int) $item->id_item;
     }
 }

@@ -32,11 +32,10 @@ final class ItemCreateAction
         $item->visible = $data['visible'];
         $item->created_at = $data['created_at'];
         $item->pv_id = $data['pv_id'];
-        
+
         // Invoke the Domain with inputs and retain the result
         $itemId = $this->itemCreator->createItem($item);
 
-        
         // Transform the result into the JSON representation
         $result = [
             'id_item' => $itemId

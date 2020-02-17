@@ -44,9 +44,9 @@ final class ItemCreator
             throw new UnexpectedValueException('note required');
         }
 
-        // if (empty($item->visible)) {
-        //     throw new UnexpectedValueException('visible required');
-        // } //FIXME:verifier la valeur de visible
+        if ($item->visible !== 0 && $item->visible !== 1) {
+            throw new UnexpectedValueException('visible required, doit être numérique');
+        }
 
         if (empty($item->pv_id)) {
             throw new UnexpectedValueException('pv_id required');

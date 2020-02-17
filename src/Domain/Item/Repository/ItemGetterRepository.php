@@ -25,6 +25,29 @@ class ItemGetterRepository
         $this->connection = $connection;
     }
 
+    public function getItemById(int $id_item): ItemGetData
+    {
+        $query = "SELECT * FROM item WHERE id_item=:id_item";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('id_item', $id_item, PDO::PARAM_INT);
+        $statement->execute();
+
+        $row = $statement->fetch();
+        $item = new ItemGetData();
+        $item->id_item = (int) $row['id_item'];
+        $item->position = (int) $row['position'];
+        $item->note = (string) $row['note'];
+        $item->follow_up = (string) $row['follow_up'];
+        $item->ressources = (string) $row['ressources'];
+        $item->completion = (string) $row['completion'];
+        $item->completion_date = (string) $row['completion_date'];
+        $item->visible = (int) $row['visible'];
+        $item->created_at = (string) $row['created_at'];
+
+        return $item;
+    }
+
     public function getItemsByPvId(int $id_pv): array
     {
         $query = "SELECT i.*
@@ -43,6 +66,7 @@ class ItemGetterRepository
             $item->position = (string) $row['position'];
             $item->note = (string) $row['note'];
             $item->follow_up = (string) $row['follow_up'];
+            $item->ressources = (string) $row['ressources'];
             $item->completion = (string) $row['completion'];
             $item->completion_date = (string) $row['completion_date'];
             $item->visible = (int) $row['visible'];
@@ -66,6 +90,7 @@ class ItemGetterRepository
             $item->position = (string) $row['position'];
             $item->note = (string) $row['note'];
             $item->follow_up = (string) $row['follow_up'];
+            $item->ressources = (string) $row['ressources'];
             $item->completion = (string) $row['completion'];
             $item->completion_date = (string) $row['completion_date'];
             $item->visible = (int) $row['visible'];

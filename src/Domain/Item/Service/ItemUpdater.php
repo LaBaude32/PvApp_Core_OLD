@@ -33,20 +33,14 @@ final class ItemUpdater
      *
      * @return int The new Affaire ID
      */
-    public function updateItem(ItemGetData $item): int
+    public function updateItem(ItemGetData $item)
     {
         // Validation
         if (empty($item->id_item)) {
             throw new UnexpectedValueException('id required');
         }
 
-        // Insert Item
-        $itemId = $this->repository->updateItem($item);
-
-        //TODO: SESSION trouver une technique pour recuperer l'erreur quand rien n'est update
-
-        // Logging here: Item Get successfully
-
-        return $itemId;
+        // updateItem Item
+        $this->repository->updateItem($item);
     }
 }

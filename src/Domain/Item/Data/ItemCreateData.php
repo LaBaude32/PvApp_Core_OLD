@@ -25,7 +25,7 @@ final class ItemCreateData
     /** @var bool */
     public $visible;
 
-    /** @var int */
+    /** @var string */
     public $created_at;
 
     /** @var int */

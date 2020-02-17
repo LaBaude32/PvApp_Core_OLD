@@ -2,6 +2,7 @@
 
 namespace App\Domain\Item\Service;
 
+use App\Domain\Item\Data\ItemGetData;
 use UnexpectedValueException;
 use App\Domain\Item\Repository\ItemGetterRepository;
 
@@ -71,5 +72,13 @@ final class ItemGetter
         $items = $this->repository->getItemsByPvId($id);
 
         return (array) $items;
+    }
+
+    public function getItemById($id_item): ItemGetData
+    {
+        // Get All items
+        $item = $this->repository->getItemById($id_item);
+
+        return $item;
     }
 }
