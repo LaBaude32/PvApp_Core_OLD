@@ -40,6 +40,9 @@ final class TockenCreator
             throw new UnexpectedValueException('Nom required');
         }
 
+        // Génération automatique du tocken de 44 valeurs
+        $tocken->tocken = bin2hex(openssl_random_pseudo_bytes(22));
+
         // Insert tocken
         $tockenId = $this->repository->createTocken($tocken);
 

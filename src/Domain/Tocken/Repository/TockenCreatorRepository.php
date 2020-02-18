@@ -35,7 +35,7 @@ class TockenCreatorRepository
     public function createTocken(TockenData $tocken): int
     {
         $row = [
-            'tocken' => (string) $tocken->tocken, //TODO: générer automatiquement un tocken
+            'tocken' => (string) $tocken->tocken,
             'device' => (string) $tocken->device,
             'expiration_date' => (string) $tocken->expiration_date,
             'user_id' => (int) $tocken->userId
