@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Domain\Tocken\Repository;
+namespace App\Domain\Token\Repository;
 
 use PDO;
-use App\Domain\Tocken\Data\TockenData;
+use App\Domain\Token\Data\TokenData;
 
 /**
  * Repository.
  */
-class TockenUpdaterRepository
+class TokenUpdaterRepository
 {
     /**
      * @var PDO The database connection
@@ -26,27 +26,27 @@ class TockenUpdaterRepository
     }
 
     /**
-     * Update a Tocken.
+     * Update a Token.
      *
-     * @param TockenData $Tocken the Tocken
+     * @param TokenData $Token the Token
      */
-    public function updateTocken(TockenData $tocken)
+    public function updateToken(TokenData $token)
     {
         $row = [
-            'tocken' => $tocken->tocken,
-            'device' => $tocken->device,
-            'expiration_date' => $tocken->expirationDate,
-            'user_id' => $tocken->userId
+            'token' => $token->token,
+            'device' => $token->device,
+            'expiration_date' => $token->expirationDate,
+            'user_id' => $token->userId
         ];
 
-        $sql = "UPDATE tocken SET
+        $sql = "UPDATE token SET
                 device=:device,
                 expiration_date=:expiration_date,
                 user_id=:user_id,
-                WHERE tocken=:tocken";
+                WHERE token=:token";
 
         $statement = $this->connection->prepare($sql);
-        $statement->bindValue('tocken', $tocken->tocken, PDO::PARAM_STR);
+        $statement->bindValue('token', $token->token, PDO::PARAM_STR);
         $statement->execute($row);
     }
 }

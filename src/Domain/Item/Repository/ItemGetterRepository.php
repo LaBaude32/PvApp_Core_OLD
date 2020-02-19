@@ -70,7 +70,7 @@ class ItemGetterRepository
             $item->completion = (string) $row['completion'];
             $item->completion_date = (string) $row['completion_date'];
             $item->visible = (int) $row['visible'];
-            $item->created_at = (int) $row['created_at'];
+            $item->created_at = (string) $row['created_at'];
 
             $items[] = $item;
         }

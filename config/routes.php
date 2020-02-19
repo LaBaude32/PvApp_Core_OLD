@@ -26,6 +26,8 @@ return function (App $app) {
     //Item
     $app->post('/addItem', \App\Action\ItemCreateAction::class);
     $app->post('/updateItem', \App\Action\ItemUpdateAction::class);
+    //Tocken
+    $app->post('/addToken', \App\Action\TokenCreateAction::class);
     //Pv Has Item
     //TODO: créer une requete pour pouvoir mettre un item dans plusieurs Pv
 };

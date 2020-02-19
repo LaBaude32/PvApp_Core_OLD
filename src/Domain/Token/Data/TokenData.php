@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Domain\Tocken\Data;
+namespace App\Domain\Token\Data;
 
-final class TockenData
+final class TokenData
 {
     /** @var string */
-    public $tocken;
+    public $token;
 
     /** @var string */
     public $device;
