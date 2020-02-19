@@ -4,15 +4,15 @@ namespace App\Action;
 
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
-use App\Domain\Lot\Service\LotDeletor;
+use App\Domain\Pv\Service\PvDeletor;
 
-final class LotDeleteAction
+final class PvDeleteAction
 {
-  private $lotDeletor;
+  private $pvDeletor;
 
-  public function __construct(LotDeletor $lotDeletor)
+  public function __construct(PvDeletor $pvDeletor)
   {
-    $this->lotDeletor = $lotDeletor;
+    $this->pvDeletor = $pvDeletor;
   }
 
   public function __invoke(ServerRequest $request, Response $response): Response
@@ -20,12 +20,12 @@ final class LotDeleteAction
     // Collect input from the HTTP request
     $data = (array) $request->getParsedBody();
 
-    $id = (int) $data['id_lot'];
+    $id = (int) $data['id_pv'];
 
     // Invoke the Domain with inputs and retain the result
-    $this->lotDeletor->deleteLot($id);
+    $this->pvDeletor->deletePv($id);
 
-    $result = ["Le lot a bien été supprimé"];
+    $result = ["Le pv a bien été supprimé"];
 
     // Build the HTTP response
     return $response->withJson($result)->withStatus(201);

@@ -23,6 +23,7 @@ return function (App $app) {
     $app->get('/getPvByAffairId', \App\Action\PvGetByAffairIdAction::class);
     $app->post('/updatePv', \App\Action\PvUpdateAction::class);
     $app->get('/getPvDetails', \App\Action\PvGetByIdAction::class);
+    $app->delete('/deletePv', \App\Action\PvDeleteAction::class);
     //Pv Has User
     $app->post('/addPvHasUser', \App\Action\PvHasUserAction::class);
     //Item

@@ -3,7 +3,6 @@
 namespace App\Domain\Lot\Service;
 
 use UnexpectedValueException;
-use App\Domain\Lot\Data\LotCreateData;
 use App\Domain\Lot\Repository\LotDeletorRepository;
 
 /**
