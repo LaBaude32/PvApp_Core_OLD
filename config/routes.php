@@ -13,6 +13,7 @@ return function (App $app) {
     $app->get('/getAllAffairs', \App\Action\AffairsGetAllAction::class);
     $app->get('/getAffairById', \App\Action\AffairGetByIdAction::class);
     $app->post('/updateAffair', \App\Action\AffairUpdateAction::class);
+    $app->delete('/deleteAffair', \App\Action\AffairDeleteAction::class);
     //Lot
     $app->post('/addLot', \App\Action\LotCreateAction::class);
     $app->post('/updateLot', \App\Action\LotUpdateAction::class);
