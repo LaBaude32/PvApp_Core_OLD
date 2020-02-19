@@ -17,6 +17,7 @@ return function (App $app) {
     //Lot
     $app->post('/addLot', \App\Action\LotCreateAction::class);
     $app->post('/updateLot', \App\Action\LotUpdateAction::class);
+    $app->delete('/deleteLot', \App\Action\LotDeleteAction::class);
     //Pv
     $app->post('/addPv', \App\Action\PvCreateAction::class);
     $app->get('/getPvByAffairId', \App\Action\PvGetByAffairIdAction::class);
