@@ -4,15 +4,15 @@ namespace App\Action;
 
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
-use App\Domain\Affair\Service\AffairDeletor;
+use App\Domain\Item\Service\ItemDeletor;
 
-final class AffairDeleteAction
+final class ItemDeleteAction
 {
-  private $affairDeletor;
+  private $itemDeletor;
 
-  public function __construct(AffairDeletor $affairDeletor)
+  public function __construct(ItemDeletor $itemDeletor)
   {
-    $this->affairDeletor = $affairDeletor;
+    $this->itemDeletor = $itemDeletor;
   }
 
   public function __invoke(ServerRequest $request, Response $response): Response
@@ -20,12 +20,12 @@ final class AffairDeleteAction
     // Collect input from the HTTP request
     $data = (array) $request->getParsedBody();
 
-    $id = (int) $data['id_affair'];
+    $id = (int) $data['id_item'];
 
     // Invoke the Domain with inputs and retain the result
-    $this->affairDeletor->deleteAffair($id);
+    $this->itemDeletor->deleteItem($id);
 
-    $result = ["l'affaire a bien été supprimée"];
+    $result = ["l'item a bien été supprimé"];
 
     // Build the HTTP response
     return $response->withJson($result)->withStatus(201);

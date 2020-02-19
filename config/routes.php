@@ -28,6 +28,7 @@ return function (App $app) {
     //Item
     $app->post('/addItem', \App\Action\ItemCreateAction::class);
     $app->post('/updateItem', \App\Action\ItemUpdateAction::class);
+    $app->delete('/deleteItem', \App\Action\ItemDeleteAction::class);
     //Tocken
     $app->post('/addToken', \App\Action\TokenCreateAction::class);
     $app->delete('/deleteToken', \App\Action\TokenDeleteAction::class);
