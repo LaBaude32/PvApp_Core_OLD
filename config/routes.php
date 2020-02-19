@@ -31,6 +31,7 @@ return function (App $app) {
     //Tocken
     $app->post('/addToken', \App\Action\TokenCreateAction::class);
     $app->delete('/deleteToken', \App\Action\TokenDeleteAction::class);
+    $app->get('/getTokensByUserId', \App\Action\TokensGetByUserIdAction::class);
     //Pv Has Item
     //TODO: créer une requete pour pouvoir mettre un item dans plusieurs Pv
 };

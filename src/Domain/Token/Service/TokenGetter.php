@@ -43,4 +43,17 @@ final class TokenGetter
 
         return $tokenId;
     }
+
+    public function getTokensByUserId(int $userId): array
+    {
+        // Validation
+        if (empty($userId)) {
+            throw new UnexpectedValueException('user Id required');
+        }
+
+        // Get All Tokens
+        $tokens = $this->repository->getTokensByUserId($userId);
+
+        return (array) $tokens;
+    }
 }
