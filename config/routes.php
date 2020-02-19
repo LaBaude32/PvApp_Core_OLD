@@ -8,6 +8,8 @@ return function (App $app) {
     $app->post('/addUser', \App\Action\UserCreateAction::class);
     $app->get('/getAllUsers', \App\Action\UsersGetAllAction::class);
     $app->post('/updateUser', \App\Action\UserUpdateAction::class);
+    $app->delete('/deleteUser', \App\Action\UserDeleteAction::class);
+
     //Affair
     $app->post('/addAffair', \App\Action\AffairCreateAction::class);
     $app->get('/getAllAffairs', \App\Action\AffairsGetAllAction::class);
@@ -36,4 +38,5 @@ return function (App $app) {
     $app->get('/getTokensByUserId', \App\Action\TokensGetByUserIdAction::class);
     //Pv Has Item
     //TODO: créer une requete pour pouvoir mettre un item dans plusieurs Pv
+    //TODO: faire des tests sur les suppressions
 };
