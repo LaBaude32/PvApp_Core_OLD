@@ -4,15 +4,15 @@ namespace App\Action;
 
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
-use App\Domain\Lot\Service\LotDeletor;
+use App\Domain\Token\Service\TokenDeletor;
 
-final class LotDeleteAction
+final class TokenDeleteAction
 {
-  private $lotDeletor;
+  private $tokenDeletor;
 
-  public function __construct(LotDeletor $lotDeletor)
+  public function __construct(TokenDeletor $tokenDeletor)
   {
-    $this->lotDeletor = $lotDeletor;
+    $this->tokenDeletor = $tokenDeletor;
   }
 
   public function __invoke(ServerRequest $request, Response $response): Response
@@ -20,12 +20,12 @@ final class LotDeleteAction
     // Collect input from the HTTP request
     $data = (array) $request->getParsedBody();
 
-    $id = (int) $data['id_lot'];
+    $token = (string) $data['token'];
 
     // Invoke the Domain with inputs and retain the result
-    $this->lotDeletor->deleteLot($id);
+    $this->tokenDeletor->deleteToken($token);
 
-    $result = ["Le lot à bien été supprimé"];
+    $result = ["Le token à bien été supprimé"];
 
     // Build the HTTP response
     return $response->withJson($result)->withStatus(201);

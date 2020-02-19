@@ -24,7 +24,7 @@ final class AffairDeleteAction
     $id = (int) $data['id_affair'];
 
     // Invoke the Domain with inputs and retain the result
-    $affair = $this->affairDeletor->deleteAffair($id);
+    $this->affairDeletor->deleteAffair($id);
 
     $result = ["l'affaire à bien été supprimée"];
 
