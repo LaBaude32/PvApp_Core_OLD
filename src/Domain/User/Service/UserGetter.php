@@ -53,6 +53,13 @@ final class UserGetter
         return $user;
     }
 
+    public function identifyUser(string $email): UserGetData
+    {
+        $user = $this->repository->getUserByEmail($email);
+
+        return $user;
+    }
+
     public function getUsersByPvId(int $pv_id): array
     {
         $users = $this->repository->getUsersByPvId($pv_id);

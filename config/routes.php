@@ -3,6 +3,9 @@
 use Slim\App;
 
 return function (App $app) {
+
+    $app->get('/login', \App\Action\LoginAction::class);
+
     $app->get('/', \App\Action\HomeAction::class);
     //User
     $app->post('/addUser', \App\Action\UserCreateAction::class);
@@ -39,4 +42,5 @@ return function (App $app) {
     //Pv Has Item
     //TODO: créer une requete pour pouvoir mettre un item dans plusieurs Pv
     //TODO: faire des tests sur les suppressions
+    //TODO: chiffrer les MDP
 };

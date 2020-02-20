@@ -43,24 +43,22 @@ class TokenGetterRepository
         return $token;
     }
 
-    public function getTokensByUserId(int $userId): array
+    public function getLoggedToken(array $datas): TokenData
     {
-        $query = "SELECT * FROM token WHERE user_id=:user_id";
+        $query = "SELECT * FROM token WHERE user_id=:user_id AND device=:device";
 
         $statement = $this->connection->prepare($query);
-        $statement->bindValue('user_id', $userId, PDO::PARAM_INT);
+        $statement->bindValue('user_id', $datas['userId'], PDO::PARAM_INT);
+        $statement->bindValue('device', $datas['device'], PDO::PARAM_STR);
         $statement->execute();
 
-        while ($row = $statement->fetch()) {
-            $token = new TokenData();
-            $token->token = (string) $row['token'];
-            $token->device = (string) $row['device'];
-            $token->expirationDate = (string) $row['expiration_date'];
-            $token->userId = (int) $row['user_id'];
+        $row = $statement->fetch();
+        $token = new TokenData();
+        $token->token = (string) $row['token'];
+        $token->device = (string) $row['device'];
+        $token->expirationDate = (string) $row['expiration_date'];
+        $token->userId = (int) $row['user_id'];
 
-            $tokens[] = $token;
-        }
-
-        return (array) $tokens;
+        return $token;
     }
 }

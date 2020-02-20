@@ -44,16 +44,16 @@ final class TokenGetter
         return $tokenId;
     }
 
-    public function getTokensByUserId(int $userId): array
+    public function getLoggedToken(array $datas): TokenData
     {
         // Validation
-        if (empty($userId)) {
+        if (empty($datas['userId'])) {
             throw new UnexpectedValueException('user Id required');
         }
 
         // Get All Tokens
-        $tokens = $this->repository->getTokensByUserId($userId);
+        $token = $this->repository->getLoggedToken($datas);
 
-        return (array) $tokens;
+        return $token;
     }
 }

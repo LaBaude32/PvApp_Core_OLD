@@ -84,6 +84,29 @@ class UserGetterRepository
         return $user;
     }
 
+    public function getUserByEmail(string $email): UserGetData
+    {
+        $query = "SELECT * FROM user WHERE email=:email";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('email', $email, PDO::PARAM_STR);
+        $statement->execute();
+
+        $row = $statement->fetch();
+        $user = new UserGetData();
+        $user->id_user = (int) $row['id_user'];
+        $user->email = (string) $row['email'];
+        $user->pwd = (string) $row['password'];
+        $user->firstName = (string) $row['first_name'];
+        $user->lastName = (string) $row['last_name'];
+        $user->phone = (string) $row['phone'];
+        $user->user_group = (string) $row['user_group'];
+        $user->function = (string) $row['function'];
+        $user->organism = (string) $row['organism'];
+
+        return $user;
+    }
+
     public function getUsersByPvId(int $pv_id): array
     {
         $query = "SELECT u.*, phu.status
