@@ -41,6 +41,8 @@ final class ItemCreateAction
             'id_item' => $itemId
         ];
 
+        //TODO: recuperer et renvoyer la position en plus de l'ID
+
         // Build the HTTP response
         return $response->withJson($result)->withStatus(201);
     }

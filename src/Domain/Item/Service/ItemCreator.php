@@ -59,8 +59,6 @@ final class ItemCreator
 
         $this->repository->insertPvHasItem($ids);
 
-        //TODO: récupérer la position
-
         // Logging here: item created successfully
 
         return (int) $itemId;

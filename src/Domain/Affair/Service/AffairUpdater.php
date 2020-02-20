@@ -38,8 +38,6 @@ final class AffairUpdater
             throw new UnexpectedValueException('id required');
         }
 
-        //TODO: SESSION comment gérer les cas des NULL ?
-
         // Insert Affair
         $affairId = $this->repository->insertAffair($affair);
 
