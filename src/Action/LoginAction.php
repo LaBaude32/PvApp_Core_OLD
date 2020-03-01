@@ -42,7 +42,11 @@ final class LoginAction
         $userRegistred = $this->userGetter->identifyUser($userLogged->email);
 
         if (empty($userRegistred->email)) {
-            throw new UnexpectedValueException("Erreur sur l'email ou le mot de passe");
+            // throw new UnexpectedValueException("Erreur sur l'email ou le mot de passe");
+            $result = [
+                'login_result' => 'error',
+                'message' => 'Identifiant ou mot de passe incorrect'
+            ];
         }
 
         //Check if user pwd is good
@@ -79,7 +83,7 @@ final class LoginAction
                 // Invoke the Domain with inputs and retain the result
                 $this->tokenCreator->createToken($token);
                 $newToken = $this->tokenGetter->getTokenById($token->token);
-                $tokenToReturn = $newToken->token;
+                $tokenToReturn = $newToken;
             } elseif ($dateResult < 0) {
 
                 $this->tokenDeletor->deleteToken($token->token);
@@ -98,22 +102,23 @@ final class LoginAction
                 // Invoke the Domain with inputs and retain the result
                 $this->tokenCreator->createToken($token);
                 $newToken = $this->tokenGetter->getTokenById($token->token);
-                $tokenToReturn = $newToken->token;
+                $tokenToReturn = $newToken;
             } elseif (!empty($token->token) && $dateResult > 0) {
-                $tokenToReturn = $token->token;
+                $tokenToReturn = $token;
             } else {
                 throw new UnexpectedValueException("Erreur dans la création d'un nouveau token");
             }
 
             // Transform the result into the JSON representation
             $result = [
-                'login_result' => "sucess",
-                'token' => $tokenToReturn
+                'login_result' => "success",
+                'token' => $tokenToReturn->token,
+                'user_id' => $tokenToReturn->userId
             ];
         } else {
             $result = [
                 'login_result' => 'error',
-                'message' => 'Identifiant ou mot de passe incorrecte'
+                'message' => 'Identifiant ou mot de passe incorrect'
             ];
         }
 

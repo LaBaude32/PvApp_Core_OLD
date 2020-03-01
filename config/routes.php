@@ -4,12 +4,14 @@ use Slim\App;
 
 return function (App $app) {
 
-    $app->get('/login', \App\Action\LoginAction::class);
+    $app->post('/login', \App\Action\LoginAction::class);
+    $app->options('/login', App\Action\PreflightAction::class);
 
     $app->get('/', \App\Action\HomeAction::class);
     //User
     $app->post('/addUser', \App\Action\UserCreateAction::class);
     $app->get('/getAllUsers', \App\Action\UsersGetAllAction::class);
+    $app->options('/getAllUsers', App\Action\PreflightAction::class);
     $app->post('/updateUser', \App\Action\UserUpdateAction::class);
     $app->delete('/deleteUser', \App\Action\UserDeleteAction::class);
 
