@@ -19,6 +19,9 @@ return function (App $app) {
     $app->post('/addAffair', \App\Action\AffairCreateAction::class);
     $app->get('/getAllAffairs', \App\Action\AffairsGetAllAction::class);
     $app->get('/getAffairById', \App\Action\AffairGetByIdAction::class);
+    //TODO: get Affair By User Id
+    $app->get('/getAffairsByUserId', \App\Action\AffairsGetByUserIdAction::class);
+
     $app->post('/updateAffair', \App\Action\AffairUpdateAction::class);
     $app->delete('/deleteAffair', \App\Action\AffairDeleteAction::class);
     //Lot
@@ -31,6 +34,7 @@ return function (App $app) {
     $app->post('/updatePv', \App\Action\PvUpdateAction::class);
     $app->get('/getPvDetails', \App\Action\PvGetByIdAction::class);
     $app->delete('/deletePv', \App\Action\PvDeleteAction::class);
+    $app->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
     //Pv Has User
     $app->post('/addPvHasUser', \App\Action\PvHasUserAction::class);
     //Item

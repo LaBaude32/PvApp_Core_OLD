@@ -1,72 +1,46 @@
 <?php
 
-namespace App\Domain\Pv\Service;
+namespace App\Domain\PvHasUser\Service;
 
+use App\Domain\PvHasUser\Repository\PvHasUserGetterRepository;
 use UnexpectedValueException;
-use App\Domain\Pv\Repository\PvGetterRepository;
 
 /**
  * Service.
  */
-final class PvGetter
+final class PvHasUserGetter
 {
     /**
-     * @var PvGetterRepository
+     * @var PvHasUserGetterRepository
      */
     private $repository;
 
     /**
      * The constructor.
      *
-     * @param PvGetterRepository $repository The repository
+     * @param PvHasUserGetterRepository $repository The repository
      */
-    public function __construct(PvGetterRepository $repository)
+    public function __construct(PvHasUserGetterRepository $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * Get all the pvs.
-     *
-     * @return array All the pvs
-     */
-    public function getPvByAffairId(int $id): array
+    public function getPvByUserId(int $userId): array
     {
         // Validation
-        if (empty($id)) {
+        if (empty($userId)) {
             throw new UnexpectedValueException('id required');
         }
 
-        if ($id == 0) {
+        if ($userId == 0) {
             throw new UnexpectedValueException('id doit être positif');
         }
 
-        // Get All pvs
-        $pvs = $this->repository->getPvByAffairId($id);
+        $pvs = $this->repository->getPvByUserId($userId);
 
-        return (array) $pvs;
-    }
+        //Supprime les doublons dans le tableau
+        $result = array_unique($pvs);
 
-
-    /**
-     * Get one pvs.
-     *
-     * @return array All one pv with his items
-     */
-    public function getPvById(int $id): array
-    {
-        // Validation
-        if (empty($id)) {
-            throw new UnexpectedValueException('id required');
-        }
-
-        if ($id == 0) {
-            throw new UnexpectedValueException('id doit être positif');
-        }
-
-        // Get one pv
-        $pv = $this->repository->getPvById($id);
-
-        return (array) $pv;
+        return (array) $result;
     }
 }

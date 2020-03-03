@@ -69,4 +69,36 @@ final class PvGetter
 
         return (array) $pv;
     }
+
+    public function getAffairsIdByPvsId(array $pvsId): array
+    {
+        foreach ($pvsId as $pvId) {
+            $pv = $this->repository->getPvById($pvId);
+            $affairsId[] = $pv->affair_id;
+        }
+
+        $result = array_unique($affairsId);
+
+        return (array) $result;
+    }
+
+    public function getLastsPvByUserId(array $data): array
+    {
+         // Validation
+         if (empty($data['userId'])) {
+            throw new UnexpectedValueException('id required');
+        }
+
+        if ($data['userId'] == 0) {
+            throw new UnexpectedValueException('id doit être positif');
+        }
+
+        if($data['numberOfPvs'] == 0){
+            $data['numberOfPvs'] = 1;
+        }
+
+        $pvs = $this->repository->getPvsByUserId($data);
+
+        return (array) $pvs;
+    }
 }

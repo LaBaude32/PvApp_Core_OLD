@@ -53,4 +53,23 @@ final class AffairGetter
         $affair = $this->repository->getAffairById($id);
         return $affair;
     }
+
+    public function getAffairsByIds(array $affairsId): array
+    {
+        // Validation
+        if (empty($affairsId)) {
+            throw new UnexpectedValueException('id required');
+        }
+
+        foreach ($affairsId as $affairId) {
+            if (empty($affairId)) {
+                throw new UnexpectedValueException('id required');
+            }
+            
+            $affair = $this->repository->getAffairById($affairId);
+            $affairs[] = $affair;
+        }
+
+        return (array) $affairs;
+    }
 }
