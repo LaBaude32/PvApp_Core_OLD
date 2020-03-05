@@ -1,5 +1,11 @@
 <?php
 
+//LOAD .env file
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
+$APP_BDD_PDW = getenv('APP_BDD_PDW');
+
 // Error reporting
 error_reporting(0);
 ini_set('display_errors', '0');
@@ -36,7 +42,7 @@ $settings['db'] = [
     'host' => 'localhost',
     'username' => 'root',
     'database' => 'pv_app_core_database',
-    'password' => '#Baldodu32$', // A changer en fonction de l'environnement
+    'password' => $APP_BDD_PDW, // A changer en fonction de l'environnement
     'charset' => 'utf8mb4',
     'collation' => 'utf8mb4_unicode_ci',
     'flags' => [

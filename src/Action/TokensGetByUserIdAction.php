@@ -19,12 +19,13 @@ final class TokensGetByUserIdAction
   public function __invoke(ServerRequest $request, Response $response): Response
   {
     // Collect input from the HTTP request
-    $data = (array) $request->getParsedBody();
+    $data = (array) $request->getQueryParams();
 
     $userId = (int) $data['user_id'];
 
     // Invoke the Domain with inputs and retain the result
     $tokens = $this->tokenGetter->getTokensByUserId($userId);
+    //TODO: faire cette fonction
 
     $result = ["Tokens" => $tokens];
 

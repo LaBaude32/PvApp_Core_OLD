@@ -24,7 +24,7 @@ final class PvGetByIdAction
   public function __invoke(ServerRequest $request, Response $response): Response
   {
     // Collect input from the HTTP request
-    $data = (array) $request->getParsedBody();
+    $data = (array) $request->getQueryParams();
 
     $id = (int) $data['id_pv'];
 

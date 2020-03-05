@@ -109,11 +109,14 @@ final class LoginAction
                 throw new UnexpectedValueException("Erreur dans la création d'un nouveau token");
             }
 
+            $userdata = $this->userGetter->getUserById($tokenToReturn->userId);
+
             // Transform the result into the JSON representation
             $result = [
                 'login_result' => "success",
                 'token' => $tokenToReturn->token,
-                'user_id' => $tokenToReturn->userId
+                'user_id' => $tokenToReturn->userId,
+                'user_data' => $userdata
             ];
         } else {
             $result = [
