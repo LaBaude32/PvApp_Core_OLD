@@ -2,58 +2,58 @@
 
 namespace App\Action;
 
-use DateTime;
+use App\Auth\JwtAuth;
+use App\Domain\User\Service\UserAuth;
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
-use UnexpectedValueException;
-use App\Domain\Token\Data\TokenData;
-use App\Domain\Token\Service\TokenGetter;
-use App\Domain\Token\Service\TokenCreator;
 
 final class TokenCreateAction
 {
-    private $tokenCreator;
+  private $jwtAuth;
 
-    protected $tokenGetter;
+  protected $userAuth;
 
-    public function __construct(TokenCreator $tokenCreator, TokenGetter $tokenGetter)
-    {
-        $this->tokenCreator = $tokenCreator;
-        $this->tokenGetter = $tokenGetter;
+  public function __construct(JwtAuth $jwtAuth, UserAuth $userAuth)
+  {
+    $this->jwtAuth = $jwtAuth;
+    $this->userAuth = $userAuth;
+  }
+
+  public function __invoke(ServerRequest $request, Response $response): Response
+  {
+    $data = (array) $request->getParsedBody();
+
+    $email = (string) ($data['email'] ?? '');
+    $password = (string) ($data['password'] ?? '');
+
+
+    $datas = [
+      "email" => $email,
+      "password" => $password
+    ];
+    // Validate login (pseudo code)
+    $isValidLogin = $this->userAuth->checkLogin($datas);
+
+    if (!$isValidLogin) {
+      // Invalid authentication credentials
+      return $response
+        ->withHeader('Content-Type', 'application/json')
+        ->withStatus(401, 'Unauthorized');
     }
 
-    public function __invoke(ServerRequest $request, Response $response): Response
-    {
-        // Collect input from the HTTP request
-        $data = (array) $request->getParsedBody();
+    // Create a fresh token
+    $token = $this->jwtAuth->createJwt($email);
+    $lifetime = $this->jwtAuth->getLifetime();
 
-        $date = new DateTime();
-        $date->modify('+24hours');
+    // Transform the result into a OAuh 2.0 Access Token Response
+    // https://www.oauth.com/oauth2-servers/access-tokens/access-token-response/
+    $result = [
+      'access_token' => $token,
+      'token_type' => 'Bearer',
+      'expires_in' => $lifetime,
+    ];
 
-        // Mapping (should be done in a mapper class)
-        $token = new TokenData();
-        $token->device = $data['device'];
-        $token->expirationDate = $date->format('Y-m-d H:i:s');
-        $token->userId = $data['user_id'];
-        // Génération automatique du token de 44 valeurs
-        $token->token = bin2hex(openssl_random_pseudo_bytes(22));
-
-        // Invoke the Domain with inputs and retain the result
-        $this->tokenCreator->createToken($token);
-
-        $newToken = $this->tokenGetter->getTokenById($token->token);
-
-        if ($newToken->token !== $token->token) {
-            throw new UnexpectedValueException('Erreur : le token est différent');
-        }
-
-        // Transform the result into the JSON representation
-        $result = [
-            'user_id' => $newToken->userId,
-            'token' => $newToken->token
-        ];
-
-        // Build the HTTP response
-        return $response->withJson($result)->withStatus(201);
-    }
+    // Build the HTTP response
+    return $response->withJson($result)->withStatus(201);
+  }
 }

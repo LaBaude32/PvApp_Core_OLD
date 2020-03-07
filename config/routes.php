@@ -1,52 +1,58 @@
 <?php
 
 use Slim\App;
+use App\Middleware\JwtMiddleware;
+use Slim\Routing\RouteCollectorProxy;
 
 return function (App $app) {
+    // This route must not be protected
+    $app->post('/api/v1/tokens', \App\Action\TokenCreateAction::class);
 
-    $app->post('/login', \App\Action\LoginAction::class);
-    $app->options('/login', App\Action\PreflightAction::class);
+    $app->group('/api/v1', function (RouteCollectorProxy $group) {
+        $group->post('/login', \App\Action\LoginAction::class);
+        // $group->options('/login', App\Action\PreflightAction::class);
 
-    $app->get('/', \App\Action\HomeAction::class);
-    //User
-    $app->post('/addUser', \App\Action\UserCreateAction::class);
-    $app->get('/getAllUsers', \App\Action\UsersGetAllAction::class);
-    $app->options('/getAllUsers', App\Action\PreflightAction::class);
-    $app->post('/updateUser', \App\Action\UserUpdateAction::class);
-    $app->delete('/deleteUser', \App\Action\UserDeleteAction::class);
+        $group->get('/', \App\Action\HomeAction::class);
+        //User
+        $group->post('/addUser', \App\Action\UserCreateAction::class);
+        $group->get('/getAllUsers', \App\Action\UsersGetAllAction::class);
+        // $group->options('/getAllUsers', App\Action\PreflightAction::class);
+        $group->post('/updateUser', \App\Action\UserUpdateAction::class);
+        $group->delete('/deleteUser', \App\Action\UserDeleteAction::class);
 
-    //Affair
-    $app->post('/addAffair', \App\Action\AffairCreateAction::class);
-    $app->get('/getAllAffairs', \App\Action\AffairsGetAllAction::class);
-    $app->get('/getAffairById', \App\Action\AffairGetByIdAction::class);
-    //TODO: get Affair By User Id
-    $app->get('/getAffairsByUserId', \App\Action\AffairsGetByUserIdAction::class);
+        //Affair
+        $group->post('/addAffair', \App\Action\AffairCreateAction::class);
+        $group->get('/getAllAffairs', \App\Action\AffairsGetAllAction::class);
+        $group->get('/getAffairById', \App\Action\AffairGetByIdAction::class);
+        //TODO: get Affair By User Id
+        $group->get('/getAffairsByUserId', \App\Action\AffairsGetByUserIdAction::class);
 
-    $app->post('/updateAffair', \App\Action\AffairUpdateAction::class);
-    $app->delete('/deleteAffair', \App\Action\AffairDeleteAction::class);
-    //Lot
-    $app->post('/addLot', \App\Action\LotCreateAction::class);
-    $app->post('/updateLot', \App\Action\LotUpdateAction::class);
-    $app->delete('/deleteLot', \App\Action\LotDeleteAction::class);
-    //Pv
-    $app->post('/addPv', \App\Action\PvCreateAction::class);
-    $app->get('/getPvByAffairId', \App\Action\PvGetByAffairIdAction::class);
-    $app->post('/updatePv', \App\Action\PvUpdateAction::class);
-    $app->get('/getPvDetails', \App\Action\PvGetByIdAction::class);
-    $app->delete('/deletePv', \App\Action\PvDeleteAction::class);
-    $app->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
-    //Pv Has User
-    $app->post('/addPvHasUser', \App\Action\PvHasUserAction::class);
-    //Item
-    $app->post('/addItem', \App\Action\ItemCreateAction::class);
-    $app->post('/updateItem', \App\Action\ItemUpdateAction::class);
-    $app->delete('/deleteItem', \App\Action\ItemDeleteAction::class);
-    //Tocken
-    $app->post('/addToken', \App\Action\TokenCreateAction::class);
-    $app->delete('/deleteToken', \App\Action\TokenDeleteAction::class);
-    $app->get('/getTokensByUserId', \App\Action\TokensGetByUserIdAction::class);
+        $group->post('/updateAffair', \App\Action\AffairUpdateAction::class);
+        $group->delete('/deleteAffair', \App\Action\AffairDeleteAction::class);
+        //Lot
+        $group->post('/addLot', \App\Action\LotCreateAction::class);
+        $group->post('/updateLot', \App\Action\LotUpdateAction::class);
+        $group->delete('/deleteLot', \App\Action\LotDeleteAction::class);
+        //Pv
+        $group->post('/addPv', \App\Action\PvCreateAction::class);
+        $group->get('/getPvByAffairId', \App\Action\PvGetByAffairIdAction::class);
+        $group->post('/updatePv', \App\Action\PvUpdateAction::class);
+        $group->get('/getPvDetails', \App\Action\PvGetByIdAction::class);
+        $group->delete('/deletePv', \App\Action\PvDeleteAction::class);
+        $group->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
+        //Pv Has User
+        $group->post('/addPvHasUser', \App\Action\PvHasUserAction::class);
+        //Item
+        $group->post('/addItem', \App\Action\ItemCreateAction::class);
+        $group->post('/updateItem', \App\Action\ItemUpdateAction::class);
+        $group->delete('/deleteItem', \App\Action\ItemDeleteAction::class);
+        //Tocken
+        $group->post('/addToken', \App\Action\TokenCreateAction2::class);
+        $group->delete('/deleteToken', \App\Action\TokenDeleteAction::class);
+        $group->get('/getTokensByUserId', \App\Action\TokensGetByUserIdAction::class);
+    })->add(JwtMiddleware::class);
+};
     //Pv Has Item
     //TODO: créer une requete pour pouvoir mettre un item dans plusieurs Pv
     //TODO: faire des tests sur les suppressions
     //TODO: chiffrer les MDP
-};
