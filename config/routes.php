@@ -3,10 +3,12 @@
 use Slim\App;
 use App\Middleware\JwtMiddleware;
 use Slim\Routing\RouteCollectorProxy;
+use App\Action\PreflightAction;
 
 return function (App $app) {
     // This route must not be protected
     $app->post('/api/v1/tokens', \App\Action\TokenCreateAction::class);
+    $app->options('/api/v1/tokens', \App\Action\PreflightAction::class);
 
     $app->group('/api/v1', function (RouteCollectorProxy $group) {
         $group->post('/login', \App\Action\LoginAction::class);
@@ -40,6 +42,7 @@ return function (App $app) {
         $group->get('/getPvDetails', \App\Action\PvGetByIdAction::class);
         $group->delete('/deletePv', \App\Action\PvDeleteAction::class);
         $group->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
+        // $group->options('/getLastPvsByUserId', \App\Action\PreflightAction::class);
         //Pv Has User
         $group->post('/addPvHasUser', \App\Action\PvHasUserAction::class);
         //Item
