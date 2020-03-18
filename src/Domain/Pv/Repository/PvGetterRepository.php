@@ -43,6 +43,7 @@ class PvGetterRepository
             $pv->meeting_next_date = (string) $row['meeting_next_date'];
             $pv->meeting_next_place = (string) $row['meeting_next_place'];
             $pv->affair_id = (int) $row['affair_id'];
+            $pv->affair_name = (string) //TODO: NOW faire une requete
 
             $pvs[] = $pv;
         }
