@@ -24,7 +24,4 @@ final class PvGetData
 
     /** @var int */
     public $affair_id;
-
-    /** @var string */
-    public $affair_name;
 }
