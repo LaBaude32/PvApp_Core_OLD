@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 25 mars 2020 à 14:55
+-- Généré le : mer. 25 mars 2020 à 15:24
 -- Version du serveur :  8.0.19-0ubuntu0.19.10.3
 -- Version de PHP : 7.3.11-0ubuntu0.19.10.3
 
@@ -122,6 +122,19 @@ CREATE TABLE `pv_has_user` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `token`
+--
+
+CREATE TABLE `token` (
+  `token` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `device` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration_date` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id_user` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
@@ -142,8 +155,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `last_name`, `phone`, `group`, `function`, `organism`) VALUES
-(2, 'baud@baud.fr', '1234', 'Baudouin', 'Coupey', '0695847559', 'Dev', 'Dev full stack', 'SAS'),
-(3, 'contact@agencecasals.fr', '1234', 'Samuel', 'Coupey', '0695847559', 'Maîtrise d\'ouvrage', 'Archi', 'Casals');
+(2, 'baud@baud.fr', '1234', 'Baudouin', 'COUPEY', '0695847559', 'Dev', 'Dev fullstack', 'SAS'),
+(3, 'contact@agencecasals.fr', '1234', 'Samuel', 'COUPEY', '0695847559', 'Maitrise d\'ouvrage', 'Archi', 'Casals');
 
 --
 -- Index pour les tables déchargées
@@ -198,6 +211,13 @@ ALTER TABLE `pv_has_user`
   ADD PRIMARY KEY (`pv_id`,`user_id`),
   ADD KEY `fk_pv_has_user_user1_idx` (`user_id`),
   ADD KEY `fk_pv_has_user_pv1_idx` (`pv_id`);
+
+--
+-- Index pour la table `token`
+--
+ALTER TABLE `token`
+  ADD PRIMARY KEY (`token`),
+  ADD KEY `fk_token_user1_idx` (`user_id_user`);
 
 --
 -- Index pour la table `user`
@@ -275,6 +295,12 @@ ALTER TABLE `pv_has_item`
 ALTER TABLE `pv_has_user`
   ADD CONSTRAINT `fk_pv_has_user_pv1` FOREIGN KEY (`pv_id`) REFERENCES `pv` (`id_pv`),
   ADD CONSTRAINT `fk_pv_has_user_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
+
+--
+-- Contraintes pour la table `token`
+--
+ALTER TABLE `token`
+  ADD CONSTRAINT `fk_token_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
