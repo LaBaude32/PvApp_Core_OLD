@@ -72,10 +72,10 @@ class PvGetterRepository
 
     public function getPvsByUserId(array $data): array
     {
-        $query = "SELECT p.*
+        $query = "SELECT p.*, a.name as affair_name
         FROM pv p
-        INNER JOIN pv_has_user phu
-        ON phu.pv_id = p.id_pv
+        INNER JOIN pv_has_user phu ON phu.pv_id = p.id_pv
+        INNER JOIN affair a ON a.id_affair = p.affair_id
         WHERE phu.user_id =:user_id
         ORDER BY p.meeting_date
         LIMIT :nbPvs";
@@ -94,6 +94,7 @@ class PvGetterRepository
             $pv->meeting_next_date = (string) $row['meeting_next_date'];
             $pv->meeting_next_place = (string) $row['meeting_next_place'];
             $pv->affair_id = (int) $row['affair_id'];
+            $pv->affair_name = (string) $row['affair_name'];
 
             $pvs[] = $pv;
         }
