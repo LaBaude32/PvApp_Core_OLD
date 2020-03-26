@@ -44,7 +44,7 @@ class PvHasUserCreatorRepository
         $query = "INSERT INTO pv_has_user SET
                 pv_id=:pv_id,
                 user_id=:user_id,
-                status=:status";
+                status_PAE=:status";
 
         $this->connection->prepare($query)->execute($row);
 
