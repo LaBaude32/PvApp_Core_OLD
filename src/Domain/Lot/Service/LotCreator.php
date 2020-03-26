@@ -47,4 +47,22 @@ final class LotCreator
 
         return $lotId;
     }
+
+    /**
+     * Create a new Affaire.
+     *
+     * @param LotCreateData $Affaire The Affaire data
+     *
+     * @return int The new Affaire ID
+     */
+    public function createLots(array $lots)
+    {
+        // Validation
+        if (empty($lots[0])) {
+            throw new UnexpectedValueException('Nom required');
+        }
+
+        // Insert lot
+        $this->repository->insertLots($lots);
+    }
 }

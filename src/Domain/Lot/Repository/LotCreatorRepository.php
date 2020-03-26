@@ -47,4 +47,27 @@ class LotCreatorRepository
 
         return (int) $this->connection->lastInsertId();
     }
+
+    /**
+     * Insert lot row.
+     *
+     * @param LotCreateData $lot The affaire
+     *
+     * @return int The new ID
+     */
+    public function insertLots(array $lots)
+    {
+        foreach ($lots as $lot) {
+            $row = [
+                'name' => $lot->name,
+                'affair_id' => $lot->affair_id,
+            ];
+
+            $sql = "INSERT INTO lot SET
+                name=:name,
+                affair_id=:affair_id";
+
+            $this->connection->prepare($sql)->execute($row);
+        }
+    }
 }

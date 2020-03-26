@@ -22,16 +22,21 @@ final class LotCreateAction
         $data = (array) $request->getParsedBody();
 
         // Mapping (should be done in a mapper class)
-        $lot = new LotCreateData();
-        $lot->name = $data['name'];
-        $lot->affair_id = $data['affair_id'];
+        $affairId = $data['affair_id'];
+        $lotsRecived = $data['lots_name'];
+        foreach ($lotsRecived as $value) {
+            $lot = new LotCreateData();
+            $lot->name = $value;
+            $lot->affair_id = $affairId;
+            $lots[] = $lot;
+        }
 
         // Invoke the Domain with inputs and retain the result
-        $lotId = $this->lotCreator->createLot($lot);
+        $this->lotCreator->createLots($lots);
 
         // Transform the result into the JSON representation
         $result = [
-            'lot_id' => $lotId
+            'result' => 'success'
         ];
 
         // Build the HTTP response
