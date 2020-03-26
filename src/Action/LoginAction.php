@@ -52,71 +52,11 @@ final class LoginAction
         //Check if user pwd is good
         if ($userLogged->pwd === $userRegistred->pwd) {
 
-            $datas = [
-                'userId' => $userRegistred->id_user,
-                'device' => $data['device']
-            ];
-
-            //Check if a token exist
-            $token = $this->tokenGetter->getLoggedToken($datas);
-
-            $actualDate = new DateTime();
-
-            $expirationDate = new DateTime($token->expirationDate);
-
-            $expirationDate = $expirationDate->getTimestamp();
-            $actualDate = $actualDate->getTimestamp();
-            $dateResult =  $expirationDate - $actualDate;
-
-            if (empty($token->token)) {
-                //Create a  new one
-                $date = new DateTime();
-                $date->modify('+24hours');
-
-                $token = new TokenData();
-                $token->device = $data['device'];
-                $token->expirationDate = $date->format('Y-m-d H:i:s');
-                $token->userId = $userRegistred->id_user;
-                // Génération automatique du token de 44 valeurs
-                $token->token = bin2hex(openssl_random_pseudo_bytes(22));
-
-                // Invoke the Domain with inputs and retain the result
-                $this->tokenCreator->createToken($token);
-                $newToken = $this->tokenGetter->getTokenById($token->token);
-                $tokenToReturn = $newToken;
-            } elseif ($dateResult < 0) {
-
-                $this->tokenDeletor->deleteToken($token->token);
-
-                //Create a  new one
-                $date = new DateTime();
-                $date->modify('+24hours');
-
-                $token = new TokenData();
-                $token->device = $data['device'];
-                $token->expirationDate = $date->format('Y-m-d H:i:s');
-                $token->userId = $userRegistred->id_user;
-                // Génération automatique du token de 44 valeurs
-                $token->token = bin2hex(openssl_random_pseudo_bytes(22));
-
-                // Invoke the Domain with inputs and retain the result
-                $this->tokenCreator->createToken($token);
-                $newToken = $this->tokenGetter->getTokenById($token->token);
-                $tokenToReturn = $newToken;
-            } elseif (!empty($token->token) && $dateResult > 0) {
-                $tokenToReturn = $token;
-            } else {
-                throw new UnexpectedValueException("Erreur dans la création d'un nouveau token");
-            }
-
-            $userdata = $this->userGetter->getUserById($tokenToReturn->userId);
-            //TODO: nettoyer tout ça
             // Transform the result into the JSON representation
             $result = [
                 'login_result' => "success",
-                'token' => $tokenToReturn->token,
-                'user_id' => $tokenToReturn->userId,
-                'user_data' => $userdata
+                'user_id' => $userRegistred->id_user,
+                'user_data' => $userRegistred
             ];
         } else {
             $result = [
