@@ -110,7 +110,7 @@ final class LoginAction
             }
 
             $userdata = $this->userGetter->getUserById($tokenToReturn->userId);
-
+            //TODO: nettoyer tout ça
             // Transform the result into the JSON representation
             $result = [
                 'login_result' => "success",

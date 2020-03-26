@@ -36,8 +36,13 @@ final class AffairsGetByUserIdAction
     $pvIds = $this->pvHasUserGetter->getPvByUserId($userId);
     $affairIds = $this->pvGetter->getAffairsIdByPvsId($pvIds);
 
-    //2. Recuperer les Affairs correspondantes aux pv.
-    $affairs = $this->affairGetter->getAffairsByIds($affairIds);
+
+    if (!empty($affairIds)) {
+      //2. Recuperer les Affairs correspondantes aux pv.
+      $affairs = $this->affairGetter->getAffairsByIds($affairIds);
+    } else {
+      $affairs = [];
+    }
 
     // Build the HTTP response
     return $response->withJson($affairs)->withStatus(201);
