@@ -109,7 +109,7 @@ class UserGetterRepository
 
     public function getUsersByPvId(int $pv_id): array
     {
-        $query = "SELECT u.*, phu.status
+        $query = "SELECT u.*, phu.status_PAE
         FROM user u
         INNER JOIN pv_has_user phu
         ON phu.user_id = u.id_user
