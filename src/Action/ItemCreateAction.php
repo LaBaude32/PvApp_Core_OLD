@@ -6,14 +6,18 @@ use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use App\Domain\Item\Data\ItemCreateData;
 use App\Domain\Item\Service\ItemCreator;
+use App\Domain\Lot\Service\LotCreator;
 
 final class ItemCreateAction
 {
     private $itemCreator;
 
-    public function __construct(ItemCreator $itemCreator)
+    protected $lotCreator;
+
+    public function __construct(ItemCreator $itemCreator, LotCreator $lotCreator)
     {
         $this->itemCreator = $itemCreator;
+        $this->lotCreator = $lotCreator;
     }
 
     public function __invoke(ServerRequest $request, Response $response): Response
@@ -32,9 +36,14 @@ final class ItemCreateAction
         $item->visible = $data['visible'];
         $item->created_at = $data['created_at'];
         $item->pv_id = $data['pv_id'];
+        $item->lots_ids = $data['lots_ids'];
 
         // Invoke the Domain with inputs and retain the result
         $itemId = $this->itemCreator->createItem($item);
+
+        if (!empty($item->lots_ids)) {
+            $this->lotCreator->linkLotsToItem($item->lots_ids, $itemId);
+        }
 
         // Transform the result into the JSON representation
         $result = [

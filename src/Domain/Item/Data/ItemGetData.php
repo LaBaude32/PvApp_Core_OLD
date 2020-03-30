@@ -30,4 +30,7 @@ final class ItemGetData
 
     /** @var string */
     public $created_at;
+
+    /** @var */
+    public $lots;
 }

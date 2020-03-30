@@ -30,4 +30,7 @@ final class ItemCreateData
 
     /** @var int */
     public $pv_id;
+
+    /** @var array */
+    public $lots_ids;
 }

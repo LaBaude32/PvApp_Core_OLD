@@ -27,11 +27,11 @@ final class LotCreator
     }
 
     /**
-     * Create a new Affaire.
+     * Create a new Lot.
      *
-     * @param LotCreateData $Affaire The Affaire data
+     * @param LotCreateData $Lot The Lot data
      *
-     * @return int The new Affaire ID
+     * @return int The new Lot ID
      */
     public function createLot(LotCreateData $lot): int
     {
@@ -49,13 +49,13 @@ final class LotCreator
     }
 
     /**
-     * Create a new Affaire.
+     * Create a new Lot.
      *
-     * @param LotCreateData $Affaire The Affaire data
+     * @param LotCreateData $Lot The Lot data
      *
-     * @return int The new Affaire ID
+     * @return int The new Lot ID
      */
-    public function createLots(array $lots)
+    public function createLots(array $lots): array
     {
         // Validation
         if (empty($lots[0])) {
@@ -63,6 +63,32 @@ final class LotCreator
         }
 
         // Insert lot
-        $this->repository->insertLots($lots);
+        $lotsIds = $this->repository->insertLots($lots);
+
+        return (array) $lotsIds;
+    }
+
+    /**
+     * Create a new Lot.
+     *
+     * @param LotCreateData $Lot The Lot data
+     *
+     * @return int The new Lot ID
+     */
+    public function linkLotsToItem(array $lotsIds, int $itemId): array
+    {
+        // Validation
+        if (empty($lotsIds[0])) {
+            throw new UnexpectedValueException('lots required');
+        }
+
+        if (empty($itemId)) {
+            throw new UnexpectedValueException('item id required');
+        }
+
+        // Insert lot
+        $lotsIds = $this->repository->linkLotsToItem($lotsIds, $itemId);
+
+        return (array) $lotsIds;
     }
 }

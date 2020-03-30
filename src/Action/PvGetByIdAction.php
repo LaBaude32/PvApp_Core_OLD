@@ -33,6 +33,8 @@ final class PvGetByIdAction
 
     $items = $this->itemGetter->getItemsByPvId($id);
 
+    $itemsWithLots = $this->itemGetter->getLotsForItems($items);
+
     $users = $this->userGetter->getUsersByPvId($id);
 
     //TODO: Ajout de la récupération des status
@@ -43,7 +45,7 @@ final class PvGetByIdAction
 
     $result = [
       'pv_details' => $pv,
-      'items' => $items,
+      'items' => $itemsWithLots,
       'users' => $users
     ];
 

@@ -55,17 +55,39 @@ class LotCreatorRepository
      *
      * @return int The new ID
      */
-    public function insertLots(array $lots)
+    public function insertLots(array $lots): array
     {
         foreach ($lots as $lot) {
             $row = [
-                'name' => $lot->name,
+                'name' => $lot,
                 'affair_id' => $lot->affair_id,
             ];
 
             $sql = "INSERT INTO lot SET
                 name=:name,
                 affair_id=:affair_id";
+
+            $this->connection->prepare($sql)->execute($row);
+
+            $lotId = (int) $this->connection->lastInsertId();
+
+            $lotsIds[] = $lotId;
+        }
+
+        return (array) $lotsIds;
+    }
+
+    public function linkLotsToItem(array $lotsIds, int $itemId)
+    {
+        foreach ($lotsIds as $lotId) {
+            $row = [
+                'lot_id' => $lotId,
+                'item_id' => $itemId,
+            ];
+
+            $sql = "INSERT INTO item_has_lot SET
+                lot_id=:lot_id,
+                item_id=:item_id";
 
             $this->connection->prepare($sql)->execute($row);
         }
