@@ -59,18 +59,17 @@ class LotCreatorRepository
     {
         foreach ($lots as $lot) {
             $row = [
-                'name' => $lot,
+                'name' => $lot->name,
                 'affair_id' => $lot->affair_id,
             ];
 
-            $sql = "INSERT INTO lot SET
+            $query = "INSERT INTO lot SET
                 name=:name,
                 affair_id=:affair_id";
 
-            $this->connection->prepare($sql)->execute($row);
+            $this->connection->prepare($query)->execute($row);
 
             $lotId = (int) $this->connection->lastInsertId();
-
             $lotsIds[] = $lotId;
         }
 
