@@ -27,4 +27,7 @@ final class PvGetData
 
     /** @var string */
     public $affair_name;
+
+    /** @var array */
+    public $lots;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Domain\Pv\Service;
 
+use App\Domain\Pv\Data\PvGetData;
 use UnexpectedValueException;
 use App\Domain\Pv\Repository\PvGetterRepository;
 
@@ -53,7 +54,7 @@ final class PvGetter
      *
      * @return array All one pv with his items
      */
-    public function getPvById(int $id): array
+    public function getPvById(int $id): PvGetData
     {
         // Validation
         if (empty($id)) {
@@ -67,7 +68,7 @@ final class PvGetter
         // Get one pv
         $pv = $this->repository->getPvById($id);
 
-        return (array) $pv;
+        return $pv;
     }
 
     public function getAffairsIdByPvsId(array $pvsId): array
@@ -84,8 +85,8 @@ final class PvGetter
 
     public function getLastsPvByUserId(array $data): array
     {
-         // Validation
-         if (empty($data['userId'])) {
+        // Validation
+        if (empty($data['userId'])) {
             throw new UnexpectedValueException('id required');
         }
 
@@ -93,12 +94,19 @@ final class PvGetter
             throw new UnexpectedValueException('id doit être positif');
         }
 
-        if($data['numberOfPvs'] == 0){
+        if ($data['numberOfPvs'] == 0) {
             $data['numberOfPvs'] = 1;
         }
 
         $pvs = $this->repository->getPvsByUserId($data);
 
         return (array) $pvs;
+    }
+
+    public function getLotsForPv(PvGetData $pv)
+    {
+        $pvToReturn = $this->repository->getLotsForpv($pv);
+
+        return $pvToReturn;
     }
 }

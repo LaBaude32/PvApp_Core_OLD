@@ -30,6 +30,7 @@ final class PvGetByIdAction
 
     // Invoke the Domain with inputs and retain the result
     $pv = $this->pvGetter->getPvById($id);
+    $pv = $this->pvGetter->getLotsForPv($pv);
 
     $items = $this->itemGetter->getItemsByPvId($id);
 

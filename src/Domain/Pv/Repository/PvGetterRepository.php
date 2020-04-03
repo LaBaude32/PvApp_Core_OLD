@@ -102,4 +102,27 @@ class PvGetterRepository
 
         return (array) $pvs;
     }
+
+    public function getLotsForPv(PvGetData $pv): PvGetData
+    {
+
+        $query = "SELECT l.* FROM lot l
+            INNER JOIN affair a ON a.id_affair = l.affair_id
+            INNER JOIN pv i ON i.affair_id = a.id_affair
+            WHERE i.id_pv =:pvId";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue("pvId", $pv->id_pv, PDO::PARAM_INT);
+        $statement->execute();
+        while ($row = $statement->fetch()) {
+            $result = new LotGetData();
+            $result->id_lot = (int) $row['id_lot'];
+            $result->name = (string) $row['name'];
+
+            $pv->lots[] = $result;
+        }
+        $pvToReturn = $pv;
+
+        return $pvToReturn;
+    }
 }
