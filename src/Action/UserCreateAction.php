@@ -25,8 +25,8 @@ final class UserCreateAction
         $user = new UserCreateData();
         $user->email = $data['email'];
         $user->pwd = $data['password'];
-        $user->firstName = $data['first_name'];
-        $user->lastName = $data['last_name'];
+        $user->firstName = $data['firstName'];
+        $user->lastName = $data['lastName'];
         $user->phone = $data['phone'];
         $user->user_group = $data['user_group'];
         $user->function = $data['function'];
