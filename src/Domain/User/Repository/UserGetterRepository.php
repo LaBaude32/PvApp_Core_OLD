@@ -45,7 +45,7 @@ class UserGetterRepository
             $user->firstName = (string) $row['first_name'];
             $user->lastName = (string) $row['last_name'];
             $user->phone = (string) $row['phone'];
-            $user->user_group = (string) $row['user_group'];
+            $user->userGroup = (string) $row['user_group'];
             $user->function = (string) $row['function'];
             $user->organism = (string) $row['organism'];
 
@@ -77,7 +77,7 @@ class UserGetterRepository
         $user->firstName = (string) $row['first_name'];
         $user->lastName = (string) $row['last_name'];
         $user->phone = (string) $row['phone'];
-        $user->user_group = (string) $row['user_group'];
+        $user->userGroup = (string) $row['user_group'];
         $user->function = (string) $row['function'];
         $user->organism = (string) $row['organism'];
 
@@ -100,7 +100,7 @@ class UserGetterRepository
         $user->firstName = (string) $row['first_name'];
         $user->lastName = (string) $row['last_name'];
         $user->phone = (string) $row['phone'];
-        $user->user_group = (string) $row['user_group'];
+        $user->userGroup = (string) $row['user_group'];
         $user->function = (string) $row['function'];
         $user->organism = (string) $row['organism'];
 
@@ -126,7 +126,7 @@ class UserGetterRepository
             $user->firstName = (string) $row['first_name'];
             $user->lastName = (string) $row['last_name'];
             $user->phone = (string) $row['phone'];
-            $user->user_group = (string) $row['user_group'];
+            $user->userGroup = (string) $row['user_group'];
             $user->function = (string) $row['function'];
             $user->organism = (string) $row['organism'];
             $user->status = (string) $row['status'];

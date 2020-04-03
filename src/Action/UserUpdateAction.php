@@ -34,7 +34,7 @@ final class UserUpdateAction
         $user->firstName = $data['first_name'];
         $user->lastName = $data['last_name'];
         $user->phone = $data['phone'];
-        $user->user_group = $data['user_group'];
+        $user->userGroup = $data['userGroup'];
         $user->function = $data['function'];
         $user->organism = $data['organism'];
 

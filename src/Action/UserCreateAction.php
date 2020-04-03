@@ -28,7 +28,7 @@ final class UserCreateAction
         $user->firstName = $data['firstName'];
         $user->lastName = $data['lastName'];
         $user->phone = $data['phone'];
-        $user->user_group = $data['user_group'];
+        $user->userGroup = $data['userGroup'];
         $user->function = $data['function'];
         $user->organism = $data['organism'];
 

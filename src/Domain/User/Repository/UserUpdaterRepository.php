@@ -39,7 +39,7 @@ class UserUpdaterRepository
             'first_name' => $user->firstName,
             'last_name' => $user->lastName,
             'phone' => $user->phone,
-            'user_group' => $user->user_group,
+            'user_group' => $user->userGroup,
             'function' => $user->function,
             'organism' => $user->organism
         ];
