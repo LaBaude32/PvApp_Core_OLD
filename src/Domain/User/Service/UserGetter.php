@@ -3,6 +3,7 @@
 namespace App\Domain\User\Service;
 
 use App\Domain\User\Data\UserGetData;
+use App\Domain\User\Data\UserStatusGetData;
 use App\Domain\User\Repository\UserGetterRepository;
 
 /**
@@ -49,6 +50,20 @@ final class UserGetter
     public function getUserById(int $id_user): UserGetData
     {
         $user = $this->repository->getUserById($id_user);
+
+        return $user;
+    }
+
+    /**
+     * Get one user with his Id
+     *
+     * @param  mixed $id_user
+     *
+     * @return UserStatusGetData
+     */
+    public function getUserWithStatusById(int $id_user): UserStatusGetData
+    {
+        $user = $this->repository->getUserWithStatusById($id_user);
 
         return $user;
     }

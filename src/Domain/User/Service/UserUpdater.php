@@ -41,7 +41,16 @@ final class UserUpdater
 
         // Update user
         $this->repository->updateUser($user);
+    }
 
-        // Logging here: User created successfully
+    public function updateParticipant(UserGetData $user)
+    {
+        // Validation
+        if (empty($user->id_user)) {
+            throw new UnexpectedValueException('id user required');
+        }
+
+        // Update user
+        $this->repository->updateParticipant($user);
     }
 }

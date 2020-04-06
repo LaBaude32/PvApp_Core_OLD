@@ -20,6 +20,7 @@ return function (App $app) {
         $group->get('/getAllUsers', \App\Action\UsersGetAllAction::class);
         // $group->options('/getAllUsers', App\Action\PreflightAction::class);
         $group->post('/updateUser', \App\Action\UserUpdateAction::class);
+        $group->post('/updateParticipant', \App\Action\ParticipantUpdateAction::class);
         $group->delete('/deleteUser', \App\Action\UserDeleteAction::class);
 
         //Affair

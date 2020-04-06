@@ -59,6 +59,41 @@ class UserGetterRepository
      *
      * @param int $id_user
      *
+     * @return UserStatusGetData
+     */
+    public function getUserWithStatusById(int $id_user): UserStatusGetData
+    {
+        $query = "SELECT u.*, phu.status_PAE
+        FROM user u
+        INNER JOIN pv_has_user phu
+        ON phu.user_id = u.id_user
+        WHERE id_user=:id_user";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('id_user', $id_user, PDO::PARAM_INT);
+        $statement->execute();
+
+        $row = $statement->fetch();
+        $user = new UserStatusGetData();
+        $user->id_user = (int) $row['id_user'];
+        $user->email = (string) $row['email'];
+        $user->pwd = (string) $row['password'];
+        $user->firstName = (string) $row['first_name'];
+        $user->lastName = (string) $row['last_name'];
+        $user->phone = (string) $row['phone'];
+        $user->userGroup = (string) $row['user_group'];
+        $user->function = (string) $row['function'];
+        $user->organism = (string) $row['organism'];
+        $user->status_PAE = (string) $row['status_PAE'];
+
+        return $user;
+    }
+
+    /**
+     * getUserById
+     *
+     * @param int $id_user
+     *
      * @return UserGetData
      */
     public function getUserById(int $id_user): UserGetData
@@ -73,7 +108,6 @@ class UserGetterRepository
         $user = new UserGetData();
         $user->id_user = (int) $row['id_user'];
         $user->email = (string) $row['email'];
-        $user->pwd = (string) $row['password'];
         $user->firstName = (string) $row['first_name'];
         $user->lastName = (string) $row['last_name'];
         $user->phone = (string) $row['phone'];
