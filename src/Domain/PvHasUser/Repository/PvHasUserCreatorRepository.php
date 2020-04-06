@@ -38,13 +38,13 @@ class PvHasUserCreatorRepository
         $row = [
             'pv_id' => $pvHasUser->pv_id,
             'user_id' => $pvHasUser->user_id,
-            'status' => $pvHasUser->status
+            'status_PAE' => $pvHasUser->status_PAE
         ];
 
         $query = "INSERT INTO pv_has_user SET
                 pv_id=:pv_id,
                 user_id=:user_id,
-                status_PAE=:status";
+                status_PAE=:status_PAE";
 
         $this->connection->prepare($query)->execute($row);
 

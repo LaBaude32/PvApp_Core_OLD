@@ -129,7 +129,7 @@ class UserGetterRepository
             $user->userGroup = (string) $row['user_group'];
             $user->function = (string) $row['function'];
             $user->organism = (string) $row['organism'];
-            $user->status = (string) $row['status'];
+            $user->status_PAE = (string) $row['status_PAE'];
 
             $users[] = $user;
         }

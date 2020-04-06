@@ -32,5 +32,5 @@ final class UserStatusGetData
     public $organism;
 
     /** @var string */
-    public $status;
+    public $status_PAE;
 }

@@ -25,7 +25,7 @@ final class PvHasUserAction
         $pvHasUser = new PvHasUserData();
         $pvHasUser->pv_id = $data['pv_id'];
         $pvHasUser->user_id = $data['user_id'];
-        $pvHasUser->status = $data['status'];
+        $pvHasUser->status_PAE = $data['status_PAE'];
 
         // Invoke the Domain with inputs and retain the result
         $this->pvHasUserCreator->createPvHasUser($pvHasUser);

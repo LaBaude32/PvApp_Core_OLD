@@ -11,5 +11,5 @@ final class PvHasUserData
     public $user_id;
 
     /** @var string */
-    public $status;
+    public $status_PAE;
 }
