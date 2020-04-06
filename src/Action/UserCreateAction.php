@@ -2,6 +2,8 @@
 
 namespace App\Action;
 
+use App\Domain\PvHasUser\Data\PvHasUserData;
+use App\Domain\PvHasUser\Service\PvHasUserCreator;
 use App\Domain\User\Data\UserCreateData;
 use App\Domain\User\Service\UserCreator;
 use Slim\Http\Response;
@@ -11,9 +13,12 @@ final class UserCreateAction
 {
     private $userCreator;
 
-    public function __construct(UserCreator $userCreator)
+    protected $pvHasUserCreator;
+
+    public function __construct(UserCreator $userCreator, PvHasUserCreator $pvHasUserCreator)
     {
         $this->userCreator = $userCreator;
+        $this->pvHasUserCreator = $pvHasUserCreator;
     }
 
     public function __invoke(ServerRequest $request, Response $response): Response
@@ -34,6 +39,17 @@ final class UserCreateAction
 
         // Invoke the Domain with inputs and retain the result
         $userId = $this->userCreator->createUser($user);
+
+
+
+        if ($data['pvId'] != "") {
+            $pvHasUser = new PvHasUserData();
+            $pvHasUser->pv_id = $data['pvId'];
+            $pvHasUser->user_id = $userId;
+            $pvHasUser->status_PAE = $data['status_PAE'];
+
+            $this->pvHasUserCreator->createPvHasUser($pvHasUser);
+        }
 
         // Transform the result into the JSON representation
         $result = [
