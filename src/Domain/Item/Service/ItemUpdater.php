@@ -43,4 +43,22 @@ final class ItemUpdater
         // updateItem Item
         $this->repository->updateItem($item);
     }
+
+    /**
+     * Get a new Affaire.
+     *
+     * @param ItemGetData $Affaire The Affaire data
+     *
+     * @return int The new Affaire ID
+     */
+    public function updateVisible(ItemGetData $item)
+    {
+        // Validation
+        if (empty($item->id_item)) {
+            throw new UnexpectedValueException('id required');
+        }
+
+        // updateItem Item
+        $this->repository->updateVisible($item);
+    }
 }

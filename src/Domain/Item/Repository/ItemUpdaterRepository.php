@@ -61,4 +61,27 @@ class ItemUpdaterRepository
         $statement->bindValue('id_item', $item->id_item, PDO::PARAM_INT);
         $statement->execute($row);
     }
+
+    /**
+     * Insert lot row.
+     *
+     * @param ItemGetData $lot The affaire
+     *
+     * @return int The new ID
+     */
+    public function updateVisible(ItemGetData $item)
+    {
+        $row = [
+            'id_item' => $item->id_item,
+            'visible' => $item->visible
+        ];
+
+        $query = "UPDATE item SET
+                visible=:visible
+                WHERE id_item=:id_item";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('id_item', $item->id_item, PDO::PARAM_INT);
+        $statement->execute($row);
+    }
 }

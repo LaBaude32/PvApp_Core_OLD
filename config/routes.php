@@ -49,6 +49,7 @@ return function (App $app) {
         //Item
         $group->post('/addItem', \App\Action\ItemCreateAction::class);
         $group->post('/updateItem', \App\Action\ItemUpdateAction::class);
+        $group->post('/updateVisibleOfItem', \App\Action\ItemUpdateVisibleAction::class);
         $group->delete('/deleteItem', \App\Action\ItemDeleteAction::class);
         //Tocken
         $group->post('/addToken', \App\Action\TokenCreateAction2::class);
