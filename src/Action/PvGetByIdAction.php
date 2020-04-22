@@ -27,10 +27,13 @@ final class PvGetByIdAction
     $data = (array) $request->getQueryParams();
 
     $id = (int) $data['id_pv'];
+    $userId = (int) $data['id_user'];
 
     // Invoke the Domain with inputs and retain the result
     $pv = $this->pvGetter->getPvById($id);
     $pv = $this->pvGetter->getLotsForPv($pv);
+
+    // $connectedUsers = $this->
 
     $items = $this->itemGetter->getItemsByPvId($id);
 
@@ -47,7 +50,8 @@ final class PvGetByIdAction
     $result = [
       'pv_details' => $pv,
       'items' => $itemsWithLots,
-      'users' => $users
+      'users' => $users,
+      // 'connected_users' => $connectedUsers
     ];
 
     // Build the HTTP response
