@@ -51,9 +51,12 @@ class PvGetterRepository
 
     public function getPvById(int $id_pv): PvGetData
     {
-        $sql = "SELECT * FROM pv WHERE id_pv=:id";
+        $query = "SELECT p.*, a.meeting_type as affair_meeting_type
+        FROM pv p
+        INNER JOIN affair a ON a.id_affair = p.affair_id
+        WHERE p.id_pv =:id";
 
-        $statement = $this->connection->prepare($sql);
+        $statement = $this->connection->prepare($query);
         $statement->bindValue('id', $id_pv, PDO::PARAM_INT);
         $statement->execute();
 
@@ -66,6 +69,7 @@ class PvGetterRepository
         $pv->meeting_next_date = (string) $row['meeting_next_date'];
         $pv->meeting_next_place = (string) $row['meeting_next_place'];
         $pv->affair_id = (int) $row['affair_id'];
+        $pv->affair_meeting_type = (string) $row['affair_meeting_type'];
 
         return $pv;
     }

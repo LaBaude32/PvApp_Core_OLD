@@ -28,6 +28,9 @@ final class PvGetData
     /** @var string */
     public $affair_name;
 
+    /** @var string */
+    public $affair_meeting_type;
+
     /** @var array */
     public $lots;
 }
