@@ -49,7 +49,10 @@ final class ItemUpdateAction
 
         foreach ($newItem as $key => $value) {
             if ($item->$key !== $value) {
-                throw new UnexpectedValueException('Erreur sur le ' . $key . ' qui est différent');
+                $oldValue = $item->$key;
+                throw new UnexpectedValueException("Erreur sur le ' . $key . ' qui est different.
+                Valeur recupere API : $oldValue - 
+                Nouvelle Valeur : $value");
             }
         }
 
