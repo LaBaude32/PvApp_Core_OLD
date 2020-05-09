@@ -18,4 +18,7 @@ final class AffairGetData
 
     /** @var string */
     public $meeting_type;
+
+    /** @var string */
+    public $description;
 }
