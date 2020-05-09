@@ -21,4 +21,7 @@ final class PvCreateData
 
     /** @var int */
     public $affair_id;
+
+    /** @var int */
+    public $release_date;
 }

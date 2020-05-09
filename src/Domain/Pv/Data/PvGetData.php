@@ -26,6 +26,12 @@ final class PvGetData
     public $affair_id;
 
     /** @var string */
+    public $release_date;
+
+    /** @var int */
+    public $pv_number;
+
+    /** @var string */
     public $affair_name;
 
     /** @var string */

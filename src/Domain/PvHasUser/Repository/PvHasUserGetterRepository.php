@@ -3,6 +3,8 @@
 namespace App\Domain\PvHasUser\Repository;
 
 use PDO;
+use App\Domain\Pv\Data\PvGetData;
+use App\Domain\User\Data\UserGetData;
 
 /**
  * Repository.
@@ -37,5 +39,32 @@ class PvHasUserGetterRepository
         }
 
         return (array) $pvs;
+    }
+
+    public function getPvOwner(int $pvId): UserGetData
+    {
+        $query = "SELECT u.*
+        FROM user u
+        INNER JOIN pv_has_user phu
+        ON phu.user_id = u.id_user
+        WHERE pv_id=:pvId AND phu.owner=1";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('pvId', $pvId, PDO::PARAM_INT);
+        $statement->execute();
+
+        $row = $statement->fetch();
+
+        $user = new UserGetData();
+        $user->id_user = (int) $row['id_user'];
+        $user->email = (string) $row['email'];
+        $user->firstName = (string) $row['first_name'];
+        $user->lastName = (string) $row['last_name'];
+        $user->phone = (string) $row['phone'];
+        $user->userGroup = (string) $row['user_group'];
+        $user->function = (string) $row['function'];
+        $user->organism = (string) $row['organism'];
+
+        return $user;
     }
 }

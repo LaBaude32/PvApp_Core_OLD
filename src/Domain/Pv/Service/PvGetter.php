@@ -109,4 +109,11 @@ final class PvGetter
 
         return $pvToReturn;
     }
+
+    public function getPvNumber(PvGetData $pv): PvGetData
+    {
+        $pvToReturn = $this->repository->getPvNumber($pv);
+
+        return $pvToReturn;
+    }
 }

@@ -25,13 +25,24 @@ final class AffairGetByIdAction
 
     $id = (int) $data['id_affair'];
 
+    // // Invoke the Domain with inputs and retain the result
+    // $affair = $this->affairGetter->getAffairById($id);
+    // $lots = $this->lotGetter->getLotByAffairId($affair->id_affair); //TODO: faire une joiture de table plutôt
+
+    $affairWithLots = $this->getAffairByIdDataWithLots($id);
+
+    // Build the HTTP response
+    return $response->withJson($affairWithLots)->withStatus(201);
+  }
+
+  public function getAffairByIdDataWithLots(int $id)
+  {
     // Invoke the Domain with inputs and retain the result
     $affair = $this->affairGetter->getAffairById($id);
     $lots = $this->lotGetter->getLotByAffairId($affair->id_affair); //TODO: faire une joiture de table plutôt
 
     $affairWithLots = ["affair_infos" => $affair, "lots" => $lots];
 
-    // Build the HTTP response
-    return $response->withJson($affairWithLots)->withStatus(201);
+    return $affairWithLots;
   }
 }

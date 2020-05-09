@@ -12,4 +12,16 @@ final class PvHasUserData
 
     /** @var string */
     public $status_PAE;
+
+    /** @var string */
+    public $invited_current_meeting;
+
+    /** @var string */
+    public $invited_next_meeting;
+
+    /** @var string */
+    public $distribution;
+
+    /** @var int */
+    public $owner;
 }

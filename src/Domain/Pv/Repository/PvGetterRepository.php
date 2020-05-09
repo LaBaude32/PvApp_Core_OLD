@@ -70,6 +70,23 @@ class PvGetterRepository
         $pv->meeting_next_place = (string) $row['meeting_next_place'];
         $pv->affair_id = (int) $row['affair_id'];
         $pv->affair_meeting_type = (string) $row['affair_meeting_type'];
+        $pv->release_date = (string) $row['release_date'];
+
+        return $pv;
+    }
+
+    public function getPvNumber(PvGetData $pv): PvGetData
+    {
+        $query = "SELECT COUNT(release_date) as result FROM `pv` WHERE affair_id = :affairId AND id_pv <= :pvId";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('affairId', $pv->id_pv, PDO::PARAM_INT);
+        $statement->bindValue('pvId', $pv->affair_id, PDO::PARAM_INT);
+        $statement->execute();
+
+        $row = $statement->fetch();
+
+        $pv->pv_number = (int) $row['result'];
 
         return $pv;
     }

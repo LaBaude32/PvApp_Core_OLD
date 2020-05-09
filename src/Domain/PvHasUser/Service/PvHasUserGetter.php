@@ -2,8 +2,10 @@
 
 namespace App\Domain\PvHasUser\Service;
 
-use App\Domain\PvHasUser\Repository\PvHasUserGetterRepository;
 use UnexpectedValueException;
+use App\Domain\Pv\Data\PvGetData;
+use App\Domain\PvHasUser\Repository\PvHasUserGetterRepository;
+use App\Domain\User\Data\UserGetData;
 
 /**
  * Service.
@@ -42,5 +44,12 @@ final class PvHasUserGetter
         $result = array_unique($pvs);
 
         return (array) $result;
+    }
+
+    public function getPvOwner(PvGetData $pv): UserGetData
+    {
+        $owner = $this->repository->getPvOwner($pv->id_pv);
+
+        return $owner;
     }
 }
