@@ -26,7 +26,7 @@ final class UserGetData
     public $userGroup;
 
     /** @var string */
-    public $function;
+    public $userFunction;
 
     /** @var string */
     public $organism;

@@ -46,7 +46,7 @@ class UserGetterRepository
             $user->lastName = (string) $row['last_name'];
             $user->phone = (string) $row['phone'];
             $user->userGroup = (string) $row['user_group'];
-            $user->function = (string) $row['function'];
+            $user->userFunction = (string) $row['user_function'];
             $user->organism = (string) $row['organism'];
 
             $users[] = $user;
@@ -82,7 +82,7 @@ class UserGetterRepository
         $user->lastName = (string) $row['last_name'];
         $user->phone = (string) $row['phone'];
         $user->userGroup = (string) $row['user_group'];
-        $user->function = (string) $row['function'];
+        $user->userFunction = (string) $row['user_function'];
         $user->organism = (string) $row['organism'];
         $user->status_PAE = (string) $row['status_PAE'];
 
@@ -112,7 +112,7 @@ class UserGetterRepository
         $user->lastName = (string) $row['last_name'];
         $user->phone = (string) $row['phone'];
         $user->userGroup = (string) $row['user_group'];
-        $user->function = (string) $row['function'];
+        $user->userFunction = (string) $row['user_function'];
         $user->organism = (string) $row['organism'];
 
         return $user;
@@ -135,7 +135,7 @@ class UserGetterRepository
         $user->lastName = (string) $row['last_name'];
         $user->phone = (string) $row['phone'];
         $user->userGroup = (string) $row['user_group'];
-        $user->function = (string) $row['function'];
+        $user->userFunction = (string) $row['user_function'];
         $user->organism = (string) $row['organism'];
 
         return $user;
@@ -161,7 +161,7 @@ class UserGetterRepository
             $user->lastName = (string) $row['last_name'];
             $user->phone = (string) $row['phone'];
             $user->userGroup = (string) $row['user_group'];
-            $user->function = (string) $row['function'];
+            $user->userFunction = (string) $row['user_function'];
             $user->organism = (string) $row['organism'];
             $user->status_PAE = (string) $row['status_PAE'];
 

@@ -35,7 +35,7 @@ final class UserUpdateAction
         $user->lastName = $data['last_name'];
         $user->phone = $data['phone'];
         $user->userGroup = $data['userGroup'];
-        $user->function = $data['function'];
+        $user->userFunction = $data['user_function'];
         $user->organism = $data['organism'];
 
         // Invoke the Domain with inputs and retain the result
