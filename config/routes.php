@@ -43,7 +43,7 @@ return function (App $app) {
         $group->get('/getPvDetails', \App\Action\PvGetByIdAction::class);
         $group->delete('/deletePv', \App\Action\PvDeleteAction::class);
         $group->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
-        $group->get('/getPvReleaseDetails', \App\Action\PvGetReleaseDetails::class);
+        $group->get('/getPvReleasedDetails', \App\Action\PvGetReleasedDetails::class);
 
         // $group->options('/getLastPvsByUserId', \App\Action\PreflightAction::class);
         //Pv Has User

@@ -10,7 +10,7 @@ use App\Domain\PvHasUser\Service\PvHasUserGetter;
 use App\Domain\User\Service\UserGetter;
 use App\Action\AffairGetByIdAction;
 
-final class PvGetReleaseDetails
+final class PvGetReleasedDetails
 {
   private $pvGetter;
   private $itemGetter;
