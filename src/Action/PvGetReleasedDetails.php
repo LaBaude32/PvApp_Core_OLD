@@ -49,9 +49,6 @@ final class PvGetReleasedDetails
 
     $affair = $this->getAffairByIdAction->getAffairByIdDataWithLots($pv->affair_id);
 
-    //TODO: recupérer les maitres d'oeuvres
-    //TODO: recupérer le maitre d'ouvrage
-
     $result = [
       'pv_details' => $pv,
       'items' => $itemsWithLots,
