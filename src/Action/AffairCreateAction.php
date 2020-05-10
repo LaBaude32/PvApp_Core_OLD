@@ -27,6 +27,7 @@ final class AffairCreateAction
         $affair->address = $data['address'];
         $affair->progress = $data['progress'];
         $affair->meeting_type = $data['meeting_type'];
+        $affair->description = $data['description'];
 
         // Invoke the Domain with inputs and retain the result
         $affairId = $this->affairCreator->createAffair($affair);

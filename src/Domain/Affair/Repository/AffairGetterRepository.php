@@ -44,6 +44,7 @@ class AffairGetterRepository
             $affair->address = (string) $row['address'];
             $affair->progress = (int) $row['progress'];
             $affair->meeting_type = (string) $row['meeting_type'];
+            $affair->description = (string) $row['description'];
 
             $affairs[] = $affair;
         }

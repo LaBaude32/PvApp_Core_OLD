@@ -39,14 +39,16 @@ class AffairUpdaterRepository
             'name' => $affair->name,
             'address' => $affair->address,
             'progress' => $affair->progress,
-            'meeting_type' => $affair->meeting_type
+            'meeting_type' => $affair->meeting_type,
+            'description' => $affair->description
         ];
 
         $query = "UPDATE affair SET
                 name=:name,
                 address=:address,
                 progress=:progress,
-                meeting_type=:meeting_type
+                meeting_type=:meeting_type,
+                description=:description
                 WHERE id_affair=:id_affair";
 
         $statement = $this->connection->prepare($query);

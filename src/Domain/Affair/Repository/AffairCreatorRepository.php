@@ -38,14 +38,16 @@ class AffairCreatorRepository
             'name' => $affair->name,
             'address' => $affair->address,
             'progress' => $affair->progress,
-            'meeting_type' => $affair->meeting_type
+            'meeting_type' => $affair->meeting_type,
+            'description' => $affair->description
         ];
 
         $sql = "INSERT INTO affair SET
                 name=:name,
                 address=:address,
                 progress=:progress,
-                meeting_type=:meeting_type";
+                meeting_type=:meeting_type,
+                description=:description";
 
         $this->connection->prepare($sql)->execute($row);
 
