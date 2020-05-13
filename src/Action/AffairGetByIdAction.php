@@ -41,8 +41,11 @@ final class AffairGetByIdAction
     $affair = $this->affairGetter->getAffairById($id);
     $lots = $this->lotGetter->getLotByAffairId($affair->id_affair); //TODO: faire une joiture de table plutôt
 
-    $affairWithLots = ["affair_infos" => $affair, "lots" => $lots];
-
+    if ($lots != []) {
+      $affairWithLots = ["affair_infos" => $affair, "lots" => $lots];
+    } else {
+      $affairWithLots = ["affair_infos" => $affair];
+    }
     return $affairWithLots;
   }
 }
