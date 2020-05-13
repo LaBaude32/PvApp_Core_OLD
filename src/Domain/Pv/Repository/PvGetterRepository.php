@@ -99,6 +99,7 @@ class PvGetterRepository
         INNER JOIN affair a ON a.id_affair = p.affair_id
         WHERE phu.user_id =:user_id
         ORDER BY p.meeting_date
+        DESC
         LIMIT :nbPvs";
 
         $statement = $this->connection->prepare($query);
