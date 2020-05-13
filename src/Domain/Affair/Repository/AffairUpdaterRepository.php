@@ -32,7 +32,7 @@ class AffairUpdaterRepository
      *
      * @return int The new ID
      */
-    public function insertAffair(AffairGetData $affair): int
+    public function updateAffair(AffairGetData $affair): int
     {
         $row = [
             'id_affair' => $affair->id_affair,

@@ -39,7 +39,7 @@ final class AffairUpdater
         }
 
         // Insert Affair
-        $affairId = $this->repository->insertAffair($affair);
+        $affairId = $this->repository->updateAffair($affair);
 
         // Logging here: Affair created successfully
 
