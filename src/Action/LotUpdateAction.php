@@ -30,7 +30,7 @@ final class LotUpdateAction
         $lot = new LotGetData();
         $lot->id_lot = $data['id_lot'];
         $lot->name = $data['name'];
-        $lot->affair_id = $data['affair_id'];
+        //$lot->affair_id = $data['affair_id'];
 
         // Invoke the Domain with inputs and retain the result
         $this->lotUpdater->updateLot($lot);
@@ -38,7 +38,7 @@ final class LotUpdateAction
         $newLot = $this->lotGetter->getLotById($lot->id_lot);
 
         foreach ($newLot as $key => $value) {
-            if ($lot->$key !== $value) {
+            if ($lot->$key !== $value && $key != "affair_id") {
                 throw new UnexpectedValueException('Erreur sur le ' . $key . ' qui est différent');
             }
         }

@@ -35,12 +35,12 @@ class LotUpdaterRepository
         $row = [
             'id_lot' => $lot->id_lot,
             'name' => $lot->name,
-            'affair_id' => $lot->affair_id,
+
         ];
 
         $sql = "UPDATE lot SET
-                name=:name,
-                affair_id=:affair_id
+                name=:name
+
                 WHERE id_lot=:id_lot";
 
         $statement = $this->connection->prepare($sql);
