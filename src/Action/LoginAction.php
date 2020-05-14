@@ -50,7 +50,7 @@ final class LoginAction
         }
 
         //Check if user pwd is good
-        if ($userLogged->pwd === $userRegistred->pwd) {
+        if (password_verify($userLogged->pwd, $userRegistred->pwd)) {
 
             // Transform the result into the JSON representation
             $result = [

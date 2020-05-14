@@ -26,7 +26,7 @@ final class UserAuth
   {
     $user = $this->repository->getUserByEmail($datas['email']);
 
-    $result = ($datas['email'] === $user->email && $datas['password'] === $user->pwd);
+    $result = ($datas['email'] === $user->email && password_verify($datas['password'], $user->pwd));
 
     return (bool) $result;
   }

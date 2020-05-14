@@ -29,7 +29,7 @@ final class UserCreateAction
         // Mapping (should be done in a mapper class)
         $user = new UserCreateData();
         $user->email = $data['email'];
-        $user->pwd = $data['password'];
+        $user->pwd = password_hash($data['password'], PASSWORD_DEFAULT);
         $user->firstName = $data['firstName'];
         $user->lastName = $data['lastName'];
         $user->phone = $data['phone'];
@@ -39,8 +39,6 @@ final class UserCreateAction
 
         // Invoke the Domain with inputs and retain the result
         $userId = $this->userCreator->createUser($user);
-
-
 
         if ($data['pvId'] != "") {
             $pvHasUser = new PvHasUserData();
