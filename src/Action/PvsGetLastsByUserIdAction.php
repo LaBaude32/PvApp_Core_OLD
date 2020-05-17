@@ -19,9 +19,9 @@ final class PvsGetLastsByUserIdAction
   {
     // Collect input from the HTTP request
     $params = (array) $request->getQueryParams();
-    
-    $userId = (int) $params['user_id'];
-    $numberOfPvs = (int) $params['number_of_pvs'];
+
+    $userId = (int) htmlspecialchars($params['user_id']);
+    $numberOfPvs = (int) htmlspecialchars($params['number_of_pvs']);
 
     $data = [
       "userId" => $userId,

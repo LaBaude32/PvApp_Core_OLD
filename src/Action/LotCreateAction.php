@@ -7,6 +7,8 @@ use Slim\Http\ServerRequest;
 use App\Domain\Lot\Data\LotCreateData;
 use App\Domain\Lot\Service\LotCreator;
 
+use function DI\string;
+
 final class LotCreateAction
 {
     private $lotCreator;
@@ -23,8 +25,8 @@ final class LotCreateAction
 
         // Mapping (should be done in a mapper class)
         $lot = new LotCreateData();
-        $lot->name = $data['name'];
-        $lot->affair_id = $data['affair_id'];
+        $lot->name = (string) htmlspecialchars($data['name']);
+        $lot->affair_id = (int) htmlspecialchars($data['affair_id']);
 
         // Invoke the Domain with inputs and retain the result
         $lotId = $this->lotCreator->createLot($lot);

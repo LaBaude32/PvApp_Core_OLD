@@ -20,7 +20,7 @@ final class ItemDeleteAction
     // Collect input from the HTTP request
     $data = (array) $request->getParsedBody();
 
-    $id = (int) $data['id_item'];
+    $id = (int) htmlspecialchars($data['id_item']);
 
     // Invoke the Domain with inputs and retain the result
     $this->itemDeletor->deleteItem($id);

@@ -20,7 +20,7 @@ final class LotDeleteAction
     // Collect input from the HTTP request
     $data = (array) $request->getQueryParams();
 
-    $id = (int) $data['id_lot'];
+    $id = (int) htmlspecialchars($data['id_lot']);
 
     // Invoke the Domain with inputs and retain the result
     $this->lotDeletor->deleteLot($id);

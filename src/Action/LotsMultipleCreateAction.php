@@ -22,8 +22,8 @@ final class LotCreateAction
         $data = (array) $request->getParsedBody();
 
         // Mapping (should be done in a mapper class)
-        $affairId = $data['affair_id'];
-        $lotsRecived = $data['lots_name'];
+        $affairId = htmlspecialchars($data['affair_id']);
+        $lotsRecived = htmlspecialchars($data['lots_name']);
         foreach ($lotsRecived as $value) {
             $lot = new LotCreateData();
             $lot->name = $value;

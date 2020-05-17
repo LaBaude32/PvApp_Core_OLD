@@ -27,16 +27,16 @@ final class ItemCreateAction
 
         // Mapping (should be done in a mapper class)
         $item = new ItemCreateData();
-        $item->position = $data['position'];
-        $item->note = $data['note'];
-        $item->follow_up = $data['follow_up'];
-        $item->ressources = $data['ressources'];
-        $item->completion = $data['completion'];
-        $item->completion_date = $data['completion_date'];
-        $item->visible = $data['visible'];
-        $item->created_at = $data['created_at'];
-        $item->pv_id = $data['pv_id'];
-        $item->lots_ids = $data['lots_ids'];
+        $item->position = htmlspecialchars($data['position']);
+        $item->note = htmlspecialchars($data['note']);
+        $item->follow_up = htmlspecialchars($data['follow_up']);
+        $item->ressources = htmlspecialchars($data['ressources']);
+        $item->completion = htmlspecialchars($data['completion']);
+        $item->completion_date = htmlspecialchars($data['completion_date']);
+        $item->visible = htmlspecialchars($data['visible']);
+        $item->created_at = htmlspecialchars($data['created_at']);
+        $item->pv_id = (int) htmlspecialchars($data['pv_id']);
+        $item->lots_ids = (array) htmlspecialchars($data['lots_ids']);
 
         // Invoke the Domain with inputs and retain the result
         $itemId = $this->itemCreator->createItem($item);

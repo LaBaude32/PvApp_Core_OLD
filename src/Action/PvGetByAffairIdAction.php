@@ -20,7 +20,7 @@ final class PvGetByAffairIdAction
     // Collect input from the HTTP request
     $data = (array) $request->getQueryParams();
 
-    $id = (int) $data['id_affair'];
+    $id = (int) htmlspecialchars($data['id_affair']);
 
     // Invoke the Domain with inputs and retain the result
     $pvs = $this->pvGetter->getPvByAffairId($id);

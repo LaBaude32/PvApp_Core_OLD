@@ -29,15 +29,15 @@ final class ItemUpdateAction
 
         // Mapping (should be done in a mapper class)
         $item = new ItemGetData();
-        $item->id_item = (int) $data['id_item'];
-        $item->position = (int) $data['position'];
-        $item->note = $data['note'];
-        $item->follow_up = $data['follow_up'];
-        $item->ressources = $data['ressources'];
-        $item->completion = (string) $data['completion'];
-        $item->completion_date = $data['completion_date'];
-        $item->visible = $data['visible'];
-        $item->created_at = $data['created_at'];
+        $item->id_item = (int) htmlspecialchars($data['id_item']);
+        $item->position = (int) htmlspecialchars($data['position']);
+        $item->note = htmlspecialchars($data['note']);
+        $item->follow_up = htmlspecialchars($data['follow_up']);
+        $item->ressources = htmlspecialchars($data['ressources']);
+        $item->completion = (string) htmlspecialchars($data['completion']);
+        $item->completion_date = htmlspecialchars($data['completion_date']);
+        $item->visible = htmlspecialchars($data['visible']);
+        $item->created_at = htmlspecialchars($data['created_at']);
 
         // Invoke the Domain with inputs and retain the result
         $this->itemUpdater->updateItem($item);

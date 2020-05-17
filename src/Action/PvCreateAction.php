@@ -24,11 +24,11 @@ final class PvCreateAction
         // Mapping (should be done in a mapper class)
         $pv = new PvCreateData();
         $pv->state = $data['state'];
-        $pv->meeting_date = $data['meeting_date'];
-        $pv->meeting_place = $data['meeting_place'];
-        $pv->meeting_next_date = $data['meeting_next_date'];
-        $pv->meeting_next_place = $data['meeting_next_place'];
-        $pv->affair_id = $data['affair_id'];
+        $pv->meeting_date = htmlspecialchars($data['meeting_date']);
+        $pv->meeting_place = htmlspecialchars($data['meeting_place']);
+        $pv->meeting_next_date = htmlspecialchars($data['meeting_next_date']);
+        $pv->meeting_next_place = htmlspecialchars($data['meeting_next_place']);
+        $pv->affair_id = htmlspecialchars($data['affair_id']);
         // Invoke the Domain with inputs and retain the result
         $pvId = $this->pvCreator->createPv($pv);
 

@@ -13,6 +13,8 @@ use App\Domain\Token\Service\TokenGetter;
 use App\Domain\Token\Service\TokenCreator;
 use App\Domain\Token\Service\TokenDeletor;
 
+use function DI\string;
+
 final class LoginAction
 {
     private $userGetter;
@@ -35,8 +37,8 @@ final class LoginAction
 
         // Mapping (should be done in a mapper class)
         $userLogged = new UserCreateData();
-        $userLogged->email = $data['email'];
-        $userLogged->pwd = $data['password'];
+        $userLogged->email = (string) htmlspecialchars($data['email']);
+        $userLogged->pwd = (string) htmlspecialchars($data['password']);
 
         // Invoke the Domain with inputs and retain the result
         $userRegistred = $this->userGetter->identifyUser($userLogged->email);

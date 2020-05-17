@@ -20,7 +20,7 @@ final class UserDeleteAction
     // Collect input from the HTTP request
     $data = (array) $request->getQueryParams();
 
-    $id = (int) $data['id_user'];
+    $id = (int) htmlspecialchars($data['id_user']);
 
     // Invoke the Domain with inputs and retain the result
     $this->userDeletor->deleteUser($id);

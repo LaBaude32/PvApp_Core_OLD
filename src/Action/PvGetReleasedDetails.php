@@ -33,7 +33,7 @@ final class PvGetReleasedDetails
     // Collect input from the HTTP request
     $data = (array) $request->getQueryParams();
 
-    $id = (int) $data['id_pv'];
+    $id = (int) htmlspecialchars($data['id_pv']);
 
     // Invoke the Domain with inputs and retain the result
     $pv = $this->pvGetter->getPvById($id);

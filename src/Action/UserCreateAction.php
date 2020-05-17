@@ -28,23 +28,26 @@ final class UserCreateAction
 
         // Mapping (should be done in a mapper class)
         $user = new UserCreateData();
-        $user->email = $data['email'];
-        $user->pwd = password_hash($data['password'], PASSWORD_DEFAULT);
-        $user->firstName = $data['firstName'];
-        $user->lastName = $data['lastName'];
-        $user->phone = $data['phone'];
-        $user->userGroup = $data['userGroup'];
-        $user->userFunction = $data['user_function'];
-        $user->organism = $data['organism'];
+        $user->email = htmlspecialchars($data['email']);
+
+        $pwd = htmlspecialchars($data['password']);
+
+        $user->pwd = password_hash($pwd, PASSWORD_DEFAULT);
+        $user->firstName = htmlspecialchars($data['firstName']);
+        $user->lastName = htmlspecialchars($data['lastName']);
+        $user->phone = htmlspecialchars($data['phone']);
+        $user->userGroup = htmlspecialchars($data['userGroup']);
+        $user->userFunction = htmlspecialchars($data['user_function']);
+        $user->organism = htmlspecialchars($data['organism']);
 
         // Invoke the Domain with inputs and retain the result
         $userId = $this->userCreator->createUser($user);
 
         if ($data['pvId'] != "") {
             $pvHasUser = new PvHasUserData();
-            $pvHasUser->pv_id = $data['pvId'];
+            $pvHasUser->pv_id = htmlspecialchars($data['pvId']);
             $pvHasUser->user_id = $userId;
-            $pvHasUser->status_PAE = $data['status_PAE'];
+            $pvHasUser->status_PAE = htmlspecialchars($data['status_PAE']);
 
             $this->pvHasUserCreator->createPvHasUser($pvHasUser);
         }

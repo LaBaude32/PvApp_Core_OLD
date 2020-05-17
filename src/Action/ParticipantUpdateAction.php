@@ -32,14 +32,14 @@ final class ParticipantUpdateAction
 
         // Mapping (should be done in a mapper class)
         $user = new UserGetData();
-        $user->id_user = $data['id_user'];
-        $user->email = $data['email'];
-        $user->firstName = $data['firstName'];
-        $user->lastName = $data['lastName'];
-        $user->phone = $data['phone'];
-        $user->userGroup = $data['userGroup'];
-        $user->userFunction = $data['user_function'];
-        $user->organism = $data['organism'];
+        $user->id_user = htmlspecialchars($data['id_user']);
+        $user->email = htmlspecialchars($data['email']);
+        $user->firstName = htmlspecialchars($data['firstName']);
+        $user->lastName = htmlspecialchars($data['lastName']);
+        $user->phone = htmlspecialchars($data['phone']);
+        $user->userGroup = htmlspecialchars($data['userGroup']);
+        $user->userFunction = htmlspecialchars($data['user_function']);
+        $user->organism = htmlspecialchars($data['organism']);
 
         // Invoke the Domain with inputs and retain the result
         $this->userUpdater->updateParticipant($user);

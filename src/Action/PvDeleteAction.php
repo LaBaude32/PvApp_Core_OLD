@@ -20,7 +20,7 @@ final class PvDeleteAction
     // Collect input from the HTTP request
     $data = (array) $request->getParsedBody();
 
-    $id = (int) $data['id_pv'];
+    $id = (int) htmlspecialchars($data['id_pv']);
 
     // Invoke the Domain with inputs and retain the result
     $this->pvDeletor->deletePv($id);

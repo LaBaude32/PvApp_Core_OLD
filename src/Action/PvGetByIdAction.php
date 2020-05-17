@@ -26,8 +26,8 @@ final class PvGetByIdAction
     // Collect input from the HTTP request
     $data = (array) $request->getQueryParams();
 
-    $id = (int) $data['id_pv'];
-    $userId = (int) $data['id_user'];
+    $id = (int) htmlspecialchars($data['id_pv']);
+    $userId = (int) htmlspecialchars($data['id_user']);
 
     // Invoke the Domain with inputs and retain the result
     $pv = $this->pvGetter->getPvById($id);

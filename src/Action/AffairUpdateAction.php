@@ -24,12 +24,12 @@ final class AffairUpdateAction
 
         // Mapping (should be done in a mapper class)
         $affair = new AffairGetData();
-        $affair->id_affair = $data['id_affair'];
-        $affair->name = $data['name'];
-        $affair->address = $data['address'];
-        $affair->progress = $data['progress'];
-        $affair->meeting_type = $data['meeting_type'];
-        $affair->description = $data['description'];
+        $affair->id_affair = htmlspecialchars($data['id_affair']);
+        $affair->name = htmlspecialchars($data['name']);
+        $affair->address = htmlspecialchars($data['address']);
+        $affair->progress = htmlspecialchars($data['progress']);
+        $affair->meeting_type = htmlspecialchars($data['meeting_type']);
+        $affair->description = htmlspecialchars($data['description']);
 
         // Invoke the Domain with inputs and retain the result
         $affairId = $this->affairUpdater->updateAffair($affair);

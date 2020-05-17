@@ -29,8 +29,8 @@ final class ItemUpdateVisibleAction
 
         // Mapping (should be done in a mapper class)
         $item = new ItemGetData();
-        $item->id_item = (int) $data['id_item'];
-        $item->visible = $data['visible'];
+        $item->id_item = (int) htmlspecialchars($data['id_item']);
+        $item->visible = (int) htmlspecialchars($data['visible']);
 
         // Invoke the Domain with inputs and retain the result
         $this->itemUpdater->updateVisible($item);

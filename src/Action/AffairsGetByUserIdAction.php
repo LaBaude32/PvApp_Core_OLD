@@ -28,7 +28,7 @@ final class AffairsGetByUserIdAction
     // Collect input from the HTTP request
     $params = (array) $request->getQueryParams();
 
-    $userId = (int) $params['user_id'];
+    $userId = (int) htmlspecialchars($params['user_id']);
 
     // Invoke the Domain with inputs and retain the result
 

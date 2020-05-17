@@ -23,11 +23,11 @@ final class AffairCreateAction
 
         // Mapping (should be done in a mapper class)
         $affair = new AffairCreateData();
-        $affair->name = $data['name'];
-        $affair->address = $data['address'];
-        $affair->progress = $data['progress'];
-        $affair->meeting_type = $data['meeting_type'];
-        $affair->description = $data['description'];
+        $affair->name = htmlspecialchars($data['name']);
+        $affair->address = htmlspecialchars($data['address']);
+        $affair->progress = htmlspecialchars($data['progress']);
+        $affair->meeting_type = htmlspecialchars($data['meeting_type']);
+        $affair->description = htmlspecialchars($data['description']);
 
         // Invoke the Domain with inputs and retain the result
         $affairId = $this->affairCreator->createAffair($affair);

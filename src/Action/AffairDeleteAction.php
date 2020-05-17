@@ -20,7 +20,7 @@ final class AffairDeleteAction
     // Collect input from the HTTP request
     $data = (array) $request->getParsedBody();
 
-    $id = (int) $data['id_affair'];
+    $id = (int) htmlspecialchars($data['id_affair']);
 
     // Invoke the Domain with inputs and retain the result
     $this->affairDeletor->deleteAffair($id);

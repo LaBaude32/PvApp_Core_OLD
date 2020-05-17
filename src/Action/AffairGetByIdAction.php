@@ -23,7 +23,7 @@ final class AffairGetByIdAction
     // Collect input from the HTTP request
     $data = (array) $request->getQueryParams();
 
-    $id = (int) $data['id_affair'];
+    $id = (int) htmlspecialchars($data['id_affair']);
 
     // // Invoke the Domain with inputs and retain the result
     // $affair = $this->affairGetter->getAffairById($id);
