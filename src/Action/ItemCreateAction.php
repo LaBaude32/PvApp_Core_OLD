@@ -32,16 +32,18 @@ final class ItemCreateAction
         $item->follow_up = htmlspecialchars($data['follow_up']);
         $item->ressources = htmlspecialchars($data['ressources']);
         $item->completion = htmlspecialchars($data['completion']);
-        $item->completion_date = htmlspecialchars($data['completion_date']);
+        if (!empty($data['completion_date'])) {
+            $item->completion_date = (string) htmlspecialchars($data['completion_date']);
+        }
         $item->visible = (int) htmlspecialchars($data['visible']);
         $item->created_at = htmlspecialchars($data['created_at']);
         $item->pv_id = (int) htmlspecialchars($data['pv_id']);
-        $item->lots_ids = (array) htmlspecialchars($data['lots_ids']);
+        $item->lots_ids = (array) $data['lots'];
 
         // Invoke the Domain with inputs and retain the result
         $itemId = $this->itemCreator->createItem($item);
 
-        if ($item->lots_ids != [""]) {
+        if (!empty($item->lots_ids)) {
             $this->lotCreator->linkLotsToItem($item->lots_ids, $itemId);
         }
 
