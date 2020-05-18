@@ -39,7 +39,7 @@ final class PvGetReleasedDetails
     $pv = $this->pvGetter->getPvById($id);
     $pv = $this->pvGetter->getPvNumber($pv);
 
-    $items = $this->itemGetter->getItemsByPvId($id);
+    $items = $this->itemGetter->getVisibleItemsByPvId($id);
 
     $itemsWithLots = $this->itemGetter->getLotsForItems($items);
 

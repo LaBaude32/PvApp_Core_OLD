@@ -85,6 +85,43 @@ class ItemGetterRepository
         return (array) $items;
     }
 
+    public function getVisibleItemsByPvId(int $id_pv): array
+    {
+        $query = "SELECT i.*
+        FROM item i
+        INNER JOIN pv_has_item phi
+        ON phi.item_id = i.id_item
+        WHERE phi.pv_id =:pv_id
+        AND i.visible = 1";
+
+        // $query = "SELECT i.*, l.id_lot, l.name as lot_name
+        // FROM item i
+        // INNER JOIN pv_has_item phi ON phi.item_id = i.id_item
+        // INNER JOIN item_has_lot ihl ON ihl.item_id = i.id_item
+        // INNER JOIN lot l ON l.id_lot = ihl.lot_id
+        // WHERE phi.pv_id =2";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('pv_id', $id_pv, PDO::PARAM_INT);
+        $statement->execute();
+
+        while ($row = $statement->fetch()) {
+            $item = new ItemGetData();
+            $item->id_item = (int) $row['id_item'];
+            $item->position = (string) $row['position'];
+            $item->note = (string) $row['note'];
+            $item->follow_up = (string) $row['follow_up'];
+            $item->ressources = (string) $row['ressources'];
+            $item->completion = (string) $row['completion'];
+            $item->completion_date = (string) $row['completion_date'];
+            $item->visible = (int) $row['visible'];
+            $item->created_at = (string) $row['created_at'];
+
+            $items[] = $item;
+        }
+        return (array) $items;
+    }
+
     public function getAllItems(): array
     {
         $query = "SELECT * FROM item";
