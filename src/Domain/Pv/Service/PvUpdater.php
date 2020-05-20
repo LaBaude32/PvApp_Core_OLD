@@ -47,4 +47,15 @@ final class PvUpdater
 
         return $pvId;
     }
+
+    public function validatePv(int $pvId)
+    {
+        // Validation
+        if (empty($pvId)) {
+            throw new UnexpectedValueException('id required');
+        }
+
+        // Insert pv
+        $pvId = $this->repository->validatePv($pvId);
+    }
 }

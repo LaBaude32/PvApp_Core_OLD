@@ -44,6 +44,7 @@ return function (App $app) {
         $group->delete('/deletePv', \App\Action\PvDeleteAction::class);
         $group->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
         $group->get('/getPvReleasedDetails', \App\Action\PvGetReleasedDetails::class);
+        $group->post('/validatePv', \App\Action\PvValidateAction::class);
 
         // $group->options('/getLastPvsByUserId', \App\Action\PreflightAction::class);
         //Pv Has User

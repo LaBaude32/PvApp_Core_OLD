@@ -59,4 +59,20 @@ class PvUpdaterRepository
 
         return (int) $pv->id_pv; //TODO: supprimer ça et faire un getter dans le Action
     }
+
+    public function validatePv(int $pvId)
+    {
+        $row = [
+            "idPv" => $pvId,
+            "state" => "Terminé"
+        ];
+
+        $query = "UPDATE pv SET
+                state=:state
+                WHERE id_pv=:idPv";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('idPv', $pvId, PDO::PARAM_INT);
+        $statement->execute($row);
+    }
 }
