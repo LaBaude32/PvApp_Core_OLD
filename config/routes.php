@@ -55,6 +55,7 @@ return function (App $app) {
         $group->post('/updateItem', \App\Action\ItemUpdateAction::class);
         $group->post('/updateVisibleOfItem', \App\Action\ItemUpdateVisibleAction::class);
         $group->delete('/deleteItem', \App\Action\ItemDeleteAction::class);
+        $group->delete('/deleteItemHasPv', \App\Action\ItemHasPvDeleteAction::class);
         //Tocken
         $group->post('/addToken', \App\Action\TokenCreateAction2::class);
         $group->delete('/deleteToken', \App\Action\TokenDeleteAction::class);

@@ -34,4 +34,16 @@ class ItemDeletorRepository
 
         $this->connection->prepare($query)->execute($row);
     }
+
+    public function deleteItemHasPv(array $data)
+    {
+        $row = [
+            'id_item' => $data['id_item'],
+            'id_pv' => $data['id_pv']
+        ];
+
+        $query = "DELETE FROM pv_has_item WHERE item_id=:id_item AND pv_id=:id_pv";
+
+        $this->connection->prepare($query)->execute($row);
+    }
 }

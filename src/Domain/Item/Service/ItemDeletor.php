@@ -38,4 +38,19 @@ final class ItemDeletor
 
         // Logging here: Item created successfully
     }
+
+    public function deleteItemHasPv(array $data)
+    {
+        // Validation
+        if (empty($data['id_item'])) {
+            throw new UnexpectedValueException('item id required');
+        }
+
+        // Validation
+        if (empty($data['id_pv'])) {
+            throw new UnexpectedValueException('pv id required');
+        }
+
+        $this->repository->deleteItemHasPv($data);
+    }
 }
