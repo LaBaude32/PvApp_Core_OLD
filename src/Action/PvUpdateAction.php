@@ -25,9 +25,13 @@ final class PvUpdateAction
         $pv = new PvGetData();
         $pv->id_pv = htmlspecialchars($data['id_pv']);
         $pv->state = htmlspecialchars($data['state']);
-        $pv->meeting_date = htmlspecialchars($data['meeting_date']);
+        if (!empty($data['meeting_date'])) {
+            $pv->meeting_date = htmlspecialchars($data['meeting_date']);
+        }
         $pv->meeting_place = htmlspecialchars($data['meeting_place']);
-        $pv->meeting_next_date = htmlspecialchars($data['meeting_next_date']);
+        if (!empty($data['meeting_next_date'])) {
+            $pv->meeting_next_date = htmlspecialchars($data['meeting_next_date']);
+        }
         $pv->meeting_next_place = htmlspecialchars($data['meeting_next_place']);
         $pv->affair_id = htmlspecialchars($data['affair_id']);
 
