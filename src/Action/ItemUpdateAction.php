@@ -34,9 +34,11 @@ final class ItemUpdateAction
         $item->note = htmlspecialchars($data['note']);
         $item->follow_up = htmlspecialchars($data['follow_up']);
         $item->ressources = htmlspecialchars($data['ressources']);
+        if (!empty($data['completion_date'])) {
+            $item->completion_date = htmlspecialchars($data['completion_date']);
+        }
         $item->completion = (string) htmlspecialchars($data['completion']);
-        $item->completion_date = htmlspecialchars($data['completion_date']);
-        $item->visible = htmlspecialchars($data['visible']);
+        $item->visible = (int) htmlspecialchars($data['visible']);
         $item->created_at = htmlspecialchars($data['created_at']);
 
         // Invoke the Domain with inputs and retain the result
@@ -48,11 +50,10 @@ final class ItemUpdateAction
         // var_dump($item);
 
         foreach ($newItem as $key => $value) {
-            if ($item->$key !== $value) {
+            if ($item->$key !== $value && $key != "completion_date") {
                 $oldValue = $item->$key;
-                throw new UnexpectedValueException("Erreur sur le ' . $key . ' qui est different.
-                Valeur recupere API : $oldValue - 
-                Nouvelle Valeur : $value");
+                throw new UnexpectedValueException("$key est different.
+                API : $oldValue - new value Valeur : $value ");
             }
         }
 
