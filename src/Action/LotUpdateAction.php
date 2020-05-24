@@ -28,8 +28,8 @@ final class LotUpdateAction
 
         // Mapping (should be done in a mapper class)
         $lot = new LotGetData();
-        $lot->id_lot = htmlspecialchars($data['id_lot']);
-        $lot->name = htmlspecialchars($data['name']);
+        $lot->id_lot = (int) htmlspecialchars($data['id_lot']);
+        $lot->name = (string) htmlspecialchars($data['name']);
         //$lot->affair_id = $data['affair_id'];
 
         // Invoke the Domain with inputs and retain the result
