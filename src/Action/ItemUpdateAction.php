@@ -40,6 +40,8 @@ final class ItemUpdateAction
         $item->completion = (string) htmlspecialchars($data['completion']);
         $item->visible = (int) htmlspecialchars($data['visible']);
         $item->created_at = htmlspecialchars($data['created_at']);
+        $item->lots = (array) htmlspecialchars($data['lots']);
+        //TODO: Mettre en place cette feature
 
         // Invoke the Domain with inputs and retain the result
         $this->itemUpdater->updateItem($item);
