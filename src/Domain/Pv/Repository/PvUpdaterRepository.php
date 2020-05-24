@@ -68,7 +68,8 @@ class PvUpdaterRepository
         ];
 
         $query = "UPDATE pv SET
-                state=:state
+                state=:state,
+                release_date = NOW()
                 WHERE id_pv=:idPv";
 
         $statement = $this->connection->prepare($query);
