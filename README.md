@@ -9,6 +9,6 @@ Telechargez le repo git, vous y trouverez un ficier SQL à importer dans votre b
 
 Ensuite allez dans le fichier .env et paramettrez votre mot de passe d'accès à la BDD
 
-En placez vous dans le votre dossier et lancez la commande : *php -S localhost:8080 -t /public*
+En placez vous dans le votre dossier et lancez la commande : **php -S localhost:8080 -t /public**
 
 Vous pouvez desormais lancer le client web localement. Il est important de lancer ce client web après l'API car le client web se met sur le port 8080 s'il est disponible, sinon sur le 8081. Il faut donc commencer par le serveur pour ne pas créer de conflits.
