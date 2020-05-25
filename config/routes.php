@@ -64,5 +64,3 @@ return function (App $app) {
 };
     //Pv Has Item
     //TODO: créer une requete pour pouvoir mettre un item dans plusieurs Pv
-    //TODO: faire des tests sur les suppressions
-    //TODO: chiffrer les MDP
