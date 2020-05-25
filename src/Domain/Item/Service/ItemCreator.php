@@ -40,10 +40,6 @@ final class ItemCreator
             throw new UnexpectedValueException('position required');
         }
 
-        if (empty($item->note)) {
-            throw new UnexpectedValueException('note required');
-        }
-
         if ($item->visible !== 0 && $item->visible !== 1) {
             throw new UnexpectedValueException('visible required, doit être numérique');
         }
