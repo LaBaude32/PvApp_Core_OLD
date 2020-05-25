@@ -101,4 +101,11 @@ final class ItemGetter
 
         return $itemsToReturn;
     }
+
+    public function getLotsForItem(ItemGetData $item): ItemGetData
+    {
+        $itemToReturn = $this->repository->getLotsForItem($item);
+
+        return $itemToReturn;
+    }
 }

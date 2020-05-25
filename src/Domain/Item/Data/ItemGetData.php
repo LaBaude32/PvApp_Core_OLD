@@ -31,6 +31,9 @@ final class ItemGetData
     /** @var string */
     public $created_at;
 
-    /** @var */
+    /** @var object */
     public $lots;
+
+    /** @var array */
+    public $lots_ids;
 }

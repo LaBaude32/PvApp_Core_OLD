@@ -3,7 +3,7 @@
 namespace App\Domain\Item\Service;
 
 use UnexpectedValueException;
-use App\Domain\Item\Data\ItemCreateData;
+use App\Domain\Item\Data\ItemGetData;
 use App\Domain\Item\Repository\ItemDeletorRepository;
 
 /**
@@ -52,5 +52,15 @@ final class ItemDeletor
         }
 
         $this->repository->deleteItemHasPv($data);
+    }
+
+    public function deleteItemHasLot(ItemGetData $item)
+    {
+        // Validation
+        if (empty($item->lots)) {
+            throw new UnexpectedValueException('lots required');
+        }
+
+        $this->repository->deleteItemHasLots($item);
     }
 }

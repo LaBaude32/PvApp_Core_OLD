@@ -170,4 +170,25 @@ class ItemGetterRepository
 
         return (array) $itemsToReturn;
     }
+
+    public function getLotsForItem(ItemGetData $item): ItemGetData
+    {
+        $query = "SELECT l.* FROM lot l
+            INNER JOIN item_has_lot ihl ON ihl.lot_id = l.id_lot
+            INNER JOIN item i on i.id_item = ihl.item_id
+            WHERE i.id_item =:itemId";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue("itemId", $item->id_item, PDO::PARAM_INT);
+        $statement->execute();
+        while ($row = $statement->fetch()) {
+            $result = new LotGetData();
+            $result->id_lot = (int) $row['id_lot'];
+            $result->name = (string) $row['name'];
+
+            $item->lots[] = $result;
+        }
+
+        return $item;
+    }
 }
