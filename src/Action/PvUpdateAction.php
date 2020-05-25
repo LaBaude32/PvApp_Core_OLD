@@ -40,7 +40,7 @@ final class PvUpdateAction
 
         // Transform the result into the JSON representation
         $result = [
-            'pv_id' => $pvId
+            'id_pv' => $pvId
         ];
 
         // Build the HTTP response
