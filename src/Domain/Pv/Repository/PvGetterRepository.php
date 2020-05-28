@@ -77,11 +77,11 @@ class PvGetterRepository
 
     public function getPvNumber(PvGetData $pv): PvGetData
     {
-        $query = "SELECT COUNT(release_date) as result FROM `pv` WHERE affair_id = :affairId AND id_pv <= :pvId";
+        $query = "SELECT COUNT(created_at) as result FROM pv WHERE affair_id = :affairId AND id_pv <= :pvId";
 
         $statement = $this->connection->prepare($query);
-        $statement->bindValue('affairId', $pv->id_pv, PDO::PARAM_INT);
-        $statement->bindValue('pvId', $pv->affair_id, PDO::PARAM_INT);
+        $statement->bindValue('affairId', $pv->affair_id, PDO::PARAM_INT);
+        $statement->bindValue('pvId', $pv->id_pv, PDO::PARAM_INT);
         $statement->execute();
 
         $row = $statement->fetch();
