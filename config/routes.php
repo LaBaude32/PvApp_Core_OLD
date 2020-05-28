@@ -48,7 +48,7 @@ return function (App $app) {
 
         // $group->options('/getLastPvsByUserId', \App\Action\PreflightAction::class);
         //Pv Has User
-        $group->post('/addPvHasUser', \App\Action\PvHasUserAction::class);
+        $group->post('/addPvHasUser', \App\Action\PvHasUserCreateAction::class);
         $group->delete('/deleteParticipant', \App\Action\ParticipantDeleteAction::class);
         //Item
         $group->post('/addItem', \App\Action\ItemCreateAction::class);

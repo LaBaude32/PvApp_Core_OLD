@@ -7,7 +7,7 @@ use Slim\Http\ServerRequest;
 use App\Domain\PvHasUser\Data\PvHasUserData;
 use App\Domain\PvHasUser\Service\PvHasUserCreator;
 
-final class PvHasUserAction
+final class PvHasUserCreateAction
 {
     private $pvHasUserCreator;
 
