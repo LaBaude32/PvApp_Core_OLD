@@ -98,7 +98,7 @@ class PvGetterRepository
         INNER JOIN pv_has_user phu ON phu.pv_id = p.id_pv
         INNER JOIN affair a ON a.id_affair = p.affair_id
         WHERE phu.user_id =:user_id
-        ORDER BY p.meeting_date
+        ORDER BY p.created_at
         DESC
         LIMIT :nbPvs";
 
