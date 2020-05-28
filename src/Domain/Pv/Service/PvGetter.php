@@ -45,7 +45,11 @@ final class PvGetter
         // Get All pvs
         $pvs = $this->repository->getPvByAffairId($id);
 
-        return (array) $pvs;
+        foreach ($pvs as $pv) {
+            $pvsToReturn[] = $this->repository->getPvNumber($pv);
+        }
+
+        return (array) $pvsToReturn;
     }
 
 
