@@ -38,17 +38,16 @@ class PvHasUserCreatorRepository
         $row = [
             'pv_id' => $pvHasUser->pv_id,
             'user_id' => $pvHasUser->user_id,
-            'status_PAE' => $pvHasUser->status_PAE
+            'status_PAE' => $pvHasUser->status_PAE,
+            'owner' => $pvHasUser->owner
         ];
 
         $query = "INSERT INTO pv_has_user SET
                 pv_id=:pv_id,
                 user_id=:user_id,
                 status_PAE=:status_PAE,
-                owner=1";
+                owner=:owner";
 
         $this->connection->prepare($query)->execute($row);
-
-        // return (int) $this->connection->lastInsertId();
     }
 }

@@ -13,15 +13,15 @@ final class PvHasUserData
     /** @var string */
     public $status_PAE;
 
-    /** @var string */
+    /** @var bool */
     public $invited_current_meeting;
 
-    /** @var string */
+    /** @var bool */
     public $invited_next_meeting;
 
-    /** @var string */
+    /** @var bool */
     public $distribution;
 
-    /** @var int */
+    /** @var bool */
     public $owner;
 }
