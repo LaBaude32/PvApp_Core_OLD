@@ -59,4 +59,9 @@ final class ItemCreator
 
         return (int) $itemId;
     }
+
+    public function addItemsToNewPv(array $data)
+    {
+        $this
+    }
 }

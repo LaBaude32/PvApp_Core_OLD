@@ -2,23 +2,28 @@
 
 namespace App\Action;
 
+use App\Domain\Item\Service\ItemCreator;
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use App\Domain\Pv\Data\PvCreateData;
 use App\Domain\Pv\Service\PvCreator;
+use App\Domain\Pv\Service\PvGetter;
 use App\Domain\PvHasUser\Data\PvHasUserData;
 use App\Domain\PvHasUser\Service\PvHasUserCreator;
 
 final class PvCreateAction
 {
     private $pvCreator;
-
     protected $pvHasUserCreator;
+    protected $itemCreator;
+    protected $pvGetter;
 
-    public function __construct(PvCreator $pvCreator, PvHasUserCreator $pvHasUserCreator)
+    public function __construct(PvCreator $pvCreator, PvHasUserCreator $pvHasUserCreator, ItemCreator $itemCreator, PvGetter $pvGetter)
     {
         $this->pvCreator = $pvCreator;
         $this->pvHasUserCreator = $pvHasUserCreator;
+        $this->itemCreator = $itemCreator;
+        $this->pvGetter = $pvGetter;
     }
 
     public function __invoke(ServerRequest $request, Response $response): Response
@@ -50,6 +55,34 @@ final class PvCreateAction
         $pHU->owner = 1;
 
         $this->pvHasUserCreator->createPvHasUser($pHU);
+
+
+        $pv = $this->pvGetter->getPvById($pvId);
+        $pv = $this->pvGetter->getPvNumber($pv);
+
+        //Recuperer l'ancien pv
+        $pvs = $this->pvGetter->getPvByAffairId($pv->affair_id);
+        foreach ($pvs as $value) {
+            if ($value->pv_number == $pv->pv_number - 1) {
+                $previousPv = $value;
+            }
+        }
+
+        //Récuperer tous les pHI
+        $pHI = $this->itemGetter;
+        //récupéré tous les pHI du $previousPv 
+
+        $data = [
+            // 'lastPvId' => $previousPv->pv_numberId,
+            'pvHasItemOfPreviousPv' => $pHI,
+            'newPvId' => $pvId
+        ];
+        //Les ajouter dans le nouveau PV si visible = true
+        $this->itemCreator->addItemsToNewPv($data);
+
+
+        //Récuperer tous les pHU
+        //Les ajouter dans le nouveau PV
 
         // Transform the result into the JSON representation
         $result = [

@@ -120,4 +120,11 @@ final class PvGetter
 
         return $pvToReturn;
     }
+
+    public function getPreviousPv(PvGetData $pv): PvGetData
+    {
+        $pvToReturn = $this->repository->getPreviousPv($pv);
+
+        return $pvToReturn;
+    }
 }

@@ -127,7 +127,6 @@ class PvGetterRepository
 
     public function getLotsForPv(PvGetData $pv): PvGetData
     {
-
         $query = "SELECT l.* FROM lot l
             INNER JOIN affair a ON a.id_affair = l.affair_id
             INNER JOIN pv i ON i.affair_id = a.id_affair
@@ -146,5 +145,13 @@ class PvGetterRepository
         $pvToReturn = $pv;
 
         return $pvToReturn;
+    }
+
+    public function getPreviousPv(PvGetData $pv): PvGetData
+    {
+        $query = "SELECT * FROM pv WHERE affair_id=:affairId AND id_pv=:pvId"
+
+
+        return $pv;
     }
 }
