@@ -34,6 +34,7 @@ class PvHasUserGetterRepository
         $statement->bindValue('id', $userId, PDO::PARAM_INT);
         $statement->execute();
 
+        $pvs = [];
         while ($row = $statement->fetch()) {
             $pvs[] = $row['pv_id'];
         }
