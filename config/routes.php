@@ -9,6 +9,8 @@ return function (App $app) {
     // This route must not be protected
     $app->post('/api/v1/tokens', \App\Action\TokenCreateAction::class);
     $app->options('/api/v1/tokens', \App\Action\PreflightAction::class);
+    $app->post('/api/v1/addNewUser', \App\Action\UserCreateAction::class);
+    //TODO: Traiter cette route correctement
 
     $app->group('/api/v1', function (RouteCollectorProxy $group) {
         $group->post('/login', \App\Action\LoginAction::class);
