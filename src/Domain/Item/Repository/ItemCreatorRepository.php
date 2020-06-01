@@ -67,12 +67,12 @@ class ItemCreatorRepository
      *
      * @return int The new ID
      */
-    public function insertPvHasItem($ids): int
+    public function insertPvHasItem(array $ids): int
     {
         $itemId = $ids['itemId'];
         $pvId = $ids['pvId'];
 
-        
+
         $row = [
             'pv_id' => $pvId,
             'item_id' => $itemId
@@ -85,5 +85,27 @@ class ItemCreatorRepository
         $this->connection->prepare($query)->execute($row);
 
         return (int) $this->connection->lastInsertId();
+    }
+
+    public function insertPvHasItemToNewPv(array $data)
+    {
+        foreach ($data as $value) {
+            $row = [
+                'pv_id' => $value->pvId,
+                'item_id' => $value->itemId
+            ];
+
+            $rows[] = $row;
+        }
+
+        $query = "INSERT INTO pv_has_item SET
+                pv_id=:pv_id,
+                item_id=:item_id";
+
+        $statement = $this->connection->prepare($query);
+
+        foreach ($rows as $row) {
+            $statement->execute($row);
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Action;
 
 use App\Domain\Item\Service\ItemCreator;
+use App\Domain\Item\Service\ItemGetter;
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use App\Domain\Pv\Data\PvCreateData;
@@ -17,13 +18,15 @@ final class PvCreateAction
     protected $pvHasUserCreator;
     protected $itemCreator;
     protected $pvGetter;
+    protected $itemGetter;
 
-    public function __construct(PvCreator $pvCreator, PvHasUserCreator $pvHasUserCreator, ItemCreator $itemCreator, PvGetter $pvGetter)
+    public function __construct(PvCreator $pvCreator, PvHasUserCreator $pvHasUserCreator, ItemCreator $itemCreator, PvGetter $pvGetter, ItemGetter $itemGetter)
     {
         $this->pvCreator = $pvCreator;
         $this->pvHasUserCreator = $pvHasUserCreator;
         $this->itemCreator = $itemCreator;
         $this->pvGetter = $pvGetter;
+        $this->itemGetter = $itemGetter;
     }
 
     public function __invoke(ServerRequest $request, Response $response): Response
@@ -60,26 +63,26 @@ final class PvCreateAction
         $pv = $this->pvGetter->getPvById($pvId);
         $pv = $this->pvGetter->getPvNumber($pv);
 
-        //Recuperer l'ancien pv
-        $pvs = $this->pvGetter->getPvByAffairId($pv->affair_id);
-        foreach ($pvs as $value) {
-            if ($value->pv_number == $pv->pv_number - 1) {
-                $previousPv = $value;
+        if ($pv->pv_number > 1) {
+            //Recuperer l'ancien pv
+            $pvs = $this->pvGetter->getPvByAffairId($pv->affair_id);
+            foreach ($pvs as $value) {
+                if ($value->pv_number == $pv->pv_number - 1) {
+                    $previousPv = $value;
+                }
             }
+
+            //Récuperer tous les pHI du $previousPv 
+            $allPHI = $this->itemGetter->getPvHasItem($previousPv);
+
+            //On met l'id du nouveau pv
+            foreach ($allPHI as $pHI) {
+                $pHI->pvId = $pv->id_pv;
+            }
+
+            //Créer les nouveaux pHI
+            $this->itemCreator->addItemsToNewPv($allPHI);
         }
-
-        //Récuperer tous les pHI
-        $pHI = $this->itemGetter;
-        //récupéré tous les pHI du $previousPv 
-
-        $data = [
-            // 'lastPvId' => $previousPv->pv_numberId,
-            'pvHasItemOfPreviousPv' => $pHI,
-            'newPvId' => $pvId
-        ];
-        //Les ajouter dans le nouveau PV si visible = true
-        $this->itemCreator->addItemsToNewPv($data);
-
 
         //Récuperer tous les pHU
         //Les ajouter dans le nouveau PV

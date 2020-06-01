@@ -5,6 +5,7 @@ namespace App\Domain\Item\Repository;
 use PDO;
 use App\Domain\Item\Data\ItemGetData;
 use App\Domain\Lot\Data\LotGetData;
+use App\Domain\Pv\Data\PvHasItemData;
 
 /**
  * Repository.
@@ -190,5 +191,24 @@ class ItemGetterRepository
         }
 
         return $item;
+    }
+
+    public function getAllItemsFromPvHasItem(int $pvId): array
+    {
+        $query = "SELECT * FROM pv_has_item WHERE pv_id =:pvId AND visible=1";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue("pvId", $pvId, PDO::PARAM_INT);
+        $statement->execute();
+
+        while ($row = $statement->fetch()) {
+            $pHI = new PvHasItemData;
+            $pHI->itemId = (int) $row['item_id'];
+            $pHI->pvId = (int) $row['pv_id'];
+
+            $result[] = $pHI;
+        }
+
+        return $result;
     }
 }

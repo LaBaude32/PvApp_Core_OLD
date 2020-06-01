@@ -62,6 +62,10 @@ final class ItemCreator
 
     public function addItemsToNewPv(array $data)
     {
-        $this
+        if (empty($data)) {
+            throw new UnexpectedValueException('data required');
+        }
+
+        $this->repository->insertPvHasItemToNewPv($data);
     }
 }

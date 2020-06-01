@@ -5,6 +5,7 @@ namespace App\Domain\Item\Service;
 use App\Domain\Item\Data\ItemGetData;
 use UnexpectedValueException;
 use App\Domain\Item\Repository\ItemGetterRepository;
+use App\Domain\Pv\Data\PvGetData;
 
 /**
  * Service.
@@ -107,5 +108,16 @@ final class ItemGetter
         $itemToReturn = $this->repository->getLotsForItem($item);
 
         return $itemToReturn;
+    }
+
+    public function getPvHasItem(PvGetData $pv): array
+    {
+        if (!$pv->id_pv) {
+            throw new UnexpectedValueException('id doit être positif');
+        }
+
+        $pvHasItem = (array) $this->repository->getAllItemsFromPvHasItem($pv->id_pv);
+
+        return $pvHasItem;
     }
 }

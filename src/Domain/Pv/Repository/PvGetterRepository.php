@@ -147,11 +147,11 @@ class PvGetterRepository
         return $pvToReturn;
     }
 
-    public function getPreviousPv(PvGetData $pv): PvGetData
-    {
-        $query = "SELECT * FROM pv WHERE affair_id=:affairId AND id_pv=:pvId"
+    // public function getPreviousPv(PvGetData $pv): PvGetData
+    // {
+    //     $query = "SELECT * FROM pv WHERE affair_id=:affairId AND id_pv=:pvId";
+    //     $pv = new PvGetData;
 
-
-        return $pv;
-    }
+    //     return $pv;
+    // }
 }
