@@ -121,10 +121,10 @@ final class PvGetter
         return $pvToReturn;
     }
 
-    public function getPreviousPv(PvGetData $pv): PvGetData
-    {
-        $pvToReturn = $this->repository->getPreviousPv($pv);
+    // public function getPreviousPv(PvGetData $pv): PvGetData
+    // {
+    //     $pvToReturn = $this->repository->getPreviousPv($pv);
 
-        return $pvToReturn;
-    }
+    //     return $pvToReturn;
+    // }
 }

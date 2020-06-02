@@ -5,15 +5,19 @@ namespace App\Action;
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use App\Domain\Pv\Data\PvGetData;
+use App\Domain\Pv\Service\PvGetter;
 use App\Domain\Pv\Service\PvUpdater;
 
 final class PvUpdateAction
 {
     private $pvUpdater;
 
-    public function __construct(PvUpdater $pvUpdater)
+    protected $pvGetter;
+
+    public function __construct(PvUpdater $pvUpdater, PvGetter $pvGetter)
     {
         $this->pvUpdater = $pvUpdater;
+        $this->pvGetter = $pvGetter;
     }
 
     public function __invoke(ServerRequest $request, Response $response): Response
@@ -38,9 +42,11 @@ final class PvUpdateAction
         // Invoke the Domain with inputs and retain the result
         $pvId = $this->pvUpdater->updatePv($pv);
 
+        $pvToReturn = $this->pvGetter->getPvById($pvId);
+
         // Transform the result into the JSON representation
         $result = [
-            'id_pv' => $pvId
+            'pv' => $pvToReturn
         ];
 
         // Build the HTTP response
