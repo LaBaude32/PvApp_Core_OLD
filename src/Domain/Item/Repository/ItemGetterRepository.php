@@ -195,7 +195,12 @@ class ItemGetterRepository
 
     public function getAllItemsFromPvHasItem(int $pvId): array
     {
-        $query = "SELECT * FROM pv_has_item WHERE pv_id =:pvId AND visible=1";
+        $query = "SELECT pHI.* FROM pv_has_item pHI
+        INNER JOIN item i ON i.id_item = pHI.pv_id
+        WHERE pHI.pv_id =:pvId
+        AND visible=1";
+
+        //TODO: ajouter le visible
 
         $statement = $this->connection->prepare($query);
         $statement->bindValue("pvId", $pvId, PDO::PARAM_INT);
