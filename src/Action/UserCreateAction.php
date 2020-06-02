@@ -48,6 +48,8 @@ final class UserCreateAction
             $pvHasUser->pv_id = htmlspecialchars($data['pvId']);
             $pvHasUser->user_id = $userId;
             $pvHasUser->status_PAE = htmlspecialchars($data['status_PAE']);
+            //TODO: verifier que c'est la bonne technique. Pourquoi il ne defini pas à 0 quand c'est null?
+            $pvHasUser->owner = 0;
 
             $this->pvHasUserCreator->createPvHasUser($pvHasUser);
         }
