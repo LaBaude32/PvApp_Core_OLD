@@ -75,13 +75,15 @@ final class PvCreateAction
             //Récuperer tous les pHI du $previousPv 
             $allPHI = $this->itemGetter->getPvHasItem($previousPv);
 
-            //On met l'id du nouveau pv
-            foreach ($allPHI as $pHI) {
-                $pHI->pvId = $pv->id_pv;
-            }
+            if (!empty($allPHI)) {
+                //On met l'id du nouveau pv
+                foreach ($allPHI as $pHI) {
+                    $pHI->pvId = $pv->id_pv;
+                }
 
-            //Créer les nouveaux pHI
-            $this->itemCreator->addItemsToNewPv($allPHI);
+                //Créer les nouveaux pHI
+                $this->itemCreator->addItemsToNewPv($allPHI);
+            }
         }
 
         //Récuperer tous les pHU
@@ -89,7 +91,7 @@ final class PvCreateAction
 
         // Transform the result into the JSON representation
         $result = [
-            'id_pv' => $pvId
+            'pv' => $pv
         ];
 
         // Build the HTTP response

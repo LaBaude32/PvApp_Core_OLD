@@ -196,7 +196,7 @@ class ItemGetterRepository
     public function getAllItemsFromPvHasItem(int $pvId): array
     {
         $query = "SELECT pHI.* FROM pv_has_item pHI
-        INNER JOIN item i ON i.id_item = pHI.pv_id
+        INNER JOIN item i ON i.id_item = pHI.item_id
         WHERE pHI.pv_id =:pvId
         AND visible=1";
 
@@ -206,6 +206,7 @@ class ItemGetterRepository
         $statement->bindValue("pvId", $pvId, PDO::PARAM_INT);
         $statement->execute();
 
+        $result = [];
         while ($row = $statement->fetch()) {
             $pHI = new PvHasItemData;
             $pHI->itemId = (int) $row['item_id'];
