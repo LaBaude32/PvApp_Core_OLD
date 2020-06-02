@@ -11,6 +11,7 @@ use App\Domain\Pv\Service\PvCreator;
 use App\Domain\Pv\Service\PvGetter;
 use App\Domain\PvHasUser\Data\PvHasUserData;
 use App\Domain\PvHasUser\Service\PvHasUserCreator;
+use App\Domain\PvHasUser\Service\PvHasUserGetter;
 
 final class PvCreateAction
 {
@@ -20,13 +21,16 @@ final class PvCreateAction
     protected $pvGetter;
     protected $itemGetter;
 
-    public function __construct(PvCreator $pvCreator, PvHasUserCreator $pvHasUserCreator, ItemCreator $itemCreator, PvGetter $pvGetter, ItemGetter $itemGetter)
+    protected $pvHasUserGetter;
+
+    public function __construct(PvCreator $pvCreator, PvHasUserCreator $pvHasUserCreator, ItemCreator $itemCreator, PvGetter $pvGetter, ItemGetter $itemGetter, PvHasUserGetter $pvHasUserGetter)
     {
         $this->pvCreator = $pvCreator;
         $this->pvHasUserCreator = $pvHasUserCreator;
         $this->itemCreator = $itemCreator;
         $this->pvGetter = $pvGetter;
         $this->itemGetter = $itemGetter;
+        $this->pvHasUserGetter = $pvHasUserGetter;
     }
 
     public function __invoke(ServerRequest $request, Response $response): Response
@@ -47,18 +51,6 @@ final class PvCreateAction
 
         // Invoke the Domain with inputs and retain the result
         $pvId = $this->pvCreator->createPv($pv);
-
-        $pHU = new PvHasUserData();
-        $pHU->pv_id = $pvId;
-        $pHU->user_id = (int) htmlspecialchars($data['user_id']);
-        $pHU->status_PAE = "Présent";
-        $pHU->invited_current_meeting = 1;
-        $pHU->invited_next_meeting = 1;
-        $pHU->distribution = 1;
-        $pHU->owner = 1;
-
-        $this->pvHasUserCreator->createPvHasUser($pHU);
-
 
         $pv = $this->pvGetter->getPvById($pvId);
         $pv = $this->pvGetter->getPvNumber($pv);
@@ -84,10 +76,30 @@ final class PvCreateAction
                 //Créer les nouveaux pHI
                 $this->itemCreator->addItemsToNewPv($allPHI);
             }
-        }
 
-        //Récuperer tous les pHU
-        //Les ajouter dans le nouveau PV
+            //Récuperer tous les pHU
+            $allPHU = $this->pvHasUserGetter->getPvHasUsers($previousPv);
+
+            //Les ajouter dans le nouveau PV
+            foreach ($allPHU as $pHU) {
+                $pHU->pv_id = $pv->id_pv;
+            }
+
+            //Créer les nouveaux pHI
+            $this->pvHasUserCreator->addUsersToNewPv($allPHU);
+        } else {
+            //Si c'est le premier pv
+            $pHU = new PvHasUserData();
+            $pHU->pv_id = $pvId;
+            $pHU->user_id = (int) htmlspecialchars($data['user_id']);
+            $pHU->status_PAE = "Présent";
+            $pHU->invited_current_meeting = 1;
+            $pHU->invited_next_meeting = 1;
+            $pHU->distribution = 1;
+            $pHU->owner = 1;
+
+            $this->pvHasUserCreator->createPvHasUser($pHU);
+        }
 
         // Transform the result into the JSON representation
         $result = [

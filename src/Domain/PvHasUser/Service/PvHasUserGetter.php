@@ -52,4 +52,11 @@ final class PvHasUserGetter
 
         return $owner;
     }
+
+    public function getPvHasUsers(PvGetData $pv): array
+    {
+        $pvHasUsers = $this->repository->getAllPvHasUser($pv->id_pv);
+
+        return $pvHasUsers;
+    }
 }

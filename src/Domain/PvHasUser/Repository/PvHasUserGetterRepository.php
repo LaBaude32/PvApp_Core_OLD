@@ -4,6 +4,7 @@ namespace App\Domain\PvHasUser\Repository;
 
 use PDO;
 use App\Domain\Pv\Data\PvGetData;
+use App\Domain\PvHasUser\Data\PvHasUserData;
 use App\Domain\User\Data\UserGetData;
 
 /**
@@ -67,5 +68,29 @@ class PvHasUserGetterRepository
         $user->organism = (string) $row['organism'];
 
         return $user;
+    }
+
+    public function getAllPvHasUser(int $pvId): array
+    {
+        $query = "SELECT * FROM pv_has_user WHERE pv_id=:pvId";
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue('pvId', $pvId, PDO::PARAM_INT);
+        $statement->execute();
+
+        $pHUs = [];
+        while ($row = $statement->fetch()) {
+            $pHU = new PvHasUserData;
+            $pHU->pv_id = (int) $row['pv_id'];
+            $pHU->user_id = (int) $row['user_id'];
+            $pHU->status_PAE = (string) $row['status_PAE'];
+            $pHU->invited_current_meeting = (int) $row['invited_current_meeting'];
+            $pHU->invited_next_meeting = (int) $row['invited_next_meeting'];
+            $pHU->distribution = (int) $row['distribution'];
+            $pHU->owner = (int) $row['owner'];
+
+            $pHUs[] = $pHU;
+        }
+
+        return $pHUs;
     }
 }

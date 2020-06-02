@@ -52,4 +52,13 @@ final class PvHasUserCreator
 
         // return $pvHasUserId;
     }
+
+    public function addUsersToNewPv(array $data)
+    {
+        if (empty($data)) {
+            throw new UnexpectedValueException('data required');
+        }
+
+        $this->repository->insertPvHasUserToNewPv($data);
+    }
 }
