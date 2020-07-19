@@ -99,8 +99,10 @@ class PvGetterRepository
         INNER JOIN affair a ON a.id_affair = p.affair_id
         WHERE phu.user_id =:user_id
         ORDER BY p.created_at
-        DESC
-        LIMIT :nbPvs";
+        DESC";
+        if ($data['numberOfPvs']) {
+            $query .= " LIMIT :nbPvs";
+        }
 
         $statement = $this->connection->prepare($query);
         $statement->bindValue('user_id', $data['userId'], PDO::PARAM_INT);

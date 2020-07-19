@@ -107,6 +107,19 @@ final class PvGetter
         return (array) $pvs;
     }
 
+    public function getAllPvByUserId(int $userId): array
+    {
+        // Validation
+        if (empty($data['userId'])) {
+            throw new UnexpectedValueException('id required');
+        }
+
+        $data['userId'] = $userId;
+        $pvs = $this->repository->getPvsByUserId($data);
+
+        return (array) $pvs;
+    }
+
     public function getLotsForPv(PvGetData $pv)
     {
         $pvToReturn = $this->repository->getLotsForpv($pv);
