@@ -6,6 +6,7 @@ use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use App\Domain\Pv\Service\PvGetter;
 use App\Domain\Item\Service\ItemGetter;
+use App\Domain\PvHasUser\Service\PvHasUserGetter;
 use App\Domain\User\Service\UserGetter;
 
 final class PvGetByIdAction
@@ -14,11 +15,14 @@ final class PvGetByIdAction
   private $itemGetter;
   private $userGetter;
 
-  public function __construct(PvGetter $pvGetter, ItemGetter $itemGetter, UserGetter $userGetter)
+  protected $pHUGetter;
+
+  public function __construct(PvGetter $pvGetter, ItemGetter $itemGetter, UserGetter $userGetter, PvHasUserGetter $pHUGetter)
   {
     $this->pvGetter = $pvGetter;
     $this->itemGetter = $itemGetter;
     $this->userGetter = $userGetter;
+    $this->pHUGetter = $pHUGetter;
   }
 
   public function __invoke(ServerRequest $request, Response $response): Response
@@ -33,8 +37,6 @@ final class PvGetByIdAction
     $pv = $this->pvGetter->getPvById($id);
     $pv = $this->pvGetter->getLotsForPv($pv);
 
-    // $connectedUsers = $this->
-
     $items = $this->itemGetter->getItemsByPvId($id);
 
     $itemsWithLots = $this->itemGetter->getLotsForItems($items);
@@ -47,11 +49,18 @@ final class PvGetByIdAction
       $items = "Ce pv n'a pas encore d'items";
     }
 
+    //CONNECTED PARTICIPANTS
+    //recuperer tous les pvs liés à cet user
+    $pvs = $this->pvGetter->getAllPvByUserId($userId);
+    //recuperer les personnes de tous ces pvs
+
+    $connectedParticipants = $this->pHUGetter->getPvHasUsersFromPvs($pvs);
+
     $result = [
       'pv_details' => $pv,
       'items' => $itemsWithLots,
       'users' => $users,
-      // 'connected_users' => $connectedUsers
+      'connectedParticipants' => $connectedParticipants
     ];
 
     // Build the HTTP response
