@@ -24,7 +24,7 @@ return function (App $app) {
         $group->post('/updateUser', \App\Action\UserUpdateAction::class);
         $group->post('/updateParticipant', \App\Action\ParticipantUpdateAction::class);
         $group->delete('/deleteUser', \App\Action\UserDeleteAction::class);
-        $group->get('/getConnectedUsers', \App\Action\ParticipantGetConnectedAction::class);
+        $group->get('/getConnectedParticipants', \App\Action\ParticipantGetConnectedAction::class);
 
         //Affair
         $group->post('/addAffair', \App\Action\AffairCreateAction::class);
