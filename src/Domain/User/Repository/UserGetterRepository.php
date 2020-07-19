@@ -77,7 +77,7 @@ class UserGetterRepository
         $user = new UserStatusGetData();
         $user->id_user = (int) $row['id_user'];
         $user->email = (string) $row['email'];
-        $user->pwd = (string) $row['password'];
+        // $user->pwd = (string) $row['password'];
         $user->firstName = (string) $row['first_name'];
         $user->lastName = (string) $row['last_name'];
         $user->phone = (string) $row['phone'];
