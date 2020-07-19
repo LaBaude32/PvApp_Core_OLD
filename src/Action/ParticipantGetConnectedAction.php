@@ -3,6 +3,7 @@
 namespace App\Action;
 
 use App\Domain\Pv\Service\PvGetter;
+use App\Domain\PvHasUser\Service\PvHasUserGetter;
 use App\Domain\User\Data\UserCreateData;
 use App\Domain\User\Service\UserGetter;
 use Slim\Http\Response;
@@ -12,17 +13,19 @@ final class ParticipantGetConnectedAction
 {
     private $UserGetter;
     protected $PvGetter;
+    protected $pHUGetter;
 
-    public function __construct(UserGetter $UserGetter, PvGetter $PvGetter)
+    public function __construct(UserGetter $UserGetter, PvGetter $PvGetter, PvHasUserGetter $pHUGetter)
     {
         $this->UserGetter = $UserGetter;
         $this->PvGetter = $PvGetter;
+        $this->pHUGetter = $pHUGetter;
     }
 
     public function __invoke(ServerRequest $request, Response $response): Response
     {
         // Collect input from the HTTP request
-        $data = (array) $request->getParsedBody();
+        $data = (array) $request->getQueryParams();
 
         $userId = (int) htmlspecialchars($data['id_user']);
 
@@ -30,10 +33,9 @@ final class ParticipantGetConnectedAction
         $pvs = $this->PvGetter->getAllPvByUserId($userId);
         //recuperer les personnes de tous ces pvs
 
-        // Invoke the Domain with inputs and retain the result
-        $users = $this->UserGetter->getUsers();
+        $connectedParticipants = $this->pHUGetter->getPvHasUsersFromPvs($pvs);
 
         // Build the HTTP response
-        return $response->withJson($users)->withStatus(201);
+        return $response->withJson($connectedParticipants)->withStatus(201);
     }
 }

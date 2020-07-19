@@ -110,7 +110,7 @@ final class PvGetter
     public function getAllPvByUserId(int $userId): array
     {
         // Validation
-        if (empty($data['userId'])) {
+        if (empty($userId)) {
             throw new UnexpectedValueException('id required');
         }
 

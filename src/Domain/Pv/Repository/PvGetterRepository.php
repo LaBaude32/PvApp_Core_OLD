@@ -106,7 +106,9 @@ class PvGetterRepository
 
         $statement = $this->connection->prepare($query);
         $statement->bindValue('user_id', $data['userId'], PDO::PARAM_INT);
-        $statement->bindValue('nbPvs', $data['numberOfPvs'], PDO::PARAM_INT);
+        if ($data['numberOfPvs']) {
+            $statement->bindValue('nbPvs', $data['numberOfPvs'], PDO::PARAM_INT);
+        }
         $statement->execute();
 
         while ($row = $statement->fetch()) {
