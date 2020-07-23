@@ -10,10 +10,13 @@ return function (App $app) {
     $app->post('/api/v1/tokens', \App\Action\TokenCreateAction::class);
     $app->options('/api/v1/tokens', \App\Action\PreflightAction::class);
     $app->post('/api/v1/addNewUser', \App\Action\UserCreateAction::class);
+    $app->options('/api/v1/addNewUser', \App\Action\PreflightAction::class);
+
     //TODO: Traiter cette route correctement
 
     $app->group('/api/v1', function (RouteCollectorProxy $group) {
         $group->post('/login', \App\Action\LoginAction::class);
+        $group->options('/login', PreflightAction::class);
         // $group->options('/login', App\Action\PreflightAction::class);
 
         $group->get('/', \App\Action\HomeAction::class);
@@ -28,6 +31,8 @@ return function (App $app) {
 
         //Affair
         $group->post('/addAffair', \App\Action\AffairCreateAction::class);
+        $group->options('/addAffair', PreflightAction::class);
+
         $group->get('/getAllAffairs', \App\Action\AffairsGetAllAction::class);
         $group->get('/getAffairById', \App\Action\AffairGetByIdAction::class);
         //TODO: get Affair By User Id
