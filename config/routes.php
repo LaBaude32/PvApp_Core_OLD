@@ -11,13 +11,16 @@ return function (App $app) {
     $app->options('/api/v1/tokens', \App\Action\PreflightAction::class);
     $app->post('/api/v1/addNewUser', \App\Action\UserCreateAction::class);
     $app->options('/api/v1/addNewUser', \App\Action\PreflightAction::class);
+    $app->post('/api/v1/login', \App\Action\LoginAction::class);
+    $app->options('/api/v1/login', PreflightAction::class);
+    $app->get('/api/v1/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
+    $app->options('/api/v1/getLastPvsByUserId', PreflightAction::class);
 
     //TODO: Traiter cette route correctement
 
     $app->group('/api/v1', function (RouteCollectorProxy $group) {
-        $group->post('/login', \App\Action\LoginAction::class);
-        $group->options('/login', PreflightAction::class);
-        // $group->options('/login', App\Action\PreflightAction::class);
+        //$group->post('/login', \App\Action\LoginAction::class);
+        //$group->options('/login', PreflightAction::class);
 
         $group->get('/', \App\Action\HomeAction::class);
         //User
@@ -50,7 +53,7 @@ return function (App $app) {
         $group->post('/updatePv', \App\Action\PvUpdateAction::class);
         $group->get('/getPvDetails', \App\Action\PvGetByIdAction::class);
         $group->delete('/deletePv', \App\Action\PvDeleteAction::class);
-        $group->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
+        //$group->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
         $group->get('/getPvReleasedDetails', \App\Action\PvGetReleasedDetails::class);
         $group->post('/validatePv', \App\Action\PvValidateAction::class);
 
