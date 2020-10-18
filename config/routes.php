@@ -68,7 +68,8 @@ return function (App $app) {
         $group->post('/addToken', \App\Action\TokenCreateAction2::class);
         $group->delete('/deleteToken', \App\Action\TokenDeleteAction::class);
         $group->get('/getTokensByUserId', \App\Action\TokensGetByUserIdAction::class);
-    })->add(JwtMiddleware::class);
+        // })->add(JwtMiddleware::class);
+    });
 };
     //Pv Has Item
     //TODO: créer une requete pour pouvoir mettre un item dans plusieurs Pv
