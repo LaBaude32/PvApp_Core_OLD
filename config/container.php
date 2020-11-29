@@ -5,6 +5,7 @@ use App\Auth\JwtAuth;
 use Slim\Factory\AppFactory;
 use Selective\Config\Configuration;
 use Psr\Container\ContainerInterface;
+use Selective\BasePath\BasePathMiddleware;
 use Psr\Http\Message\ResponseFactoryInterface;
 
 return [
@@ -53,5 +54,8 @@ return [
         return new PDO($dsn, $username, $password, $flags);
     },
 
+    BasePathMiddleware::class => function (ContainerInterface $container) {
+        return new BasePathMiddleware($container->get(App::class));
+    },
 
 ];
