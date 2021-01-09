@@ -53,7 +53,7 @@ return function (App $app) {
         $group->post('/updatePv', \App\Action\PvUpdateAction::class);
         $group->get('/getPvDetails', \App\Action\PvGetByIdAction::class);
         $group->delete('/deletePv', \App\Action\PvDeleteAction::class);
-        //$group->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
+        $group->get('/getLastPvsByUserId', \App\Action\PvsGetLastsByUserIdAction::class);
         $group->get('/getPvReleasedDetails', \App\Action\PvGetReleasedDetails::class);
         $group->post('/validatePv', \App\Action\PvValidateAction::class);
         //Pv Has User
