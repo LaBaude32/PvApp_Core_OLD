@@ -26,6 +26,7 @@ return function (App $app) {
         $group->options('getConnectedParticipants', PreflightAction::class);
         $group->options('getAllAffairs', PreflightAction::class);
         $group->options('getAffairById', PreflightAction::class);
+        $group->options('getAffairsByUserId', PreflightAction::class);
         $group->options('updateAffair', PreflightAction::class);
         $group->options('deleteAffair', PreflightAction::class);
         $group->options('addLot', PreflightAction::class);
