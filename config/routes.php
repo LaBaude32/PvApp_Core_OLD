@@ -20,12 +20,10 @@ return function (App $app) {
         $group->options('addAffair', PreflightAction::class);
         $group->options('addPv', PreflightAction::class);
         $group->options('addUser', PreflightAction::class);
-        $group->options('getAllUsers', PreflightAction::class);
         $group->options('updateUser', PreflightAction::class);
         $group->options('updateParticipant', PreflightAction::class);
         $group->options('deleteUser', PreflightAction::class);
         $group->options('getConnectedParticipants', PreflightAction::class);
-        $group->options('addAffair', PreflightAction::class);
         $group->options('getAllAffairs', PreflightAction::class);
         $group->options('getAffairById', PreflightAction::class);
         $group->options('updateAffair', PreflightAction::class);
@@ -33,7 +31,6 @@ return function (App $app) {
         $group->options('addLot', PreflightAction::class);
         $group->options('updateLot', PreflightAction::class);
         $group->options('deleteLot', PreflightAction::class);
-        $group->options('addPv', PreflightAction::class);
         $group->options('getPvByAffairId', PreflightAction::class);
         $group->options('updatePv', PreflightAction::class);
         $group->options('getPvDetails', PreflightAction::class);
