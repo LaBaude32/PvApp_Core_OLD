@@ -18,7 +18,7 @@ return [
 
         // Optional: Set the base path to run the app in a sub-directory
         // The public directory must not be part of the base path
-        //$app->setBasePath('/slim4-tutorial');
+        $app->setBasePath('/pvappcore');
 
         return $app;
     },

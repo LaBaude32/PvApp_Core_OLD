@@ -5,6 +5,8 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 $APP_BDD_PDW = getenv('APP_BDD_PDW');
+$APP_BDD_DATABASE = getenv('APP_BDD_DATABASE');
+$APP_BDD_USER = getenv('APP_BDD_USER');
 
 // Error reporting
 error_reporting(0);
@@ -40,9 +42,9 @@ $settings['error_handler_middleware'] = [
 $settings['db'] = [
     'driver' => 'mysql',
     'host' => 'localhost',
-    'username' => 'root',
-    'database' => 'pv_app_core_database',
-    'password' => $APP_BDD_PDW, // A changer en fonction de l'environnement
+    'username' => $APP_BDD_USER,
+    'database' => $APP_BDD_DATABASE,
+    'password' => $APP_BDD_PDW,
     'charset' => 'utf8mb4',
     'collation' => 'utf8mb4_unicode_ci',
     'flags' => [
