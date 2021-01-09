@@ -19,8 +19,35 @@ return function (App $app) {
         $group->options('getAllUsers', PreflightAction::class);
         $group->options('addAffair', PreflightAction::class);
         $group->options('addPv', PreflightAction::class);
+        $group->options('addUser', PreflightAction::class);
+        $group->options('getAllUsers', PreflightAction::class);
+        $group->options('updateUser', PreflightAction::class);
+        $group->options('updateParticipant', PreflightAction::class);
+        $group->options('deleteUser', PreflightAction::class);
+        $group->options('getConnectedParticipants', PreflightAction::class);
+        $group->options('addAffair', PreflightAction::class);
+        $group->options('getAllAffairs', PreflightAction::class);
+        $group->options('getAffairById', PreflightAction::class);
+        $group->options('updateAffair', PreflightAction::class);
+        $group->options('deleteAffair', PreflightAction::class);
+        $group->options('addLot', PreflightAction::class);
+        $group->options('updateLot', PreflightAction::class);
+        $group->options('deleteLot', PreflightAction::class);
+        $group->options('addPv', PreflightAction::class);
+        $group->options('getPvByAffairId', PreflightAction::class);
+        $group->options('updatePv', PreflightAction::class);
+        $group->options('getPvDetails', PreflightAction::class);
+        $group->options('deletePv', PreflightAction::class);
         $group->options('getLastPvsByUserId', PreflightAction::class);
-        $group->options('getAffairsByUserId', PreflightAction::class);
+        $group->options('getPvReleasedDetails', PreflightAction::class);
+        $group->options('validatePv', PreflightAction::class);
+        $group->options('addPvHasUser', PreflightAction::class);
+        $group->options('deleteParticipant', PreflightAction::class);
+        $group->options('addItem', PreflightAction::class);
+        $group->options('updateItem', PreflightAction::class);
+        $group->options('updateVisibleOfItem', PreflightAction::class);
+        $group->options('deleteItem', PreflightAction::class);
+        $group->options('deleteItemHasPv', PreflightAction::class);
     });
 
     //Protected routes
