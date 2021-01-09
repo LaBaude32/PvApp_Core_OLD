@@ -17,6 +17,8 @@ return function (App $app) {
     $app->options('/api/v1/addAffair', PreflightAction::class);
     $app->options('/api/v1/addPv', PreflightAction::class);
     $app->options('/api/v1/getLastPvsByUserId', PreflightAction::class);
+    $app->options('/api/v1/getAffairsByUserId', PreflightAction::class);
+
 
     //Protected routes
     $app->group('/api/v1', function (RouteCollectorProxy $group) {
