@@ -11,6 +11,6 @@ final class HomeAction
     {
         $result = ['Statut' => ['message' => 'Votre serveur fonctionne']];
 
-        return $response->withJson($result)->withStatus(422);
+        return $response->withJson($result)->withStatus(200);
     }
 }
