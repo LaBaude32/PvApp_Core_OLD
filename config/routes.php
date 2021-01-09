@@ -10,15 +10,18 @@ return function (App $app) {
     $app->get('/', \App\Action\HomeAction::class);
     $app->post('/api/v1/tokens', \App\Action\TokenCreateAction::class);
     $app->post('/api/v1/addNewUser', \App\Action\UserCreateAction::class);
-    $app->options('/api/v1/tokens', PreflightAction::class);
-    $app->options('/api/v1/addNewUser', PreflightAction::class);
-    $app->options('/api/v1/login', PreflightAction::class);
-    $app->options('/api/v1/getAllUsers', PreflightAction::class);
-    $app->options('/api/v1/addAffair', PreflightAction::class);
-    $app->options('/api/v1/addPv', PreflightAction::class);
-    $app->options('/api/v1/getLastPvsByUserId', PreflightAction::class);
-    $app->options('/api/v1/getAffairsByUserId', PreflightAction::class);
 
+    //PreflightAction for OPTIONS Routes
+    $app->group('/api/v1/', function (RouteCollectorProxy $group) {
+        $group->options('tokens', PreflightAction::class);
+        $group->options('addNewUser', PreflightAction::class);
+        $group->options('login', PreflightAction::class);
+        $group->options('getAllUsers', PreflightAction::class);
+        $group->options('addAffair', PreflightAction::class);
+        $group->options('addPv', PreflightAction::class);
+        $group->options('getLastPvsByUserId', PreflightAction::class);
+        $group->options('getAffairsByUserId', PreflightAction::class);
+    });
 
     //Protected routes
     $app->group('/api/v1', function (RouteCollectorProxy $group) {
