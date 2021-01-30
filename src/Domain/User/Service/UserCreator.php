@@ -36,9 +36,9 @@ final class UserCreator
     public function createUser(UserCreateData $user): int
     {
         // Validation
-        if (empty($user->email)) {
-            throw new UnexpectedValueException('Email required');
-        }
+        // if (empty($user->email)) {
+        //     throw new UnexpectedValueException('Email required');
+        // }
 
         // Insert user
         $userId = $this->repository->insertUser($user);
