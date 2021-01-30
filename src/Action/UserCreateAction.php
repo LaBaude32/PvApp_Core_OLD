@@ -37,7 +37,7 @@ final class UserCreateAction
         $user->lastName = htmlspecialchars($data['lastName']);
         $user->phone = htmlspecialchars($data['phone']);
         $user->userGroup = htmlspecialchars($data['userGroup']);
-        $user->userFunction = htmlspecialchars($data['user_function']);
+        $user->userFunction = htmlspecialchars($data['userFunction']);
         $user->organism = htmlspecialchars($data['organism']);
 
         // Invoke the Domain with inputs and retain the result
